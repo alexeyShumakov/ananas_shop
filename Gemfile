@@ -12,6 +12,8 @@ gem 'high_voltage'
 gem 'pg'
 gem 'simple_form'
 
+gem 'ancestry'
+
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'

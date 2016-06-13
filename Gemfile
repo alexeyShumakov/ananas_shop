@@ -13,6 +13,7 @@ gem 'pg'
 gem 'simple_form'
 
 gem 'ancestry'
+gem 'seed-fu', '~> 2.3'
 
 group :development do
   gem 'web-console', '~> 2.0'
@@ -26,6 +27,8 @@ group :development do
   gem 'quiet_assets'
   gem 'rails_layout'
   gem 'spring-commands-rspec'
+  gem 'awesome_print'
+  gem 'pry-rails'
 end
 
 group :development, :test do

@@ -1,0 +1,21 @@
+<% current_category = Category.new if local_assigns[:current_category].blank? %>
+	<% if categories.present? %>
+	  <ul class="sidebar__list list-unstyled">
+	    <% categories.each do |category| %>
+	      <li>
+
+	          <% if category == current_category %>
+	            <b>></b><%= link_to category.title, category, class: 'sidebar__category-selected' %>
+	            <%= render partial: 'categories_bar', locals: {categories: category.children } %>
+
+	          <% elsif category.descendants.exists? current_category.id %>
+	            <%= link_to category.title, category, class: 'sidebar__category-parent' %>
+	            <%= render partial: 'categories_bar', locals: {categories: category.children, current_category: current_category} %>
+
+	          <% else %>
+	            <%= link_to category.title, category, class: 'sidebar__category' %>
+	          <% end %>
+	      </li>
+	    <% end %>
+	  </ul>
+	<% end %>

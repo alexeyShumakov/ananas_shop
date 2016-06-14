@@ -14,6 +14,8 @@ gem 'simple_form'
 
 gem 'ancestry'
 gem 'seed-fu', '~> 2.3'
+gem "paperclip", "~> 4"
+gem 'kaminari'
 
 group :development do
   gem 'web-console', '~> 2.0'

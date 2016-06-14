@@ -3,13 +3,12 @@
     <div class="col-md-3">
       <div class="sidebar panel">
         <div class="panel-body">
-          <%= render partial: 'categories_bar', locals: {categories: Category.roots, current_category: @category} %>
+          <%= render partial: 'categories_bar', locals: { categories: Category.roots } %>
         </div>
       </div>
     </div>
 
     <div class="col-md-9">
-      <h2><%= @category.title %></h2>
       <div class="products-grid">
         <% @products.each do |product| %>
           <div class="col-md-4">

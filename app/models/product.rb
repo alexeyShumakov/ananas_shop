@@ -2,6 +2,7 @@ class Product < ActiveRecord::Base
   paginates_per 7 
   belongs_to :category
   has_many :pictures
+  has_many :line_items
 
   def cover_url(style)
     pic = pictures.first

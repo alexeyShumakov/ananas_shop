@@ -133,6 +133,8 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
+    mutations (0.8.0)
+      activesupport
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.1.1)
@@ -273,6 +275,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
+  mutations
   paperclip (~> 4)
   pg
   pry-rails

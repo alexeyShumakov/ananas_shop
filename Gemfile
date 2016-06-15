@@ -12,6 +12,7 @@ gem 'high_voltage'
 gem 'pg'
 gem 'simple_form'
 
+gem 'mutations'
 gem 'ancestry'
 gem 'seed-fu', '~> 2.3'
 gem "paperclip", "~> 4"

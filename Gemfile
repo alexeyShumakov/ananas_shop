@@ -17,6 +17,7 @@ gem 'ancestry'
 gem 'seed-fu', '~> 2.3'
 gem "paperclip", "~> 4"
 gem 'active_model_serializers', '~> 0.10.0'
+gem "react_on_rails", "~> 5"
 gem 'kaminari'
 
 group :development do

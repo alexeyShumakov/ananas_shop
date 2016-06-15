@@ -32,6 +32,19 @@ RSpec.describe Api::V1::LineItemsController, type: :controller do
       expect(assigns(:line_item).count).to eq(3)
       expect(assigns(:line_item).product).to eq(product)
     end
+
+    describe 'invalid params' do
+      it 'render errors' do
+        post :create, { product_id: product.id, count: -20 }
+        expect(assigns(:line_item)).to be_invalid
+      end
+
+      it 'response have 422 status' do
+        post :create, { product_id: product.id, count: -20 }
+        expect(response).to have_http_status(422)
+      end
+
+    end
   end
 
   describe '#DELETE destroy' do

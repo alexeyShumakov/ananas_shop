@@ -4,7 +4,7 @@ class Api::V1::LineItemsController < ApplicationController
   def create
     exec = CreateLineItem.run(product: @product, cart: @cart, count: params[:count] || 1 )
     @line_item = exec.result
-    if exec.success?
+    if @line_item.valid?
       render json: @line_item
     else
       render json: @line_item.errors, status: :unprocessable_entity

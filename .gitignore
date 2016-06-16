@@ -66,3 +66,9 @@ pickle-email-*.html
 
 # tilde files are usually backup files from a text editor
 *~
+# React on Rails
+npm-debug.log
+node_modules
+
+# Generated js bundles
+/app/assets/webpack/*

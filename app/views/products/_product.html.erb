@@ -6,8 +6,8 @@
     <p><%= product.title %></p>
     <p><b><%= number_to_currency product.price, unit: '₽ ' %></b></p>
     <p>
-      <%= link_to 'посмотреть', product, class: 'btn btn-primary' %>
-      <button class="btn btn-default">в корзину</button>
+      <%= link_to 'посмотреть', product, class: 'btn btn-default' %>
+     <%= react_component('AddToButton', props: { product_id: product.id }) %>
     </p>
   </div>
 </div>

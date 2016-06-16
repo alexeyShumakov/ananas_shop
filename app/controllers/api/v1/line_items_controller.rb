@@ -3,18 +3,16 @@ class Api::V1::LineItemsController < ApplicationController
 
   def create
     exec = CreateLineItem.run(product: @product, cart: @cart, count: params[:count] || 1 )
-    @line_item = exec.result
-    if @line_item.valid?
-      render json: @line_item
-    else
-      render json: @line_item.errors, status: :unprocessable_entity
-    end
+    @cart.reload
+    render json: @cart, root: 'cart'
   end
 
   def destroy
     @line_item = LineItem.find params[:id]
     @line_item.destroy
-    render json: {status: 'deleted'}
+
+    @cart.reload
+    render json: @cart, root: 'cart'
   end
 
   private

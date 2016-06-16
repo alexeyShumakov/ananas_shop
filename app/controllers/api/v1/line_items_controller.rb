@@ -3,6 +3,7 @@ class Api::V1::LineItemsController < ApplicationController
 
   def create
     exec = CreateLineItem.run(product: @product, cart: @cart, count: params[:count] || 1 )
+    @line_item = exec.result
     @cart.reload
     render json: @cart, root: 'cart'
   end

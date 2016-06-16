@@ -38,12 +38,6 @@ RSpec.describe Api::V1::LineItemsController, type: :controller do
         post :create, { product_id: product.id, count: -20 }
         expect(assigns(:line_item)).to be_invalid
       end
-
-      it 'response have 422 status' do
-        post :create, { product_id: product.id, count: -20 }
-        expect(response).to have_http_status(422)
-      end
-
     end
   end
 

@@ -1,13 +1,6 @@
 import actionTypes from '../constants/cartConstants';
 import Immutable from 'immutable';
 
-export function updateCart(cart) {
-  return {
-    type: actionTypes.UPDATE_CART,
-    cart
-  };
-}
-
 export function setSelected(productId) {
   return {
     type: actionTypes.SET_SELECTED,
@@ -21,6 +14,24 @@ export function resetSelected(productId) {
   }
 }
 
+export function setCart(cart) {
+  return {
+    type: actionTypes.SET_CART,
+    cart
+  }
+}
+
+export function fetchCart(cartId) {
+  return function(dispatch) {
+    return $.get(`/api/v1/carts/${cartId}`).then(
+      (data) => {
+        let cart = Immutable.fromJS(data.cart);
+        dispatch(setCart(cart));
+      }
+    );
+  };
+}
+
 export function addToCart(productId) {
   return function(dispatch) {
     dispatch(resetSelected());
@@ -28,7 +39,7 @@ export function addToCart(productId) {
       (data) => {
         let cart = Immutable.fromJS(data.cart);
         dispatch(setSelected(productId));
-        dispatch(updateCart(cart));
+        dispatch(setCart(cart));
       }
     );
   };
@@ -42,7 +53,7 @@ export function updateLineItem(lineItemId, count) {
     }).then(
       (data) => {
         let cart = Immutable.fromJS(data.cart);
-        dispatch(updateCart(cart));
+        dispatch(setCart(cart));
       }
     )
   };
@@ -56,7 +67,7 @@ export function destroyLineItem(lineItemId) {
     }).then(
       (data) => {
         let cart = Immutable.fromJS(data.cart);
-        dispatch(updateCart(cart));
+        dispatch(setCart(cart));
       }
     )
   };

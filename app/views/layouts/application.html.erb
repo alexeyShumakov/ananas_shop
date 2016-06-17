@@ -9,7 +9,7 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= redux_store 'cartStore', props: { cart: @cart_props } %>
+    <%= redux_store 'cartStore', props: { totalPrice: @cart.total_price, totalCount: @cart.total_count } %>
     <header>
       <%= render 'layouts/navigation' %>
     </header>

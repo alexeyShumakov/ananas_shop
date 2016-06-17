@@ -8,15 +8,16 @@ import reducers from '../reducers';
 import { initialStates } from '../reducers';
 
 export default props => {
-  // This is how we get initial props Rails into redux.
-  const { cart } = props;
+  const { totalPrice, totalCount } = props;
   const { $$cartState } = initialStates;
 
-  // Redux expects to initialize the store using an Object, not an Immutable.Map
   const initialState = {
     $$cartStore: $$cartState.merge({
-      cart
-    }),
+      cart: {
+        total_price: totalPrice,
+        total_count: totalCount
+      }
+    })
   };
 
   const reducer = combineReducers(reducers);

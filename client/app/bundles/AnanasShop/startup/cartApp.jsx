@@ -7,10 +7,11 @@ import CartContainer from '../containers/CartContainer';
 // This is how you get props from the Rails view into the redux store.
 // This code here binds your smart component to the redux store.
 export default (props) => {
+  const { cartId } = props;
   const cartStore = ReactOnRails.getStore("cartStore");
   const reactComponent = (
     <Provider store={cartStore}>
-      <CartContainer/>
+      <CartContainer {...{ cartId }}/>
     </Provider>
   );
   return reactComponent;

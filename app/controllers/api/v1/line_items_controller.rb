@@ -5,7 +5,7 @@ class Api::V1::LineItemsController < ApplicationController
     exec = CreateLineItem.run(product: @product, cart: @cart, count: params[:count] || 1 )
     @line_item = exec.result
     @cart.reload
-    render json: @cart, root: 'cart'
+    render json: @cart, root: 'cart', include: ['**']
   end
 
   def destroy
@@ -13,7 +13,7 @@ class Api::V1::LineItemsController < ApplicationController
     @line_item.destroy
 
     @cart.reload
-    render json: @cart, root: 'cart'
+    render json: @cart, root: 'cart', include: ['**']
   end
 
   private

@@ -1,33 +1,41 @@
-
 import React, { PropTypes } from 'react';
-import Cart from '../components/Cart';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
 
+import Cart from '../components/Cart';
+import * as cartActionCreators from '../actions/cartActionCreators';
+
 function select(state) {
-  // Which part of the Redux global state does our component want to receive as props?
-  // Note the use of `$$` to prefix the property name because the value is of type Immutable.js
   return { $$cartStore: state.$$cartStore };
 }
 
-// Simple example of a React "smart" component
 class CartContainer extends React.Component {
   static propTypes = {
+    cartId: PropTypes.number.isRequired,
     dispatch: PropTypes.func.isRequired,
-
-    $$cartStore: PropTypes.instanceOf(Immutable.Map).isRequired,
+    $$cartStore: PropTypes.instanceOf(Immutable.Map).isRequired
   };
 
   constructor(props, context) {
     super(props, context);
+
+    const { $$cartStore, dispatch, cartId } = this.props;
+    const actions = bindActionCreators(cartActionCreators, dispatch);
+    const { fetchCart } = actions;
+    fetchCart(cartId);
   }
 
   render() {
-    const { dispatch, $$cartStore } = this.props;
+    const { $$cartStore, dispatch, cartId } = this.props;
+    const actions = bindActionCreators(cartActionCreators, dispatch);
+    const { destroyLineItem } = actions;
     const count = $$cartStore.get('cart').get('total_count');
+    const price = $$cartStore.get('cart').get('total_price');
+    const cart  = $$cartStore.get('cart');
 
     return (
-      <Cart {...{ count }} />
+      <Cart {...{count, price, cart, destroyLineItem}} />
     );
   }
 }

@@ -14,7 +14,7 @@
       <ul class="nav navbar-nav">
         <%= render 'layouts/navigation_links' %>
       </ul>
-      <%= react_component 'CartApp' %>
+      <%= react_component 'CartApp', props: { cartId: @cart.id } %>
     </div>
   </div>
 </nav>

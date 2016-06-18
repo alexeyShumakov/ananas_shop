@@ -1,12 +1,13 @@
-<div class="thumbnail">
+<div class="thumbnail product-thumb">
   <%= link_to product do %>
     <%= image_tag product.cover_url(:thumb) %>
   <% end %>
   <div class="caption">
-    <p><%= product.title %></p>
+    <span class="product-thumb__title">
+      <%= product.title %>
+    </span>
     <p><b><%= number_to_currency product.price, unit: '₽ ' %></b></p>
     <p>
-      <%= link_to 'посмотреть', product, class: 'btn btn-default' %>
      <%= react_component('AddToButton', props: { product_id: product.id }) %>
     </p>
   </div>

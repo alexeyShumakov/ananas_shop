@@ -1,11 +1,22 @@
 .sidebar {
-  border-color: #dfe0e0;
+  border-color: $orange;
+}
+.sidebar__category {
+  color: #767676;
+  &:hover {
+    color: #767676;
+  }
+}
+.sidebar__category-selected {
+  &:hover {
+    text-decoration: none;
+  }
 }
 .sidebar__category-selected, .sidebar__category-parent {
-  color: #e62739;
-}
-.sidebar__heading {
-  background-color: rgb(250, 250, 250);
+  &:hover {
+    color: lighten($brown, 10%);
+  }
+  color: lighten($brown, 10%);
 }
 .sidebar__list {
   margin-left: 20px;

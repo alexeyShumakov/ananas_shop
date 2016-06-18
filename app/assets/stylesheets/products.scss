@@ -2,3 +2,15 @@
   display: flex;
   flex-flow: row wrap;
 }
+.product-thumb {
+  &:hover {
+    border: 1px solid $orange;
+  }
+}
+
+.product-thumb__title {
+  display: block;
+  max-height: 18px;
+  margin-bottom: 2px;
+  overflow: hidden;
+}

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-sm-3 hidden-xs">
       <div class="sidebar panel">
         <div class="panel-body">
           <%= render partial: 'categories_bar', locals: { categories: Category.roots } %>
@@ -8,10 +8,10 @@
       </div>
     </div>
 
-    <div class="col-md-9">
+    <div class="col-sm-9">
       <div class="products-grid">
         <% @products.each do |product| %>
-          <div class="col-md-4">
+          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
             <%= render partial: 'products/product', locals: { product: product } %>
           </div>
         <% end %>

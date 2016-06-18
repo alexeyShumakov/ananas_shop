@@ -16,4 +16,17 @@ RSpec.describe ProductsController, type: :controller do
       expect(assigns(:products)).to eq([product])
     end
   end
+
+  describe 'GET #search' do
+    it 'assigns @products' do
+      product = create(:product, title: 'Ananas')
+      get :search, { keyword: 'ananas' }
+      expect(assigns(:products)).to eq([product])
+    end
+    it 'products are empty array' do
+      product = create(:product, title: 'Tomato')
+      get :search, { keyword: 'ananas' }
+      expect(assigns(:products)).to eq([])
+    end
+  end
 end

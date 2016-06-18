@@ -25,14 +25,14 @@ export default class AddToButton extends React.Component {
     if (this.isSelected()) {
       button =<a
         href='/my_cart'
-        className='button btn btn-success'>
-        Go to cart
+        className='button btn btn-success btn-block'>
+        Перейти в <span className="glyphicon glyphicon-shopping-cart"></span>
       </a>
     } else {
       button =<button
                 onClick={this.handleChange}
-                className='btn btn-primary'>
-                Add to cart
+                className='btn btn-primary btn-block'>
+                Добавить
               </button>
     }
     return (

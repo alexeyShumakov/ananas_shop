@@ -20,6 +20,11 @@ $btn-primary-color: $black;
 $btn-primary-bg: $orange;
 $btn-primary-border: darken($orange, 6.5%);
 
+
+$btn-success-color: $black;
+$btn-success-bg: $green;
+$btn-success-border: darken($green, 6.5%);
+
 $alert-info-bg: lighten($brown, 65%);
 $alert-info-border: darken($alert-info-bg, 6.5%);
 $alert-info-text: $black;

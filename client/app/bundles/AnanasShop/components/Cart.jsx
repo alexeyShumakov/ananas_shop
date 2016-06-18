@@ -24,14 +24,16 @@ export default class Cart extends React.Component {
   render() {
     let prevCart;
     const { count, price, cart, destroyLineItem } = this.props;
-    if (this.state.hover && (count > 0)) {
+    let isPresent = count > 0;
+    if (this.state.hover && isPresent) {
         prevCart = <PrevCart {...{ cart, destroyLineItem }}/>
     }
     return (
-      <div onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave} className="navbar-text navbar-right">
-        <span className="glyphicon glyphicon-shopping-cart"></span>
-        <a href="/my_cart" className="navbar-link">Моя корзина ({ count } шт., { price } руб.)</a>
-        <div className='prev-cart'>{prevCart}</div>
+      <div onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave} className="navbar-text navbar-right top-cart">
+        <span className={`glyphicon glyphicon-shopping-cart ${ isPresent ? 'cart-present' : 'cart-empty'}`}></span>
+        <a href="/my_cart" className="navbar-link">
+          Моя корзина ({ count } шт., { price } руб.)</a>
+        {prevCart}
       </div>
     );
   }

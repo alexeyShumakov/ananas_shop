@@ -25,17 +25,27 @@ export default class PrevCartItem extends React.Component {
     let productId = item.get('product').get('id');
     let prevImageUrl = item.get('product').get('thumb_cover_url');
     return (
-      <div>
-        <a href={`/products/${productId}`}>
-          <img src={prevImageUrl} alt=""/>
-        </a>
-        {count} x {price} = {totalPrice}
-        <p>
+      <tr>
+        <td>
+          <a href={`/products/${productId}`}>
+            <img src={prevImageUrl} alt=""/>
+          </a>
+        </td>
+
+        <td>
           {title}
-        </p>
-        <button onClick={this.deleteItem} className="btn btn-danger">x</button>
-        <hr/>
-      </div>
+        </td>
+
+        <td>
+          {count} x {price}
+        </td>
+        <td>
+           {totalPrice}
+        </td>
+        <td>
+          <button onClick={this.deleteItem} className="btn btn-danger">x</button>
+        </td>
+      </tr>
     );
   }
 }

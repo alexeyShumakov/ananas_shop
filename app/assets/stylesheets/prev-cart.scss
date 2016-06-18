@@ -1,0 +1,26 @@
+.top-cart {
+  position: relative;
+}
+.cart-present {
+  color: #c00;
+}
+.cart-empty {
+}
+.glyphicon-shopping-cart {
+}
+.prev-cart {
+  img {
+    width: 40px;
+    height: 40px;
+  }
+  position: absolute;
+  left: -450px;
+  width: 600px;
+  z-index: 1000;
+}
+
+.prev-cart__table-container {
+  max-height: 300px;
+  overflow: auto;
+}
+

@@ -22,12 +22,23 @@ export default class PrevCart extends React.Component {
       items.push( <PrevCartItem {...{ key, item, destroyLineItem }} />);
     });
     return (
-      <div>
-        {totalCount} товаров | {totalPrice} руб.
-        <hr/>
-        {items}
-        <hr/>
-        <a className="btn btn-default" href="/my_cart">Перейти в корзину</a>
+      <div className="prev-cart">
+        <div className='panel panel-default'>
+          <div className="panel-body">
+            <div className="panel-heading">
+              {totalCount} шт. | {totalPrice} руб.
+            </div>
+            <div className="prev-cart__table-container">
+              <table className='table'>
+                <tbody>
+                {items}
+                </tbody>
+              </table>
+            </div>
+            <hr/>
+            <a className="btn btn-primary btn-block" href="/my_cart">Перейти в корзину</a>
+          </div>
+        </div>
       </div>
     );
   }

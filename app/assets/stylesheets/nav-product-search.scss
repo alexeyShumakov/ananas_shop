@@ -1,0 +1,16 @@
+.nav-product-search {
+  .form-control-feedback {
+    z-index: 100;
+  }
+  .dropdown-menu {
+    display: block;
+    width: 400px;
+    margin-left: 15px;
+    img {
+      width: 20px;
+      height: 20px;
+      float: left;
+      margin-right: 3px;
+    }
+  }
+}

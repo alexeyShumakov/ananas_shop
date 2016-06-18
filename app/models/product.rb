@@ -1,4 +1,10 @@
 class Product < ActiveRecord::Base
+  include PgSearch
+
+  pg_search_scope :search_by_title,
+    against: :title,
+    using: {tsearch: {prefix: true}}
+
   paginates_per 24
   belongs_to :category
   has_many :pictures

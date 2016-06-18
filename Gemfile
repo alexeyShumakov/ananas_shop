@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-sass'
 gem 'high_voltage'
 gem 'pg'
+gem 'pg_search'
 gem 'simple_form'
 
 gem 'mutations'

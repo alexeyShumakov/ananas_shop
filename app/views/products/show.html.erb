@@ -1,5 +1,11 @@
 <div class="container">
   <div class="row">
+    <div class="col-md-12">
+      <%= render partial: 'breadcrumb', locals: { category: @product.category, title: @product.title } %>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-md-3">
       <%= image_tag @product.cover_url(:medium) %>
     </div>

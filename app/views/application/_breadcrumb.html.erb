@@ -1,0 +1,16 @@
+<ol class="breadcrumb hover-shadow">
+  <li>
+    <%= link_to root_path do %>
+      <span class="glyphicon glyphicon-home"></span>
+    <% end %>
+  </li>
+  <% category.ancestors.each do |ancestors| %>
+    <li><%= link_to ancestors.title, ancestors %></li>
+  <% end %>
+  <% if local_assigns[:title].present? %>
+    <li><%= link_to category.title, category %></li>
+    <li><%= title %></li>
+  <% else %>
+    <li><%= category.title %></li>
+  <% end %>
+</ol>

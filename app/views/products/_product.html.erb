@@ -6,7 +6,7 @@
     <span class="product-thumb__title">
       <%= product.title %>
     </span>
-    <p><b><%= number_to_currency product.price, unit: '₽ ' %></b></p>
+    <p><b><%= number_to_currency product.price, unit: '' %> &#8381;</b></p>
     <p>
      <%= react_component('AddToButton', props: { product_id: product.id }) %>
     </p>

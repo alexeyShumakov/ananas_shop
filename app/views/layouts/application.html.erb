@@ -16,7 +16,15 @@
     <main role="main">
       <div class="container main-container">
          <%= render 'layouts/messages' %>
-         <%= yield %>
+         <%= render partial: 'ananas_nav' %>
+         <div class="row hidden-sm hidden-xs">
+           <div class="col-md-12">
+             <%= image_tag('main_banner.png') %>
+           </div>
+         </div>
+         <div class="margin-top-20">
+           <%= yield %>
+         </div>
          <%= render 'layouts/footer' %>
        </div>
     </main>

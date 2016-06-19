@@ -20,6 +20,9 @@
       <ul class="nav navbar-nav">
         <%= render 'layouts/navigation_links' %>
       </ul>
+      <p class='navbar-text'>
+        <b> <span class='glyphicon glyphicon-earphone'></span> 8 (123) 456-78-90 </b>
+      </p>
       <%= react_component 'CartApp', props: { cartId: @cart.id } %>
     </div>
   </div>

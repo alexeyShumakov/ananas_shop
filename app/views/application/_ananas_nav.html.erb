@@ -1,0 +1,7 @@
+<div class="ananas-nav">
+  <ul class='nav nav-pills'>
+    <% Category.roots.each do |category| %>
+      <li> <%= link_to category.title, category_path(category) %></li>
+    <% end %>
+  </ul>
+</div>

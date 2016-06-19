@@ -1,6 +1,12 @@
 .sidebar {
   border-color: $orange;
 }
+.sidebar__link {
+  color: #767676;
+  &:hover {
+    color: #767676;
+  }
+}
 .sidebar__category {
   color: #767676;
   &:hover {

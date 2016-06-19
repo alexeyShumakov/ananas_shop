@@ -42,9 +42,6 @@ export default class PrevCartItem extends React.Component {
         <td>
            {totalPrice}
         </td>
-        <td>
-          <button onClick={this.deleteItem} className="btn btn-danger">x</button>
-        </td>
       </tr>
     );
   }

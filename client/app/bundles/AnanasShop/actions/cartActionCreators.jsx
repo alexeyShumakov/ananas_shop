@@ -21,12 +21,22 @@ export function setCart(cart) {
   }
 }
 
+export function setCartLoadingState(value) {
+  return {
+    type: actionTypes.SET_CART_LOADING_STATE,
+    loadingState: value
+
+  }
+}
+
 export function fetchCart(cartId) {
   return function(dispatch) {
+    dispatch(setCartLoadingState(true));
     return $.get(`/api/v1/carts/${cartId}`).then(
       (data) => {
         let cart = Immutable.fromJS(data.cart);
         dispatch(setCart(cart));
+        dispatch(setCartLoadingState(false));
       }
     );
   };

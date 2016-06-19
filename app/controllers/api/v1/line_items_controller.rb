@@ -16,6 +16,13 @@ class Api::V1::LineItemsController < ApplicationController
     render json: @cart, root: 'cart', include: ['**']
   end
 
+  def update
+    @line_item = LineItem.find params[:id]
+    @line_item.update(count: params[:count])
+    @cart.reload
+    render json: @cart, root: 'cart', include: ['**']
+  end
+
   private
 
   def set_product

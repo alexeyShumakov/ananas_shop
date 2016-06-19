@@ -28,40 +28,52 @@ class FullCartContainer extends React.Component {
     const { dispatch, $$cartStore } = this.props;
     const actions = bindActionCreators(cartActionCreators, dispatch);
     const { updateLineItem, destroyLineItem } = actions;
-    const cart = $$cartStore.get('cart');
-    const lineItems = cart.get('line_items');
-    const totalPrice = cart.get('total_price');
+    const cartLoadingState = $$cartStore.get('isCartLoading');
+    let totalPrice;
+    let lineItems;
+    if (!cartLoadingState) {
+      const cart = $$cartStore.get('cart');
+      totalPrice = cart.get('total_price');
+      lineItems = cart.get('line_items');
+      lineItems = lineItems.map(function(lineItem){
+        return <LineItem key={lineItem.get('id')}
+                         data={lineItem}
+                         updateLineItem={updateLineItem}
+                         destroyLineItem={destroyLineItem}/>});
+    }
 
     return (
       <div>
         <table className="table">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Description</th>
-              <th>count</th>
-              <th>price</th>
-              <th>sum</th>
               <th></th>
+              <th>Товар</th>
+              <th>Кол-во</th>
+              <th>Цена</th>
+              <th>Сумма</th>
+              <th>Действия</th>
             </tr>
           </thead>
           <tbody>
-            {lineItems.map(function(lineItem){
-              return <LineItem key={lineItem.get('id')}
-                               data={lineItem}
-                               updateLineItem={updateLineItem}
-                               destroyLineItem={destroyLineItem}/>;
-            })}
+            {lineItems}
           </tbody>
         </table>
-
         <hr/>
-
-        <a href="/orders/new" className='btn btn-success btn-lg'>process to order</a>
         <div className="pull-right">
           <h3>
-            total price: {totalPrice}
+             Итого: {totalPrice} руб.
           </h3>
+        </div>
+        <div className="clearfix"></div>
+        <div className="btn-toolbar">
+          <div className="btn-group">
+            <button className="btn btn-primary">Войти и заказать</button>
+            <button className="btn btn-primary">Зарегистрироваться и заказать</button>
+          </div>
+          <div className="btn-group">
+            <a href="/orders/new" className='btn btn-default'>Быстрая покупка</a>
+          </div>
         </div>
       </div>
     );

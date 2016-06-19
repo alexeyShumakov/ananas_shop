@@ -1,6 +1,6 @@
 
 import React, { PropTypes } from 'react';
-import { Input } from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap';
 import _ from 'lodash';
 
 export default class LineItem extends React.Component {
@@ -33,23 +33,23 @@ export default class LineItem extends React.Component {
     const count = lineItem.get('count');
 
     const product = lineItem.get('product');
-    const productName = product.get('name');
+    const productTitle = product.get('title');
     const productPrice = product.get('price');
-    const cover = product.get('cover').get('thumb');
+    const cover = product.get('thumb_cover_url');
 
     const productId = product.get('id');
     const productLink = `/products/${productId}`;
 
     return (
       <tr>
-        <td> 
+        <td>
           <a href={productLink}>
             <img src={cover} className='my-cart__thumb img-rounded'/>
           </a>
         </td>
-        <td> {productName} </td>
+        <td> {productTitle} </td>
         <td>
-          <Input
+          <FormControl
             type="number"
             className='form-control my-cart__count-input'
             value={count}

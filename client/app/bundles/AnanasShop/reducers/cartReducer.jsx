@@ -4,6 +4,7 @@ import actionTypes from '../constants/cartConstants';
 
 export const $$initialState = Immutable.fromJS({
   count: 0,
+  isCartLoading: true,
   selectedProductId: 0,
   cartId: 0,
   cart: {
@@ -22,9 +23,12 @@ export const $$initialState = Immutable.fromJS({
 });
 
 export default function cartReducer($$state = $$initialState, action) {
-  const { type, cart, productId } = action;
+  const { loadingState, type, cart, productId } = action;
 
   switch (type) {
+    case actionTypes.SET_CART_LOADING_STATE:
+      return $$state.set('isCartLoading', loadingState);
+
     case actionTypes.SET_CART:
       return $$state.set('cart', cart);
 

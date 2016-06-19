@@ -1,1 +1,21 @@
-hello!
+<div class="row">
+  <div class="col-sm-3 hidden-xs">
+    <div class="sidebar panel">
+      <div class="panel-body">
+        <ul class="list-unstyled">
+          <li><a class='sidebar__link' href="#">Вход в личный кабинет</a></li>
+          <li><a class='sidebar__link' href="#">Регистрация</a></li>
+          <li><a class='sidebar__link' href="#">Восстановление пароля</a></li>
+          <li><a class='sidebar__link' href="#">Моя корзина</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-9">
+    <div class="my-cart">
+      <h1>Моя корзина</h1>
+      <%= react_component 'FullCartApp' %>
+    </div>
+  </div>
+</div>

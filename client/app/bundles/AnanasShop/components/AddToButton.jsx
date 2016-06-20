@@ -26,7 +26,7 @@ export default class AddToButton extends React.Component {
       button =<a
         href='/my_cart'
         className='button btn btn-success btn-block'>
-        Перейти в <span className="glyphicon glyphicon-shopping-cart"></span>
+        В корзину
       </a>
     } else {
       button =<button

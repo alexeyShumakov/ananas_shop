@@ -1,4 +1,4 @@
-<div class="ananas-nav">
+<div class="ananas-nav hidden-xs">
   <ul class='nav nav-pills'>
     <% Category.roots.each do |category| %>
       <li> <%= link_to category.title, category_path(category) %></li>

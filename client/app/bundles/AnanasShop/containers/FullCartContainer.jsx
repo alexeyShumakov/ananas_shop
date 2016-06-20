@@ -44,21 +44,23 @@ class FullCartContainer extends React.Component {
 
     return (
       <div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Товар</th>
-              <th>Кол-во</th>
-              <th>Цена</th>
-              <th>Сумма</th>
-              <th>Действия</th>
-            </tr>
-          </thead>
-          <tbody>
-            {lineItems}
-          </tbody>
-        </table>
+        <div className="table-responsive">
+          <table className="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Товар</th>
+                <th>Кол-во</th>
+                <th>Цена</th>
+                <th>Сумма</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              {lineItems}
+            </tbody>
+          </table>
+        </div>
         <hr/>
         <div className="pull-right">
           <h3>

@@ -9,6 +9,8 @@ $navbar-default-border: darken($green, 6.5%);
 $navbar-default-color: $black;
 $navbar-default-link-color: $black;
 $navbar-default-link-hover-color: lighten($navbar-default-link-color, 15%);
+$navbar-default-toggle-border-color: darken($green, 10%);
+$navbar-default-toggle-hover-bg: $orange;
 
 $nav-link-hover-bg: none;
 

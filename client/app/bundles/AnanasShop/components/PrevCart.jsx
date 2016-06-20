@@ -22,7 +22,7 @@ export default class PrevCart extends React.Component {
       items.push( <PrevCartItem {...{ key, item, destroyLineItem }} />);
     });
     return (
-      <div className="prev-cart">
+      <div className="prev-cart hidden-xs">
         <div className='panel panel-default'>
           <div className="panel-body">
             <div className="panel-heading">

@@ -48,7 +48,6 @@ export default class NavbarProductSearch extends React.Component {
             return(
               <li key={product.id}>
                 <a href={`/products/${product.id}`} >
-                  <img src={product.thumb_cover_url} alt=""/>
                   {product.title}
                 </a>
               </li>

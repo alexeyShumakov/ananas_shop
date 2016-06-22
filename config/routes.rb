@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :products, only: [:show, :index] do
     get 'search', on: :collection
   end

@@ -12,6 +12,7 @@ gem 'high_voltage'
 gem 'pg'
 gem 'pg_search'
 gem 'simple_form'
+gem 'devise'
 
 gem 'mutations'
 gem 'ancestry'

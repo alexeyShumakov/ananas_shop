@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources 'orders', only: ['new']
+
   devise_for :users
   resources :products, only: [:show, :index] do
     get 'search', on: :collection

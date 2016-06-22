@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622075543) do
+ActiveRecord::Schema.define(version: 20160622105333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "city"
+    t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -39,6 +46,20 @@ ActiveRecord::Schema.define(version: 20160622075543) do
 
   add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
   add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.decimal  "total_price", precision: 8, scale: 2
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.integer  "address_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "orders", ["address_id"], name: "index_orders_on_address_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
     t.integer  "product_id"
@@ -85,5 +106,7 @@ ActiveRecord::Schema.define(version: 20160622075543) do
 
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "products"
+  add_foreign_key "orders", "addresses"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
 end

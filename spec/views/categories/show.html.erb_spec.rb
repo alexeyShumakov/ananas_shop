@@ -4,6 +4,7 @@ RSpec.describe "categories/show.html.erb", type: :view do
   let(:category) { create :category }
   let(:products) { [create(:product)]}
   it 'show title' do
+    stub_template '_breadcrumb.html.erb' => 'breadcrumb'
     stub_template '_categories_bar.html.erb' => 'sidebar'
     stub_template '_pager.html.erb' => 'pager'
     assign(:category, category)

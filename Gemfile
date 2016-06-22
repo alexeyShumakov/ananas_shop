@@ -12,7 +12,7 @@ gem 'high_voltage'
 gem 'pg'
 gem 'pg_search'
 gem 'simple_form'
-gem 'devise', '4.1.0', git: 'https://github.com/plataformatec/devise.git'
+gem 'devise', '4.1.1'
 
 gem 'mutations'
 gem 'ancestry'

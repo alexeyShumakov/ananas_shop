@@ -1,0 +1,12 @@
+<h1>Поздравляем Вас <%= @order.name %>, с новой покупкой! </h1>
+<p>
+  Сумма вашего заказа: <b><%= @order.fixed_total_price %> руб.</b>
+</p>
+<ul>
+  <% @order.line_items.each do |line_item| %>
+    <li><%= line_item.count %> x <%= line_item.fixed_price %> = <%= line_item.fixed_total_price %> </li>
+  <% end %>
+</ul>
+<p>
+  В ближайшее время наш менеджер с вами свяжется.
+</p>

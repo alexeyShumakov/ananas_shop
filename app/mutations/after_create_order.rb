@@ -15,5 +15,6 @@ class AfterCreateOrder < Mutations::Command
     end
     cart.reload
     order.reload
+    UserMailer.new_order(order).deliver_later
   end
 end

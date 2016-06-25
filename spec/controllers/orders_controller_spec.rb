@@ -24,6 +24,10 @@ RSpec.describe OrdersController, type: :controller do
         }
       end
 
+      it 'send new_order email' do
+        expect { post :create, order: valid_params }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      end
+
       it 'add line_items to order' do
         cart_total_price = line_item_1.total_price + line_item_2.total_price
         cart_total_count = line_item_1.count + line_item_2.count

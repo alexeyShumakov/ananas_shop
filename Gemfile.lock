@@ -99,6 +99,8 @@ GEM
     connection_pool (2.2.0)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
+    declarative (0.0.7)
+      uber (>= 0.0.15)
     devise (4.1.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -106,6 +108,10 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    disposable (0.3.0)
+      declarative (~> 0.0.6)
+      representable (>= 2.4.0, <= 3.1.0)
+      uber
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
@@ -212,6 +218,16 @@ GEM
       foreman
       rails (>= 3.2)
       rainbow (~> 2.1)
+    reform (2.2.1)
+      disposable (>= 0.3.0, < 0.4.0)
+      representable (>= 2.4.0, < 3.1.0)
+      uber (~> 0.0.11)
+    reform-rails (0.1.2)
+      activemodel (>= 3.2)
+      reform (>= 2.2.0.rc1)
+    representable (3.0.0)
+      declarative (~> 0.0.5)
+      uber (~> 0.0.15)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
     rspec-core (3.4.4)
@@ -268,6 +284,7 @@ GEM
     tilt (2.0.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    uber (0.0.15)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
     warden (1.2.6)
@@ -316,6 +333,8 @@ DEPENDENCIES
   rails (= 4.2.6)
   rails_layout
   react_on_rails (~> 5)
+  reform
+  reform-rails
   rspec-rails
   sass-rails (~> 5.0)
   seed-fu (~> 2.3)

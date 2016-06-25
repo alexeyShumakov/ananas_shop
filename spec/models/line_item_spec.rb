@@ -8,4 +8,12 @@ RSpec.describe LineItem, type: :model do
       expect(line_item.total_price).to eq(15 * 2)
     end
   end
+
+  describe '#fixed_total_price' do
+    it 'should return fixed_total_price' do
+      line_item = create :line_item, count: 2, fixed_price: 15
+      expect(line_item.fixed_total_price).to eq(15 * 2)
+    end
+
+  end
 end

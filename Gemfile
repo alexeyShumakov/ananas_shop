@@ -22,6 +22,9 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem "react_on_rails", "~> 5"
 gem 'kaminari'
 
+gem 'reform'
+gem 'reform-rails'
+
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'

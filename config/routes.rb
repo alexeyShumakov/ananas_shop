@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources 'orders', only: ['new']
+  resources 'orders', only: ['new', 'create']
 
   devise_for :users
   resources :products, only: [:show, :index] do

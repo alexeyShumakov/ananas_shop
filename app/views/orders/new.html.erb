@@ -1,2 +1,25 @@
-<h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
+<div class="row">
+  <div class="col-md-4">
+    <h1>Orders#new</h1>
+    <%= simple_form_for @form do |f| %>
+      <%= f.input :name %>
+      <%= f.input :email %>
+      <%= f.input :phone %>
+
+      <%= f.simple_fields_for :address do |a| %>
+        <%= a.input :city %>
+        <%= a.input :address %>
+      <% end %>
+
+      <%= f.button :submit %>
+    <% end %>
+  </div>
+
+  <div class="col-md-8">
+    <% @cart.line_items.each do |line_item| %>
+      <div>
+        <%= line_item.count %> X <%= line_item.product.price %>, <%= line_item.product.title %>
+      </div>
+    <% end %>
+  </div>
+</div>

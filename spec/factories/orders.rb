@@ -5,6 +5,6 @@ FactoryGirl.define do
     name "MyString"
     email "MyString"
     phone "MyString"
-    address nil
+    address
   end
 end

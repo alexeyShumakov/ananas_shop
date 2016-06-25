@@ -11,17 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622105333) do
+ActiveRecord::Schema.define(version: 20160625122440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "city"
     t.string   "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -38,24 +41,27 @@ ActiveRecord::Schema.define(version: 20160622105333) do
   create_table "line_items", force: :cascade do |t|
     t.integer  "cart_id"
     t.integer  "product_id"
-    t.decimal  "price",      precision: 8, scale: 2
+    t.decimal  "fixed_price", precision: 8, scale: 2
     t.integer  "count"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "order_id"
   end
 
   add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
+  add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
   add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "address_id"
     t.decimal  "total_price", precision: 8, scale: 2
+    t.integer  "status",                              default: 0
     t.string   "name"
     t.string   "email"
     t.string   "phone"
-    t.integer  "address_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   add_index "orders", ["address_id"], name: "index_orders_on_address_id", using: :btree
@@ -104,7 +110,9 @@ ActiveRecord::Schema.define(version: 20160622105333) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "addresses", "users"
   add_foreign_key "line_items", "carts"
+  add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "users"

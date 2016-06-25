@@ -44,7 +44,8 @@ RSpec.describe Api::V1::LineItemsController, type: :controller do
   describe '#DELETE destroy' do
     it 'destroy line_item by id' do
       cart = create :cart
-      line_item = create :line_item , count: 1, cart: cart, product: product
+      line_item = create :line_item, count: 1, cart: cart, product: product
+      request.cookies['cart_id'] = cart.id
       expect { delete :destroy, id: line_item.id}.to change(LineItem, :count).by(-1)
     end
 

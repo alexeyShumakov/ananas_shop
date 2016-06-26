@@ -1,25 +1,58 @@
 <div class="row">
-  <div class="col-md-4">
-    <h1>Orders#new</h1>
-    <%= simple_form_for @form do |f| %>
+  <div class="col-md-8">
+    <%= simple_form_for(@form, html: {class: 'form-horizontal'}, wrapper: :horizontal_form) do |f| %>
+      <h4>Ваши личные данные</h4>
       <%= f.input :name %>
       <%= f.input :email %>
       <%= f.input :phone %>
 
+      <hr>
+      <h4>Адрес доставки</h4>
       <%= f.simple_fields_for :address do |a| %>
         <%= a.input :city %>
         <%= a.input :address %>
       <% end %>
 
-      <%= f.button :submit %>
-    <% end %>
+      <div class="row">
+        <div class="col-sm-4 col-sm-offset-3 order__back-button">
+          <%= link_to "< В корзину", my_cart_path, class: 'btn btn-default' %>
+        </div>
+        <div class="col-sm-5">
+          <%= f.submit 'Оформить заказ', class: 'btn btn-primary btn-lg pull-right' %>
+        </div>
+      <% end %>
+      </div>
   </div>
 
-  <div class="col-md-8">
-    <% @cart.line_items.each do |line_item| %>
-      <div>
-        <%= line_item.count %> X <%= line_item.product.price %>, <%= line_item.product.title %>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4>Ваш заказ <span class='pull-right'><%= @cart.total_count %> шт.</span></h4>
+          <div>
+            <% @cart.line_items.each do |line_item| %>
+              <div class="row margin-top-20">
+                <div class="col-sm-5">
+                  <%= image_tag line_item.product.cover_url, size: '120x120' %>
+                </div>
+                <div class="col-sm-7">
+                  <p>
+                    <%= line_item.product.title %>
+                  </p>
+                  <p>
+                    <%= line_item.count %> X <%= line_item.product.price %>
+                  </p>
+                </div>
+              </div>
+            <% end %>
+            <%= link_to 'Редактировать заказ', my_cart_path, class: 'pull-right margin-top-20' %>
+            <div class="clearfix"></div>
+            <hr/>
+
+            <h4>
+              Сумма заказа: <b class='pull-right'><%= @cart.total_price %> руб.</b>
+            </h4>
+          </div>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>

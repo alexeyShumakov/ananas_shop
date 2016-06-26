@@ -1,15 +1,15 @@
-en:
-  simple_form:
-    "yes": 'Yes'
-    "no": 'No'
-    required:
-      text: 'required'
-      mark: '*'
+#en:
+  #simple_form:
+    #"yes": 'Yes'
+    #"no": 'No'
+    #required:
+      #text: 'required'
+      #mark: '*'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
-    error_notification:
-      default_message: "Please review the problems below:"
+    #error_notification:
+      #default_message: "Please review the problems below:"
     # Examples
     # labels:
     #   defaults:
@@ -28,4 +28,31 @@ en:
     #     age: 'Rather not say'
     # prompts:
     #   defaults:
-    #     age: 'Select your age'
+en:
+  simple_form:
+    "yes": 'Да'
+    "no": 'Нет'
+    required:
+      text: 'обязательно'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Пожалуйста, исправьте ошибки:"
+    labels:
+      defaults:
+        city: 'Город'
+        phone: 'Телефон'
+        address: 'Адрес'
+        name: 'Имя'
+        username: 'Имя'
+        email: 'Почта'
+        password: 'Пароль'
+        password_confirmation: "Повторите пароль"
+        current_password: 'Текущий пароль'
+        new_password: 'Новый пароль'
+        new_password_confirmation: 'Повторите новый пароль'
+        remember_me: 'Запомнить меня'
+        title: 'Заголовок'
+        category_id: 'Категория'

@@ -14,17 +14,17 @@
       <% end %>
 
       <div class="row">
-        <div class="col-sm-4 col-sm-offset-3 order__back-button">
+        <div class="col-xs-4 col-sm-offset-3 order__back-button">
           <%= link_to "< В корзину", my_cart_path, class: 'btn btn-default' %>
         </div>
-        <div class="col-sm-5">
+        <div class="col-xs-8 col-sm-5">
           <%= f.submit 'Оформить заказ', class: 'btn btn-primary btn-lg pull-right' %>
         </div>
       <% end %>
       </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-4 hidden-sm hidden-xs">
     <div class="panel panel-default">
       <div class="panel-body">
         <h4>Ваш заказ <span class='pull-right'><%= @cart.total_count %> шт.</span></h4>

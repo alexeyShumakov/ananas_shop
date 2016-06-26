@@ -2,11 +2,33 @@
   display: inline-block;
   width: 70px;
 }
+.my-cart__total-amount {
+  border-top: 2px solid #E0E0E0;
+  background-color: $light-gray ;
+  padding: 20px 10px;
+  margin: 20px 0;
+ }
+.my-cart__total-price {
+  color: darken($green, 8%);
+}
+
 .my-cart__thumb {
-  width: 70px;
+  max-width: 100%;
 }
 .my-cart {
+  .row {
+    margin-bottom: 15px;
+  }
   img {
     min-width: 70px;
+  }
+}
+
+.my-cart__remove-line-item {
+  cursor: pointer;
+  opacity: 0.5;
+  &:hover {
+  opacity: 1;
+  color: $red;
   }
 }

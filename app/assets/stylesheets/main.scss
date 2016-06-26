@@ -7,11 +7,11 @@ body {
   background-image: image-url('left_fon.png'), image-url('right_fon.png');
   background-position: left top, right top;
   background-repeat: repeat-y;
-
 }
 
 .main-container {
   background-color: #fff;
+  margin-top: 80px;
 }
 .main-container__title {
   margin-top: 0;

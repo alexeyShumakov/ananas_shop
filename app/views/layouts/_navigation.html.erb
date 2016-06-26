@@ -1,24 +1,38 @@
 <%# navigation styled for Bootstrap 3.0 %>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".left-menu">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <div class="navbar-header">
+
+    <%= react_component 'CartApp', props: { cartId: @cart.id } %>
+
+    <p class="hidden-xs navbar-text navbar-right navbar__reg-links">
+        <a class='navbar-link' href="#">Вход</a> | <a class='navbar-link' href="#">Регистр.</a>
+    </p>
+
+    <div class="navbar-header hidden-xs">
       <%= link_to root_path, class: 'navbar-brand' do %>
         <%= image_tag image_url('logo-ananas.png') %>
       <% end %>
     </div>
 
+    <%= link_to root_path, class: 'text-center visible-xs navbar__xs-brand' do %>
+      <%= image_tag image_url('logo-ananas.png') %>
+    <% end %>
+
     <div class="hidden-xs">
       <%= react_component 'NavbarProductSearch' %>
     </div>
 
-    <p class='navbar-text'>
-      <b> <span class='glyphicon glyphicon-earphone'></span> 8 (123) 456-78-90 </b>
-    </p>
-    <%= react_component 'CartApp', props: { cartId: @cart.id } %>
+      <b class='navbar-text navbar__text-custom hidden-xs'> <span class='glyphicon glyphicon-earphone'></span> 8 (123) 456-78-90 </b>
+    <div class="visible-xs">
+      <p class='text-center'>
+        <b> <span class='glyphicon glyphicon-earphone'></span> 8 (123) 456-78-90 </b>
+      </p>
+    </div>
+
   </div>
 </nav>

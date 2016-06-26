@@ -1,7 +1,12 @@
-$green: #a2dc4a;
-$orange: #ffcd00;
+$font-family-sans-serif: 'Roboto', sans-serif;
+
+$green:#81C784;
+$orange: #FFD54F;
 $black: #010000;
-$brown: #6f3300;
+$brown: #1B5E20;
+$red: #D32F2F;
+$gray: #767676;
+$light-gray: #F5F5F5;
 
 $link-color: $brown;
 $navbar-default-bg: $green;
@@ -9,8 +14,11 @@ $navbar-default-border: darken($green, 6.5%);
 $navbar-default-color: $black;
 $navbar-default-link-color: $black;
 $navbar-default-link-hover-color: lighten($navbar-default-link-color, 15%);
-$navbar-default-toggle-border-color: darken($green, 10%);
+$navbar-default-toggle-border-color: transparent;
 $navbar-default-toggle-hover-bg: $orange;
+
+$badge-color: $black;
+$badge-bg: $orange;
 
 $nav-link-hover-bg: none;
 

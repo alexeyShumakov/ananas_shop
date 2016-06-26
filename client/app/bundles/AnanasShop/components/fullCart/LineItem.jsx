@@ -41,25 +41,34 @@ export default class LineItem extends React.Component {
     const productLink = `/products/${productId}`;
 
     return (
-      <tr>
-        <td>
-          <a href={productLink}>
-            <img src={cover} className='my-cart__thumb img-rounded'/>
-          </a>
-        </td>
-        <td> {productTitle} </td>
-        <td>
-          <FormControl
-            type="number"
-            className='form-control my-cart__count-input'
-            value={count}
-            onChange={this.handleChange}
-            />
-        </td>
-        <td> {productPrice} </td>
-        <td> {lineItemTotalPrice}</td>
-        <td> <button  onClick={this.destroyLI} className="btn btn-default btn-sm"><span className="glyphicon glyphicon-remove"></span></button>  </td>
-      </tr>
+      <div>
+        <hr/>
+        <div className='row'>
+          <div className="col-sm-3 col-xs-5 text-center">
+            <a href={productLink}>
+              <img src={cover} className='my-cart__thumb img-rounded'/>
+            </a>
+          </div>
+          <div className="col-sm-5 col-xs-7">
+            <p> {productTitle} </p>
+            <p> <b>Цена: </b>{productPrice} руб. </p>
+            <p> <b>Кол-во: </b>
+              <FormControl
+                type="number"
+                className='form-control my-cart__count-input'
+                value={count}
+                onChange={this.handleChange}
+                />
+            </p>
+          </div>
+          <div className="col-sm-4 col-xs-12">
+            <h4>
+              <b>{lineItemTotalPrice} руб.  </b>
+              <span className="my-cart__remove-line-item glyphicon glyphicon-remove pull-right" onClick={this.destroyLI} ></span>
+            </h4>
+          </div>
+        </div>
+      </div>
     );
   }
 }

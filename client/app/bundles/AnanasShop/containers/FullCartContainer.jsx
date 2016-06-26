@@ -44,37 +44,27 @@ class FullCartContainer extends React.Component {
 
     return (
       <div>
-        <div className="table-responsive">
-          <table className="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Товар</th>
-                <th>Кол-во</th>
-                <th>Цена</th>
-                <th>Сумма</th>
-                <th>Действия</th>
-              </tr>
-            </thead>
-            <tbody>
-              {lineItems}
-            </tbody>
-          </table>
-        </div>
-        <hr/>
-        <div className="pull-right">
-          <h3>
-             Итого: {totalPrice} руб.
+        {lineItems}
+        <div className="col-sm-12 my-cart__total-amount">
+          <h3 className='text-right'>
+             Итого: <b className='my-cart__total-price'>{totalPrice} руб.</b>
           </h3>
         </div>
-        <div className="clearfix"></div>
-        <div className="btn-toolbar">
-          <div className="btn-group">
-            <button className="btn btn-primary">Войти и заказать</button>
-            <button className="btn btn-primary">Зарегистрироваться и заказать</button>
-          </div>
-          <div className="btn-group">
-            <a href="/orders/new" className='btn btn-default'>Быстрая покупка</a>
+
+        <div className="visible-xs">
+              <button className="btn btn-primary btn-block">Войти и заказать</button>
+              <button className="btn btn-primary btn-block">Зарегистрироваться и заказать</button>
+              <a href="/orders/new" className='btn btn-default btn-block'>Быстрая покупка</a>
+        </div>
+        <div className="hidden-xs">
+          <div className="btn-toolbar">
+            <div className="btn-group">
+              <button className="btn btn-primary">Войти и заказать</button>
+              <button className="btn btn-primary">Зарегистрироваться и заказать</button>
+            </div>
+            <div className="btn-group">
+              <a href="/orders/new" className='btn btn-default'>Быстрая покупка</a>
+            </div>
           </div>
         </div>
       </div>

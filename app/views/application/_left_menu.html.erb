@@ -6,6 +6,12 @@
   <div class="clearfix"></div>
   <hr/>
     <%= react_component 'NavbarProductSearch' %>
+    <ul class='left-menu__list list-unstyled'>
+      <li>
+        <a class='left-menu__reg-link' href="#">Вход</a> / <a class='left-menu__reg-link' href="#">Регистрация</a>
+      </li>
+    </ul>
+    <hr/>
     <%= render partial: 'categories_bar', locals: {categories: Category.roots, current_category: @category} %>
     <hr/>
     <ul class='left-menu__list list-unstyled'>

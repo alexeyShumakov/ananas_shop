@@ -8,22 +8,35 @@
   font-weight: bold;
   overflow: auto;
   overflow-x: hidden;
-  padding: 10px;
+  padding: 10px 10px 10px 16px;
+  -webkit-box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.59);
+  -moz-box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.59);
+  box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.59);
 }
 .left-menu__hide {
   margin-top: 5px;
 }
 .left-menu__list {
-  margin-left: 20px;
+  margin-left: 0;
 }
 
 .left-menu__link {
-  color: #767676;
+  color: $gray;
   &:hover {
-    color: #767676;
+    color: $gray;
   }
 }
 
+.left-menu__reg-link {
+  color: $gray;
+  text-decoration: underline;
+  &:hover {
+    color: $gray;
+  }
+}
+.left-menu > .sidebar__list {
+    margin-left: 0;
+  }
 .collapsing {
   -webkit-transition: height 0.01s;
   transition: height 0.01s;

@@ -50,23 +50,6 @@ class FullCartContainer extends React.Component {
              Итого: <b className='my-cart__total-price'>{totalPrice} руб.</b>
           </h3>
         </div>
-
-        <div className="visible-xs">
-              <button className="btn btn-primary btn-block">Войти и заказать</button>
-              <button className="btn btn-primary btn-block">Зарегистрироваться и заказать</button>
-              <a href="/orders/new" className='btn btn-default btn-block'>Быстрая покупка</a>
-        </div>
-        <div className="hidden-xs">
-          <div className="btn-toolbar">
-            <div className="btn-group">
-              <button className="btn btn-primary">Войти и заказать</button>
-              <button className="btn btn-primary">Зарегистрироваться и заказать</button>
-            </div>
-            <div className="btn-group">
-              <a href="/orders/new" className='btn btn-default'>Быстрая покупка</a>
-            </div>
-          </div>
-        </div>
       </div>
     );
   }

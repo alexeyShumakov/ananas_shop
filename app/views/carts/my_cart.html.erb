@@ -16,6 +16,32 @@
     <div class="my-cart">
       <h1>Моя корзина</h1>
       <%= react_component 'FullCartApp' %>
+      <div class="visible-xs">
+        <% if user_signed_in? %>
+          <%= link_to 'Перейти к оформлению', new_order_path, class: 'btn-block btn btn-primary btn-lg' %>
+        <% else %>
+          <%= link_to 'Войти и заказать', new_user_session_path, class:'btn-block btn btn-primary' %>
+          <%= link_to 'Зарегистрироваться и заказать', new_user_registration_path, class:'btn-block btn btn-primary' %>
+          <%= link_to 'Быстрая покупка', new_order_path, class: 'btn-block btn btn-default' %>
+        <% end %>
+      </div>
+      <div class="hidden-xs">
+        <div class="btn-toolbar">
+          <% if user_signed_in? %>
+            <div class="btn-group pull-right">
+              <%= link_to 'Перейти к оформлению', new_order_path, class: 'btn btn-primary btn-lg' %>
+            </div>
+          <% else %>
+            <div class="btn-group">
+              <%= link_to 'Войти и заказать', new_user_session_path, class:'btn btn-primary' %>
+              <%= link_to 'Зарегистрироваться и заказать', new_user_registration_path, class:'btn btn-primary' %>
+            </div>
+            <div class="btn-group">
+              <%= link_to 'Быстрая покупка', new_order_path, class: 'btn btn-default' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

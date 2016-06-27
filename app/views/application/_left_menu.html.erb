@@ -7,9 +7,16 @@
   <hr/>
     <%= react_component 'NavbarProductSearch' %>
     <ul class='left-menu__list list-unstyled'>
-      <li>
-        <a class='left-menu__reg-link' href="#">Вход</a> / <a class='left-menu__reg-link' href="#">Регистрация</a>
-      </li>
+      <% if user_signed_in? %>
+        <li><%= current_user.email %></li>
+        <li><a href="#" class='left-menu__link'>Личный кабинет</a></li>
+        <li><%= link_to 'Моя корзина', my_cart_path, class: 'left-menu__link' %></li>
+        <li><%= link_to 'Выход', destroy_user_session_path, method: :delete, class: 'left-menu__link' %></li>
+      <% else %>
+        <li>
+          <%= link_to 'Вход', new_user_session_path, class: 'left-menu__reg-link' %> / <%= link_to 'Регистрация', new_user_registration_path, class: 'left-menu__reg-link' %>
+        </li>
+      <% end %>
     </ul>
     <hr/>
     <%= render partial: 'categories_bar', locals: {categories: Category.roots, current_category: @category} %>

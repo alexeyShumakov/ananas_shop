@@ -1,5 +1,7 @@
 class Api::V1::ProductsController < ApplicationController
   def index
+    # loading...
+    sleep 1.5
     @products = {products: []}
     if params[:keyword].present?
       @products = Product.search_by_title(params[:keyword]).limit(10)

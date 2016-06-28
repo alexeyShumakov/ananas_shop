@@ -14,6 +14,7 @@ gem 'pg_search'
 gem 'simple_form'
 gem 'devise', '4.1.1'
 
+gem 'puma'
 gem 'mutations'
 gem 'ancestry'
 gem 'seed-fu', '~> 2.3'

@@ -8,6 +8,9 @@ export default class Product extends React.Component {
   render() {
     return (
       <div className="cssload-overlay">
+        <div className="cssload-container">
+          <div className="cssload-double-torus"></div>
+        </div>
       </div>
     );
   }

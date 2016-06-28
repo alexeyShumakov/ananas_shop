@@ -13,7 +13,7 @@ function select(state) {
   return { $$cartStore: state.$$cartStore };
 }
 
-class showcaseContainer extends React.Component {
+class showcaseWrapper extends React.Component {
   static contextTypes = {
     router: PropTypes.object.isRequired
   }
@@ -52,12 +52,18 @@ class showcaseContainer extends React.Component {
       loader = <Loader/>
     }
     return (
-      <div className='showcase'>
-        {loader}
-        <Products {...{products, selectedProductId, addToCart}}/>
+      <div>
+        i am wrapper(it is test links)
+        <h1 onClick={()=> this.goTo(3)}>hi {this.props.params.categoryId}</h1>
+        <Link to="/about">About</Link>
+        <Link to='/categories/1' onClick={()=> this.fetchData(1)}> l1 </Link>
+        <Link to='/categories/2' onClick={()=> this.fetchData(2)}> l2 </Link>
+        <hr/>
+        <div className="clearfix"></div>
+        {this.props.children}
       </div>
     );
   }
 }
 
-export default connect(select)(showcaseContainer);
+export default connect(select)(showcaseWrapper);

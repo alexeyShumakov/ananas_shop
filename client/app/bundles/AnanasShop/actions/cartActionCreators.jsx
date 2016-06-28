@@ -82,3 +82,32 @@ export function destroyLineItem(lineItemId) {
     )
   };
 }
+
+
+export function setProducts(products) {
+  return {
+    type: actionTypes.SET_PRODUCTS,
+    products: products
+  }
+}
+
+export function setShowcaseLoading(value) {
+  return {
+    type: actionTypes.SET_SHOWCASE_LOADING,
+    loadingState: value
+
+  }
+}
+
+export function fetchProducts(params) {
+  return function(dispatch) {
+    dispatch(setShowcaseLoading(true));
+    return $.get('/api/v1/products', params).then(
+      (data) => {
+        let products = Immutable.fromJS(data.products);
+        dispatch(setProducts(products));
+        dispatch(setShowcaseLoading(false));
+      }
+    )
+  };
+}

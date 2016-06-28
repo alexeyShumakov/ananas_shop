@@ -1,4 +1,3 @@
-
 import React, { PropTypes } from 'react';
 import LineItem from '../components/fullCart/LineItem';
 import { connect } from 'react-redux';
@@ -7,12 +6,9 @@ import { bindActionCreators } from 'redux';
 import * as cartActionCreators from '../actions/cartActionCreators';
 
 function select(state) {
-  // Which part of the Redux global state does our component want to receive as props?
-  // Note the use of `$$` to prefix the property name because the value is of type Immutable.js
   return { $$cartStore: state.$$cartStore };
 }
 
-// Simple example of a React "smart" component
 class FullCartContainer extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,

@@ -2,6 +2,9 @@ class OrdersController < ApplicationController
   before_action :set_form
 
   def new
+    if @cart.empty?
+      redirect_to root_path, notice: 'Ваша корзину пуста, прикупите что-нибудь.'
+    end
   end
 
   def create

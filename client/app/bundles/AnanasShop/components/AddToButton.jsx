@@ -3,8 +3,6 @@ import _ from 'lodash';
 
 export default class AddToButton extends React.Component {
   static propTypes = {
-    productId: PropTypes.number.isRequired,
-    selectedProductId: PropTypes.number.isRequired,
     addToCart: PropTypes.func.isRequired
   };
 

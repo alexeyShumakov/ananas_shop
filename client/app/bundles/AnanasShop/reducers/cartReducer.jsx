@@ -19,11 +19,13 @@ export const $$initialState = Immutable.fromJS({
         }
       }
     ]
-  }
+  },
+  showcaseLoading: true,
+  products: []
 });
 
 export default function cartReducer($$state = $$initialState, action) {
-  const { loadingState, type, cart, productId } = action;
+  const { loadingState, type, cart, productId, products } = action;
 
   switch (type) {
     case actionTypes.SET_CART_LOADING_STATE:
@@ -33,10 +35,16 @@ export default function cartReducer($$state = $$initialState, action) {
       return $$state.set('cart', cart);
 
     case actionTypes.SET_SELECTED:
-      return $$state.set('selectedProductId', productId)
+      return $$state.set('selectedProductId', productId);
 
     case actionTypes.RESET_SELECTED:
-      return $$state.set('selectedProductId', 0)
+      return $$state.set('selectedProductId', 0);
+
+    case actionTypes.SET_PRODUCTS:
+      return $$state.set('products', products);
+
+    case actionTypes.SET_SHOWCASE_LOADING:
+      return $$state.set('showcaseLoading', loadingState);
 
     default:
       return $$state;

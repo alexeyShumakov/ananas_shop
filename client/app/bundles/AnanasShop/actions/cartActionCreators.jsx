@@ -111,3 +111,31 @@ export function fetchProducts(params) {
     )
   };
 }
+
+export function setFilters(filters) {
+  return {
+    type: actionTypes.SET_FILTERS,
+    filters: filters
+  }
+}
+
+export function setFiltersLoading(value) {
+  return {
+    type: actionTypes.SET_FILTERS_LOADING,
+    loadingState: value
+
+  }
+}
+
+export function fetchFilters(params) {
+  return function(dispatch) {
+    dispatch(setFiltersLoading(true));
+    return $.get('/api/v1/filters', params).then(
+      (data) => {
+        let filters = Immutable.fromJS(data.filters);
+        dispatch(setFilters(filters));
+        dispatch(setFiltersLoading(false));
+      }
+    )
+  };
+}

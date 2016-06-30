@@ -112,6 +112,20 @@ export function fetchProducts(params) {
   };
 }
 
+export function setPriceFilter(params) {
+  return {
+    type: actionTypes.SET_PRICE_FILTER,
+    price: params
+  }
+}
+
+export function setCategoryId(id) {
+  return {
+    type: actionTypes.SET_CATEGORY_ID,
+    categoryId: id 
+  }
+}
+
 export function setFilters(filters) {
   return {
     type: actionTypes.SET_FILTERS,

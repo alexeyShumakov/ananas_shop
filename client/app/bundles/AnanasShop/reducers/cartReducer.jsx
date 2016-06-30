@@ -28,14 +28,14 @@ export const $$initialState = Immutable.fromJS({
     price: {
       min: 0,
       max: 100,
-      maxB: 100,
-      minB: 0
+      minB: 0,
+      maxB: 100
     }
   }
 });
 
 export default function cartReducer($$state = $$initialState, action) {
-  const { loadingState, type, cart, productId, products, filters } = action;
+  const { categoryId, price, loadingState, type, cart, productId, products, filters } = action;
 
   switch (type) {
     case actionTypes.SET_CART_LOADING_STATE:
@@ -61,6 +61,14 @@ export default function cartReducer($$state = $$initialState, action) {
 
     case actionTypes.SET_FILTERS:
       return $$state.set('filters', filters);
+
+    case actionTypes.SET_PRICE_FILTER:
+      let tmp = $$state.setIn(['filters', 'price', 'minB'], price.min );
+      tmp = tmp.setIn(['filters', 'price', 'maxB'], price.max );
+      return tmp;
+
+    case actionTypes.SET_CATEGORY_ID:
+      return $$state.setIn(['filters', 'categoryId'], categoryId);
 
     default:
       return $$state;

@@ -24,20 +24,6 @@ class showcaseContainer extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.fetchData(this.props.params.categoryId);
-    _.bindAll(this, 'goTo', 'fetchData');
-  }
-
-  goTo(id) {
-    this.context.router.push(`/categories/${id}`);
-    this.fetchData(id);
-  }
-
-  fetchData(id) {
-    const { dispatch, $$cartStore } = this.props;
-    const actions = bindActionCreators(cartActionCreators, dispatch);
-    let { fetchProducts } = actions;
-    fetchProducts({category_id: id})
   }
 
   render() {

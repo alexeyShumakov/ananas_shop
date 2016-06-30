@@ -25,13 +25,7 @@ class showcaseWrapper extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.inititalFetchData();
-    _.bindAll(this, 'goTo', 'fetchData');
-  }
-
-  goTo(id) {
-    this.context.router.push(`/categories/${id}`);
-    this.setCategoryId();
-    this.fetchData();
+    _.bindAll(this, 'fetchData');
   }
 
   setCategoryId() {
@@ -88,7 +82,7 @@ class showcaseWrapper extends React.Component {
     return (
       <div>
         i am wrapper(it is test links)
-        <h1 onClick={()=> this.goTo(3)}>hi {this.props.params.categoryId}</h1>
+        <h1>hi {this.props.params.categoryId}</h1>
         <hr/>
         <PriceFilter {...{priceFilter, setPriceFilter, fetchData}} />
         <hr/>

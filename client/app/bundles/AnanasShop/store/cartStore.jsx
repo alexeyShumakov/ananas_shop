@@ -9,9 +9,10 @@ import { initialStates } from '../reducers';
 
 export default props => {
   const { totalPrice, totalCount } = props;
-  const { $$cartState } = initialStates;
+  const { $$cartState, $$filtersState } = initialStates;
 
   const initialState = {
+    $$filtersStore: $$filtersState,
     $$cartStore: $$cartState.merge({
       cart: {
         total_price: totalPrice,

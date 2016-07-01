@@ -10,7 +10,7 @@ import Products from '../components/Products';
 import Loader from '../components/Loader';
 
 function select(state) {
-  return { $$cartStore: state.$$cartStore };
+  return { $$cartStore: state.$$cartStore, $$filtersStore: state.$$filtersStore };
 }
 
 class showcaseContainer extends React.Component {
@@ -27,11 +27,11 @@ class showcaseContainer extends React.Component {
   }
 
   render() {
-    const { dispatch, $$cartStore } = this.props;
+    const { dispatch, $$cartStore, $$filtersStore } = this.props;
     const actions = bindActionCreators(cartActionCreators, dispatch);
     let { addToCart } = actions;
-    let products = $$cartStore.get('products');
-    let isLoading = $$cartStore.get('showcaseLoading');
+    let products = $$filtersStore.get('products');
+    let isLoading = $$filtersStore.get('showcaseLoading');
     let selectedProductId = $$cartStore.get('selectedProductId');
     let loader;
     if (isLoading) {

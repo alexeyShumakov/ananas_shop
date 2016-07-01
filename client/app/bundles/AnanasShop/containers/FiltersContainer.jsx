@@ -13,7 +13,7 @@ function select(state) {
   return { $$cartStore: state.$$cartStore };
 }
 
-class showcaseWrapper extends React.Component {
+class FiltersContainer extends React.Component {
   static contextTypes = {
     router: PropTypes.object.isRequired
   }
@@ -92,4 +92,4 @@ class showcaseWrapper extends React.Component {
   }
 }
 
-export default connect(select)(showcaseWrapper);
+export default connect(select)(FiltersContainer);

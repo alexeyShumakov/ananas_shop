@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import Showcase from '../containers/ShowcaseContainer';
-import Wrapper from '../containers/ShowcaseWrapper';
+import Filters from '../containers/FiltersContainer';
 import { Route, Router, browserHistory } from 'react-router'
 
 export default (props) => {
@@ -9,7 +9,7 @@ export default (props) => {
   const reactComponent = (
     <Provider store={ cartStore }>
       <Router history={ browserHistory }>
-        <Route path='/categories' component={Wrapper}>
+        <Route path='/categories' component={Filters}>
           <Route path='/categories/:categoryId' component={Showcase}/>
         </Route>
       </Router>

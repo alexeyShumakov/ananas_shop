@@ -8,7 +8,7 @@ export function setSelected(productId) {
   }
 }
 
-export function resetSelected(productId) {
+export function resetSelected() {
   return {
     type: actionTypes.RESET_SELECTED
   }

@@ -21,11 +21,20 @@ describe('cart actions', () => {
   });
 
   it('should return set cart action', () => {
-    let cart = {count: 2};
+    const cart = {count: 2};
     const action = {
       type: actionTypes.SET_CART,
-      cart: cart 
+      cart: cart
     };
     expect(actions.setCart(cart)).toEqual(action);
   });
+
+  it('should return set cart loading state acition', () => {
+    const value = true;
+    const action = {
+      type: actionTypes.SET_CART_LOADING_STATE,
+      loadingState: value
+    }
+    expect(actions.setCartLoadingState(value)).toEqual(action);
+  })
 });

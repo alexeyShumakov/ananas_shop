@@ -4,7 +4,7 @@ import Immutable from 'immutable';
 export function setSelected(productId) {
   return {
     type: actionTypes.SET_SELECTED,
-    productId: productId
+    productId
   }
 }
 
@@ -21,10 +21,10 @@ export function setCart(cart) {
   }
 }
 
-export function setCartLoadingState(value) {
+export function setCartLoadingState(loadingState) {
   return {
     type: actionTypes.SET_CART_LOADING_STATE,
-    loadingState: value
+    loadingState
 
   }
 }

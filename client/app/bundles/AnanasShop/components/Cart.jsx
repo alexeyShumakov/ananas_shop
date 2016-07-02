@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import PrevCart from './PrevCart';
+import PrevCart from './/prevCart/PrevCart';
 import _ from 'lodash';
 
 export default class Cart extends React.Component {

@@ -9,7 +9,7 @@
     "build:client": "NODE_ENV=production webpack --config webpack.client.rails.config.js",
     "build:dev:client": "webpack -w --config webpack.client.rails.config.js",
     "build:production:client": "NODE_ENV=production webpack --config webpack.client.rails.build.config.js",
-    "test": "mocha --compilers js:babel-register --recursive",
+    "test": "mocha --compilers js:babel-register --recursive --require ./test/setup.js",
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
@@ -50,6 +50,7 @@
     "babel-register": "^6.9.0",
     "enzyme": "^2.3.0",
     "expect": "^1.20.2",
+    "jsdom": "^9.3.0",
     "mocha": "^2.5.3",
     "react-addons-test-utils": "^15.2.0",
     "react-dom": "^15.2.0"

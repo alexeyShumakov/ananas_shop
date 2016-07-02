@@ -34,17 +34,16 @@ export default class Cart extends React.Component {
     const price = cart.get('total_price');
     let isPresent = count > 0;
     if (this.state.hover && isPresent) {
-        prevCart = <PrevCart {...{ cart }}/>
+      prevCart = <PrevCart {...{ cart }}/>
     }
     return (
-      <div>
+      <div className="navbar-cart">
         <div className="hidden-xs hidden-sm">
           <div
             onMouseEnter={this.mouseEnter}
             onMouseLeave={this.mouseLeave}
             className="navbar-text navbar-right top-cart">
-            <span
-              className={`glyphicon glyphicon-shopping-cart ${ isPresent ? 'cart-present' : 'cart-empty'}`}>
+            <span className={`glyphicon glyphicon-shopping-cart ${ isPresent ? 'cart-present' : 'cart-empty'}`}>
             </span>
             <a href="/my_cart" className="navbar-link"> Моя корзина <span className="badge">{ count }</span>
             </a>

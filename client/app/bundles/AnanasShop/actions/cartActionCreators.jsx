@@ -29,10 +29,10 @@ export function setCartLoadingState(loadingState) {
   }
 }
 
-export function fetchCart(cartId) {
+export function fetchCart(id) {
   return dispatch => {
     dispatch(setCartLoadingState(true));
-    return $.get(`/api/v1/carts/${cartId}`).then(
+    return $.get(`/api/v1/carts/${id}`).then(
       data => {
         let cart = Immutable.fromJS(data.cart);
         dispatch(setCart(cart));
@@ -42,22 +42,22 @@ export function fetchCart(cartId) {
   };
 }
 
-export function addToCart(productId) {
-  return function(dispatch) {
+export function addToCart(id) {
+  return dispatch => {
     dispatch(resetSelected());
-    return $.post('/api/v1/line_items', {product_id: productId}).then(
+    return $.post('/api/v1/line_items', {product_id: id}).then(
       (data) => {
         let cart = Immutable.fromJS(data.cart);
-        dispatch(setSelected(productId));
+        dispatch(setSelected(id));
         dispatch(setCart(cart));
       }
     );
   };
 }
-export function updateLineItem(lineItemId, count) {
-  return function(dispatch) {
+export function updateLineItem(id, count) {
+  return dispatch => {
     return $.ajax({
-      url: `/api/v1/line_items/${lineItemId}`,
+      url: `/api/v1/line_items/${id}`,
       type: 'PUT',
       data: {count: count}
     }).then(
@@ -69,10 +69,10 @@ export function updateLineItem(lineItemId, count) {
   };
 }
 
-export function destroyLineItem(lineItemId) {
-  return function(dispatch) {
+export function destroyLineItem(id) {
+  return dispatch => {
     return $.ajax({
-      url: `/api/v1/line_items/${lineItemId}`,
+      url: `/api/v1/line_items/${id}`,
       type: 'DELETE'
     }).then(
       (data) => {

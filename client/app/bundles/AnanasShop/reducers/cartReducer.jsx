@@ -6,8 +6,8 @@ export const $$initialState = Immutable.fromJS({
   count: 0,
   isCartLoading: true,
   selectedProductId: 0,
-  cartId: 0,
   cart: {
+    id: 0,
     total_count: 0,
     total_price: '0.00',
     line_items: [{

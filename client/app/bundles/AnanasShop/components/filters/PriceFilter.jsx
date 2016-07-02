@@ -30,6 +30,7 @@ export default class PriceFilter extends React.Component {
            min={min}
            max={max}
            value={value}
+           tipFormatter={null}
            onChange={this.updateB}
            onAfterChange={this.props.fetchData} />
       </div>

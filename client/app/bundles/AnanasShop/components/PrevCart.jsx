@@ -12,14 +12,14 @@ export default class PrevCart extends React.Component {
   }
 
   render() {
-    const { cart, destroyLineItem } = this.props;
+    const { cart } = this.props;
     let items = [];
     let lineItems = cart.get('line_items');
     let totalPrice = cart.get('total_price');
     let totalCount = cart.get('total_count');
     lineItems.forEach(function(item){
       let key = item.get('id');
-      items.push( <PrevCartItem {...{ key, item, destroyLineItem }} />);
+      items.push( <PrevCartItem {...{ key, item }} />);
     });
     return (
       <div className='prev-cart hidden-xs panel panel-default'>

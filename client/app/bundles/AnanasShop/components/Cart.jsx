@@ -4,7 +4,6 @@ import _ from 'lodash';
 
 export default class Cart extends React.Component {
   static propTypes = {
-    count: PropTypes.number.isRequired
   }
 
   mouseEnter() {
@@ -18,15 +17,18 @@ export default class Cart extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {hover: false};
+    props.fetchCart(props.cartId);
     _.bindAll(this, ['mouseLeave', 'mouseEnter']);
   }
 
   render() {
     let prevCart;
-    const { count, price, cart, destroyLineItem } = this.props;
+    const { destroyLineItem, cart } = this.props;
+    const count = cart.get('total_count');
+    const price = cart.get('total_price');
     let isPresent = count > 0;
     if (this.state.hover && isPresent) {
-        prevCart = <PrevCart {...{ cart, destroyLineItem }}/>
+        prevCart = <PrevCart {...{ cart }}/>
     }
     return (
       <div>

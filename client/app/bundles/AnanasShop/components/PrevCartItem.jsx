@@ -5,19 +5,12 @@ export default class PrevCartItem extends React.Component {
   static propTypes = {
   }
 
-  deleteItem() {
-    const { item, destroyLineItem } = this.props;
-    let id = item.get('id');
-    destroyLineItem(id);
-  }
   constructor(props, context) {
     super(props, context);
-
-    _.bindAll(this, 'deleteItem');
   }
 
   render() {
-    const { item, destroyLineItem } = this.props;
+    const { item } = this.props;
     let count = item.get('count');
     let totalPrice = item.get('total_price');
     let price = item.get('product').get('price');

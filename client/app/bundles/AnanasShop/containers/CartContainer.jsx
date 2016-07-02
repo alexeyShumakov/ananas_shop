@@ -19,23 +19,16 @@ class CartContainer extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-
-    const { $$cartStore, dispatch, cartId } = this.props;
-    const actions = bindActionCreators(cartActionCreators, dispatch);
-    const { fetchCart } = actions;
-    fetchCart(cartId);
   }
 
   render() {
     const { $$cartStore, dispatch, cartId } = this.props;
     const actions = bindActionCreators(cartActionCreators, dispatch);
-    const { destroyLineItem } = actions;
-    const count = $$cartStore.get('cart').get('total_count');
-    const price = $$cartStore.get('cart').get('total_price');
-    const cart  = $$cartStore.get('cart');
+    const { destroyLineItem, fetchCart } = actions;
+    const cart = $$cartStore.get('cart');
 
     return (
-      <Cart {...{count, price, cart, destroyLineItem}} />
+      <Cart {...{cartId, cart, destroyLineItem, fetchCart}} />
     );
   }
 }

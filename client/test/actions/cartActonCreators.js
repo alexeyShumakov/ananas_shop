@@ -3,7 +3,7 @@ import expect from 'expect'
 import * as actions from '../../app/bundles/AnanasShop/actions/cartActionCreators';
 import actionTypes from '../../app/bundles/AnanasShop/constants/cartConstants';
 
-describe('cart actions', () => {
+describe('sync actions', () => {
   it('should return set selected action', () => {
     const id = 42;
     const action = {

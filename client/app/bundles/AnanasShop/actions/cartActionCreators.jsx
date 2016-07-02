@@ -30,10 +30,10 @@ export function setCartLoadingState(loadingState) {
 }
 
 export function fetchCart(cartId) {
-  return function(dispatch) {
+  return dispatch => {
     dispatch(setCartLoadingState(true));
     return $.get(`/api/v1/carts/${cartId}`).then(
-      (data) => {
+      data => {
         let cart = Immutable.fromJS(data.cart);
         dispatch(setCart(cart));
         dispatch(setCartLoadingState(false));

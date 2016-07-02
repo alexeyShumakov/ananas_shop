@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
-import LineItem from '../components/fullCart/LineItem';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import { bindActionCreators } from 'redux';
+
 import * as cartActionCreators from '../actions/cartActionCreators';
+import FullCart from '../components/fullCart/FullCart'
 
 function select(state) {
   return { $$cartStore: state.$$cartStore };
@@ -25,28 +26,14 @@ class FullCartContainer extends React.Component {
     const actions = bindActionCreators(cartActionCreators, dispatch);
     const { updateLineItem, destroyLineItem } = actions;
     const cartLoadingState = $$cartStore.get('isCartLoading');
-    let totalPrice;
-    let lineItems;
-    if (!cartLoadingState) {
-      const cart = $$cartStore.get('cart');
-      totalPrice = cart.get('total_price');
-      lineItems = cart.get('line_items');
-      lineItems = lineItems.map(function(lineItem){
-        return <LineItem key={lineItem.get('id')}
-                         data={lineItem}
-                         updateLineItem={updateLineItem}
-                         destroyLineItem={destroyLineItem}/>});
-    }
+    const cart = $$cartStore.get('cart');
 
     return (
-      <div>
-        {lineItems}
-        <div className="col-sm-12 my-cart__total-amount">
-          <h3 className='text-right'>
-             Итого: <b className='my-cart__total-price'>{totalPrice} руб.</b>
-          </h3>
-        </div>
-      </div>
+      <FullCart {...{
+        cart,
+        cartLoadingState,
+        updateLineItem,
+        destroyLineItem}}/>
     );
   }
 }

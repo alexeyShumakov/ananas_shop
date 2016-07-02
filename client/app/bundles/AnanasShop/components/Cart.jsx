@@ -1,9 +1,15 @@
 import React, { PropTypes } from 'react';
-import PrevCart from './/prevCart/PrevCart';
+import Immutable from 'immutable';
 import _ from 'lodash';
+
+import PrevCart from './prevCart/PrevCart';
 
 export default class Cart extends React.Component {
   static propTypes = {
+    cartId:          PropTypes.number.isRequired,
+    cart:            PropTypes.instanceOf(Immutable.Map).isRequired,
+    destroyLineItem: PropTypes.func.isRequired,
+    fetchCart:       PropTypes.func.isRequired
   }
 
   mouseEnter() {

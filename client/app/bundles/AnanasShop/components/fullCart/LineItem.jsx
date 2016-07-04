@@ -1,12 +1,14 @@
 
 import React, { PropTypes } from 'react';
+import Immutable from 'immutable';
 import { FormControl } from 'react-bootstrap';
 import _ from 'lodash';
 
 export default class LineItem extends React.Component {
   static propTypes = {
-    updateLineItem: PropTypes.func,
-    destroyLineItem: PropTypes.func
+    data:             PropTypes.instanceOf(Immutable.Map).isRequired,
+    updateLineItem:   PropTypes.func.isRequired,
+    destroyLineItem:  PropTypes.func.isRequired
   };
 
   constructor(props, context) {
@@ -41,7 +43,7 @@ export default class LineItem extends React.Component {
     const productLink = `/products/${productId}`;
 
     return (
-      <div>
+      <div className='my-cart__line-item'>
         <hr/>
         <div className='row'>
           <div className="col-sm-3 col-xs-5 text-center">
@@ -51,7 +53,7 @@ export default class LineItem extends React.Component {
           </div>
           <div className="col-sm-5 col-xs-7">
             <p> {productTitle} </p>
-            <p> <b>Цена: </b>{productPrice} руб. </p>
+            <p className='line-item__product-price'> <b>Цена: </b>{productPrice} руб. </p>
             <p> <b>Кол-во: </b>
               <FormControl
                 type="number"

@@ -1,8 +1,13 @@
 import React, { PropTypes } from 'react';
 import LineItem from './LineItem';
+import Immutable from 'immutable';
 
 export default class FullCart extends React.Component {
   static propTypes = {
+    cart:             PropTypes.instanceOf(Immutable.Map).isRequired,
+    cartLoadingState: PropTypes.bool.isRequired,
+    updateLineItem:   PropTypes.func.isRequired,
+    destroyLineItem:  PropTypes.func.isRequired
   };
 
   constructor(props, context) {
@@ -11,7 +16,6 @@ export default class FullCart extends React.Component {
 
   render() {
     const { updateLineItem, destroyLineItem, cart, cartLoadingState } = this.props;
-    let totalPrice = cart.get('total_price');
     let lineItems;
 
     if (!cartLoadingState) {
@@ -24,7 +28,7 @@ export default class FullCart extends React.Component {
     }
 
     return (
-      <div>
+      <div className='my-cart'>
         {lineItems}
         <div className="col-sm-12 my-cart__total-amount">
           <h3 className='text-right'>

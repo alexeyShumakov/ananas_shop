@@ -1,10 +1,14 @@
 import React, { PropTypes } from 'react';
-import ReactDOM from 'react-dom';
+import Rcslider from 'rc-slider';
+import Immutable from 'immutable';
 import _ from 'lodash';
 
-import Rcslider from 'rc-slider';
-
 export default class PriceFilter extends React.Component {
+  static propTypes = {
+    priceFilter:    PropTypes.instanceOf(Immutable.Map).isRequired,
+    fetchData:      PropTypes.func.isRequired,
+    setPriceFilter: PropTypes.func.isRequired
+  }
 
   constructor(props, context) {
     super(props, context);

@@ -16,8 +16,8 @@ export default class Filters extends React.Component {
     fetchProducts:  PropTypes.func.isRequired,
     fetchFilters:   PropTypes.func.isRequired,
     setPriceFilter: PropTypes.func.isRequired
-
   }
+
   constructor(props, context) {
     super(props, context);
     _.bindAll(this, 'fetchData');

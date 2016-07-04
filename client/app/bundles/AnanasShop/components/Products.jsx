@@ -1,9 +1,16 @@
 import React, { PropTypes } from 'react';
+import Immutable from 'immutable';
 import _ from 'lodash';
 
 import Product from './Product'
 
 export default class Products extends React.Component {
+  static propTypes = {
+    selectedProductId: PropTypes.number.isRequired,
+    products:          PropTypes.instanceOf(Immutable.List).isRequired,
+    addToCart:         PropTypes.func.isRequired
+  }
+
   constructor(props, context) {
     super(props, context);
   }

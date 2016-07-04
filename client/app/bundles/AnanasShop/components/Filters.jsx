@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Immutable from 'immutable';
 import _ from 'lodash';
 
 import PriceFilter from '../components/filters/PriceFilter';
@@ -9,6 +10,13 @@ export default class Filters extends React.Component {
   }
 
   static propTypes = {
+    categoryId:     PropTypes.string,
+    priceFilter:    PropTypes.instanceOf(Immutable.Map).isRequired,
+    query:          PropTypes.object,
+    fetchProducts:  PropTypes.func.isRequired,
+    fetchFilters:   PropTypes.func.isRequired,
+    setPriceFilter: PropTypes.func.isRequired
+
   }
   constructor(props, context) {
     super(props, context);
@@ -44,7 +52,7 @@ export default class Filters extends React.Component {
     let { priceFilter, setPriceFilter } = this.props;
     let fetchData = this.fetchData;
     return (
-      <div>
+      <div className='filters'>
         i am wrapper(it is test links)
         <h1>hi {this.props.categoryId}</h1>
         <hr/>

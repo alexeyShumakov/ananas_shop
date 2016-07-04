@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
+import Immutable from 'immutable';
 import _ from 'lodash';
 
 export default class PrevCartItem extends React.Component {
   static propTypes = {
+    item: PropTypes.instanceOf(Immutable.Map).isRequired
   }
 
   constructor(props, context) {
@@ -24,17 +26,9 @@ export default class PrevCartItem extends React.Component {
             <img src={prevImageUrl} alt=""/>
           </a>
         </td>
-
-        <td>
-          {title}
-        </td>
-
-        <td>
-          {count} x {price}
-        </td>
-        <td>
-           {totalPrice}
-        </td>
+        <td> {title} </td>
+        <td> {count} x {price} </td>
+        <td> {totalPrice} </td>
       </tr>
     );
   }

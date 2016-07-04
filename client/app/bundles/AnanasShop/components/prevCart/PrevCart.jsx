@@ -1,10 +1,11 @@
-
 import React, { PropTypes } from 'react';
+import Immutable from 'immutable';
 import PrevCartItem from './PrevCartItem';
 import _ from 'lodash';
 
 export default class PrevCart extends React.Component {
   static propTypes = {
+    cart: PropTypes.instanceOf(Immutable.Map).isRequired
   }
 
   constructor(props, context) {

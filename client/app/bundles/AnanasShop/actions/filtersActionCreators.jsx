@@ -1,31 +1,32 @@
 import actionTypes from '../constants/filtersConstants';
 import Immutable from 'immutable';
+import axios from '../utils/axios';
 
-export function setPriceFilter(params) {
+export function setPriceFilter(price) {
   return {
     type: actionTypes.SET_PRICE_FILTER,
-    price: params
+    price
   }
 }
 
-export function setCategoryId(id) {
+export function setCategoryId(categoryId) {
   return {
     type: actionTypes.SET_CATEGORY_ID,
-    categoryId: id
+    categoryId
   }
 }
 
 export function setFilters(filters) {
   return {
     type: actionTypes.SET_FILTERS,
-    filters: filters
+    filters
   }
 }
 
-export function setFiltersLoading(value) {
+export function setFiltersLoading(loadingState) {
   return {
     type: actionTypes.SET_FILTERS_LOADING,
-    loadingState: value
+    loadingState
 
   }
 }
@@ -33,9 +34,9 @@ export function setFiltersLoading(value) {
 export function fetchFilters(params) {
   return function(dispatch) {
     dispatch(setFiltersLoading(true));
-    return $.get('/api/v1/filters', params).then(
-      (data) => {
-        let filters = Immutable.fromJS(data.filters);
+    return axios.get('/api/v1/filters', { params: params }).then(
+      (responce) => {
+        let filters = Immutable.fromJS(responce.data.filters);
         dispatch(setFilters(filters));
         dispatch(setFiltersLoading(false));
       }
@@ -46,14 +47,14 @@ export function fetchFilters(params) {
 export function setProducts(products) {
   return {
     type: actionTypes.SET_PRODUCTS,
-    products: products
+    products
   }
 }
 
-export function setShowcaseLoading(value) {
+export function setShowcaseLoading(loadingState) {
   return {
     type: actionTypes.SET_SHOWCASE_LOADING,
-    loadingState: value
+    loadingState
 
   }
 }
@@ -61,9 +62,9 @@ export function setShowcaseLoading(value) {
 export function fetchProducts(params) {
   return function(dispatch) {
     dispatch(setShowcaseLoading(true));
-    return $.get('/api/v1/products', params).then(
-      (data) => {
-        let products = Immutable.fromJS(data.products);
+    return axios.get('/api/v1/products', { params: params }).then(
+      (responce) => {
+        let products = Immutable.fromJS(responce.data.products);
         dispatch(setProducts(products));
         dispatch(setShowcaseLoading(false));
       }

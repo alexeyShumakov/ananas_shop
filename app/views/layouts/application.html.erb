@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Ananas Shop" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ananas Shop" %>">
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <%= csrf_meta_tags %>
   </head>
   <body>
     <%= redux_store 'cartStore', props: { totalPrice: @cart.total_price, totalCount: @cart.total_count } %>

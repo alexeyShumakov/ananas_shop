@@ -1,5 +1,6 @@
 import actionTypes from '../constants/cartConstants';
 import Immutable from 'immutable';
+import axios from '../utils/axios';
 
 export function setSelected(productId) {
   return {
@@ -32,22 +33,21 @@ export function setCartLoadingState(loadingState) {
 export function fetchCart(id) {
   return dispatch => {
     dispatch(setCartLoadingState(true));
-    return $.get(`/api/v1/carts/${id}`).then(
-      data => {
-        let cart = Immutable.fromJS(data.cart);
+    return axios.get(`/api/v1/carts/${id}`).then(
+      responce => {
+        let cart = Immutable.fromJS(responce.data.cart);
         dispatch(setCart(cart));
         dispatch(setCartLoadingState(false));
-      }
-    );
+      });
   };
 }
 
 export function addToCart(id) {
   return dispatch => {
     dispatch(resetSelected());
-    return $.post('/api/v1/line_items', {product_id: id}).then(
-      (data) => {
-        let cart = Immutable.fromJS(data.cart);
+    return axios.post('/api/v1/line_items', {product_id: id}).then(
+      (responce) => {
+        let cart = Immutable.fromJS(responce.data.cart);
         dispatch(setSelected(id));
         dispatch(setCart(cart));
       }
@@ -56,13 +56,9 @@ export function addToCart(id) {
 }
 export function updateLineItem(id, count) {
   return dispatch => {
-    return $.ajax({
-      url: `/api/v1/line_items/${id}`,
-      type: 'PUT',
-      data: {count: count}
-    }).then(
-      (data) => {
-        let cart = Immutable.fromJS(data.cart);
+    return axios.put(`/api/v1/line_items/${id}`, { count: count }).then(
+      (responce) => {
+        let cart = Immutable.fromJS(responce.data.cart);
         dispatch(setCart(cart));
       }
     )
@@ -71,12 +67,9 @@ export function updateLineItem(id, count) {
 
 export function destroyLineItem(id) {
   return dispatch => {
-    return $.ajax({
-      url: `/api/v1/line_items/${id}`,
-      type: 'DELETE'
-    }).then(
-      (data) => {
-        let cart = Immutable.fromJS(data.cart);
+    return axios.delete(`/api/v1/line_items/${id}`).then(
+      (responce) => {
+        let cart = Immutable.fromJS(responce.data.cart);
         dispatch(setCart(cart));
       }
     )

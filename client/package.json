@@ -53,6 +53,8 @@
     "jsdom": "^9.3.0",
     "mocha": "^2.5.3",
     "react-addons-test-utils": "^15.2.0",
-    "react-dom": "^15.2.0"
+    "react-dom": "^15.2.0",
+    "redux-mock-store": "^1.1.2",
+    "sinon": "^1.17.4"
   }
 }

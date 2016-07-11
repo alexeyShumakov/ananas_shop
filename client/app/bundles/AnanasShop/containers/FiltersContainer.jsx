@@ -21,27 +21,22 @@ class FiltersContainer extends React.Component {
     $$filtersStore: PropTypes.instanceOf(Immutable.Map).isRequired,
   }
 
-  constructor(props, context) {
-    super(props, context);
-  }
-
   render() {
     const { dispatch, $$filtersStore } = this.props;
     const actions = bindActionCreators(filtersActionCreators, dispatch);
-    let { setPriceFilter, fetchProducts, fetchFilters } = actions;
+    let { fetchData, setFilter } = actions;
 
-    let priceFilter = $$filtersStore.getIn(['filters', 'price']);
-    let categoryId = this.props.params.categoryId;
+    let filters = $$filtersStore.get('filters');
+    let params = this.props.params;
     let query = this.props.location.query;
     return (
       <div>
         <Filters {...{
-          categoryId,
-          priceFilter,
+          fetchData,
+          setFilter,
+          filters,
           query,
-          fetchProducts,
-          fetchFilters,
-          setPriceFilter
+          params
         }}/>
         <hr/>
         {this.props.children}

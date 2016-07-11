@@ -3,6 +3,7 @@ import Immutable from 'immutable';
 import _ from 'lodash';
 
 import PriceFilter from '../components/filters/PriceFilter';
+import CategoryFilter from '../components/filters/CategoryFilter';
 
 export default class Filters extends React.Component {
   static contextTypes = {
@@ -10,53 +11,30 @@ export default class Filters extends React.Component {
   }
 
   static propTypes = {
-    categoryId:     PropTypes.string,
-    priceFilter:    PropTypes.instanceOf(Immutable.Map).isRequired,
-    query:          PropTypes.object,
-    fetchProducts:  PropTypes.func.isRequired,
-    fetchFilters:   PropTypes.func.isRequired,
-    setPriceFilter: PropTypes.func.isRequired
+    fetchData:  PropTypes.func.isRequired,
+    setFilter:   PropTypes.func.isRequired
   }
 
   constructor(props, context) {
     super(props, context);
-    _.bindAll(this, 'fetchData');
-    this.inititalFetchData();
-  }
-
-  inititalFetchData() {
-    let categoryId = this.props.categoryId;
-    let params = this.props.query;
-
-    let filterParams = { category_id: categoryId };
-
-    if (params.price) {
-      filterParams.price = params.price;
+    const { fetchData, query, params } = props;
+    if( !_.isEmpty(query)) {
+      fetchData(query);
+    } else {
+      fetchData(params);
     }
-
-    this.props.fetchProducts(filterParams);
-    this.props.fetchFilters(filterParams);
-  }
-
-  fetchData() {
-    let min = this.props.priceFilter.get('minB');
-    let max = this.props.priceFilter.get('maxB');
-    let categoryId = this.props.categoryId;
-
-    this.context.router.push(`/categories/${categoryId}?price=${min};${max}`);
-    this.props.fetchProducts({category_id: categoryId, price:`${min};${max}`});
-    this.props.fetchFilters({category_id: categoryId, price:`${min};${max}`});
   }
 
   render() {
-    let { priceFilter, setPriceFilter } = this.props;
-    let fetchData = this.fetchData;
+    let filterClasses = { PriceFilter, CategoryFilter };
+    const { filters, setFilter, fetchData } = this.props;
+    let list = filters.map((filter, key) => {
+      let fClass = filterClasses[filter.get('type')];
+      return React.createElement(fClass, {key, filter, setFilter, fetchData})
+    })
     return (
       <div className='filters'>
-        i am wrapper(it is test links)
-        <h1>hi {this.props.categoryId}</h1>
-        <hr/>
-        <PriceFilter {...{priceFilter, setPriceFilter, fetchData}} />
+        {list}
       </div>
     );
   }

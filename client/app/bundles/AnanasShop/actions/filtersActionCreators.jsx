@@ -1,19 +1,55 @@
-import actionTypes from '../constants/filtersConstants';
+import ReactOnRails from 'react-on-rails';
+import { browserHistory } from 'react-router';
 import Immutable from 'immutable';
-import axios from '../utils/axios';
+import _ from 'lodash';
 
-export function setPriceFilter(price) {
+import axios from '../utils/axios';
+import actionTypes from '../constants/filtersConstants';
+
+export function setFilter(filter) {
   return {
-    type: actionTypes.SET_PRICE_FILTER,
-    price
+    type: actionTypes.SET_FILTER,
+    filter
   }
 }
 
-export function setCategoryId(categoryId) {
-  return {
-    type: actionTypes.SET_CATEGORY_ID,
-    categoryId
+export function fetchData(query) {
+  if (_.isEmpty(query)) {
+    query = getParams();
+    let pathname = window.location.pathname;
+    browserHistory.push({pathname, query});
   }
+  return function(dispatch) {
+    dispatch(fetchFilters(query));
+    dispatch(fetchProducts(query));
+  }
+}
+
+function getParams() {
+  let params = {};
+  const filters = ReactOnRails.getStore("cartStore")
+  .getState().$$filtersStore.get('filters');
+  filters.forEach((filter) => {
+    let tempParams = filter.get('params');
+    let name = filter.get('name');
+    if(!tempParams.isEmpty()) {
+      params[name] = tempParams.join(';');
+    }
+  });
+  return params;
+}
+
+export function fetchFilters(params) {
+  return function(dispatch) {
+    dispatch(setFiltersLoading(true));
+    return axios.get('/api/v1/filters', { params: params }).then(
+      (responce) => {
+        let filters = Immutable.fromJS(responce.data.filters);
+        dispatch(setFilters(filters));
+        dispatch(setFiltersLoading(false));
+      }
+    )
+  };
 }
 
 export function setFilters(filters) {
@@ -27,18 +63,18 @@ export function setFiltersLoading(loadingState) {
   return {
     type: actionTypes.SET_FILTERS_LOADING,
     loadingState
-
   }
 }
 
-export function fetchFilters(params) {
+
+export function fetchProducts(params) {
   return function(dispatch) {
-    dispatch(setFiltersLoading(true));
-    return axios.get('/api/v1/filters', { params: params }).then(
+    dispatch(setShowcaseLoading(true));
+    return axios.get('/api/v1/products', { params: params }).then(
       (responce) => {
-        let filters = Immutable.fromJS(responce.data.filters);
-        dispatch(setFilters(filters));
-        dispatch(setFiltersLoading(false));
+        let products = Immutable.fromJS(responce.data.products);
+        dispatch(setProducts(products));
+        dispatch(setShowcaseLoading(false));
       }
     )
   };
@@ -59,15 +95,3 @@ export function setShowcaseLoading(loadingState) {
   }
 }
 
-export function fetchProducts(params) {
-  return function(dispatch) {
-    dispatch(setShowcaseLoading(true));
-    return axios.get('/api/v1/products', { params: params }).then(
-      (responce) => {
-        let products = Immutable.fromJS(responce.data.products);
-        dispatch(setProducts(products));
-        dispatch(setShowcaseLoading(false));
-      }
-    )
-  };
-}

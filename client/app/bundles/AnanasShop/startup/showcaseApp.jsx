@@ -10,7 +10,7 @@ export default (props) => {
     <Provider store={ cartStore }>
       <Router history={ browserHistory }>
         <Route path='/categories' component={Filters}>
-          <Route path='/categories/:categoryId' component={Showcase}/>
+          <Route path='/categories/:category' component={Showcase}/>
         </Route>
       </Router>
     </Provider>

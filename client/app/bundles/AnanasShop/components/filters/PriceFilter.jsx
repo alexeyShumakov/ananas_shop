@@ -5,26 +5,30 @@ import _ from 'lodash';
 
 export default class PriceFilter extends React.Component {
   static propTypes = {
-    priceFilter:    PropTypes.instanceOf(Immutable.Map).isRequired,
-    fetchData:      PropTypes.func.isRequired,
-    setPriceFilter: PropTypes.func.isRequired
   }
 
   constructor(props, context) {
     super(props, context);
-    _.bindAll(this, 'updateB');
+    _.bindAll(this, 'setFilter', 'fetchData');
   }
 
-  updateB(e) {
-    let params = {min: e[0], max: e[1]}
-    this.props.setPriceFilter(params);
+  setFilter(value) {
+    let { filter, setFilter } = this.props;
+    let params = Immutable.List(value);
+    let newFilter = filter.set('minB', value[0]).set('maxB', value[1]).set('params', params);
+    setFilter(newFilter);
+  }
+
+  fetchData() {
+    this.props.fetchData();
   }
 
   render() {
-    let min = this.props.priceFilter.get('min');
-    let max = this.props.priceFilter.get('max');
-    let minB = this.props.priceFilter.get('minB');
-    let maxB = this.props.priceFilter.get('maxB');
+    const { filter } = this.props;
+    let min = filter.get('min');
+    let max = filter.get('max');
+    let minB = filter.get('minB');
+    let maxB = filter.get('maxB');
     let value = [minB, maxB];
     return (
       <div>
@@ -35,8 +39,9 @@ export default class PriceFilter extends React.Component {
            max={max}
            value={value}
            tipFormatter={null}
-           onChange={this.updateB}
-           onAfterChange={this.props.fetchData} />
+           onChange={this.setFilter}
+           onAfterChange={this.fetchData}
+            />
       </div>
     );
   }

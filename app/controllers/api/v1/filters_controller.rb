@@ -30,7 +30,9 @@ class Api::V1::FiltersController < ApplicationController
         min:  min,
         max:  max,
         minB: minB,
-        maxB: maxB
+        maxB: maxB,
+        minFormB: minB,
+        maxFormB: maxB
       }
     else
       filters <<
@@ -41,7 +43,9 @@ class Api::V1::FiltersController < ApplicationController
         min:  min,
         max:  max,
         minB: min,
-        maxB: max
+        maxB: max,
+        minFormB: min,
+        maxFormB: max
       }
     end
 

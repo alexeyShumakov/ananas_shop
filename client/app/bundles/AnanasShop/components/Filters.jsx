@@ -27,10 +27,10 @@ export default class Filters extends React.Component {
 
   render() {
     let filterClasses = { PriceFilter, CategoryFilter };
-    const { filters, setFilter, fetchData } = this.props;
+    const { filters, setFilter, updateFilter, fetchData } = this.props;
     let list = filters.map((filter, key) => {
       let fClass = filterClasses[filter.get('type')];
-      return React.createElement(fClass, {key, filter, setFilter, fetchData})
+      return React.createElement(fClass, {key, filter, setFilter, updateFilter, fetchData})
     })
     return (
       <div className='filters'>

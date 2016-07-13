@@ -24,7 +24,7 @@ class FiltersContainer extends React.Component {
   render() {
     const { dispatch, $$filtersStore } = this.props;
     const actions = bindActionCreators(filtersActionCreators, dispatch);
-    let { fetchData, setFilter } = actions;
+    let { fetchData, setFilter, updateFilter } = actions;
 
     let filters = $$filtersStore.get('filters');
     let params = this.props.params;
@@ -34,6 +34,7 @@ class FiltersContainer extends React.Component {
         <Filters {...{
           fetchData,
           setFilter,
+          updateFilter,
           filters,
           query,
           params

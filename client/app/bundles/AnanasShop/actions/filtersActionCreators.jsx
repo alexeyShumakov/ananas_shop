@@ -13,6 +13,13 @@ export function setFilter(filter) {
   }
 }
 
+export function updateFilter(filter) {
+  return function(dispatch) {
+    dispatch(setFilter(filter));
+    dispatch(fetchData());
+  }
+}
+
 export function fetchData(query) {
   if (_.isEmpty(query)) {
     query = getParams();

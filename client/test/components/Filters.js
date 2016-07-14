@@ -8,46 +8,36 @@ import PriceFilter from '../../app/bundles/AnanasShop/components/filters/PriceFi
 
 describe('component', () => {
   describe('Filters', () => {
-    let params;
+    let params, router;
     beforeEach( () => {
+      router = { push: expect.createSpy() };
       params = {
-        categoryId: null,
+        fetchData: expect.createSpy(),
+        setFilter: expect.createSpy(),
+        updateFilter: expect.createSpy(),
         query: {},
-        priceFilter: Immutable.fromJS({
-          price: { min: 0, max: 100, minB: 0, maxB: 100 }
-        }),
-        fetchProducts: expect.createSpy(),
-        fetchFilters: expect.createSpy(),
-        router: { push: expect.createSpy() },
-        setPriceFilter: expect.createSpy()
+        params: {},
+        filters: Immutable.fromJS([
+          {type: 'PriceFilter', name: 'price', params: []},
+          {type: 'CategoryFilter', name: 'category', params: []},
+        ])
       }
     })
+
     it('should render correctly', () => {
-      let { categoryId, query, priceFilter,
-      fetchProducts, fetchFilters, router, setPriceFilter } = params;
-      const wrapper = shallow(<Filters {...{
-        categoryId,
-        priceFilter,
-        query,
-        fetchProducts,
-        fetchFilters,
-        setPriceFilter }}/>, {context: {router: router}});
+      const wrapper = shallow(<Filters {...params }/>, { context: { router }});
       expect(wrapper.hasClass('filters')).toBeTruthy();
-      expect(wrapper.find('PriceFilter').length).toEqual(1);
     })
 
-    it('should calls fetchProducts, fetchFilters on init', () => {
-      let { categoryId, query, priceFilter,
-      fetchProducts, fetchFilters, router, setPriceFilter } = params;
-      const wrapper = shallow(<Filters {...{
-        categoryId,
-        priceFilter,
-        query,
-        fetchProducts,
-        fetchFilters,
-        setPriceFilter }}/>, {context: {router: router}});
-      expect(fetchProducts.calls.length).toEqual(1);
-      expect(fetchFilters.calls.length).toEqual(1);
+    it('should fetchData', () => {
+      const wrapper = shallow(<Filters {...params }/>, { context: { router }});
+      expect(params.fetchData.calls.length).toEqual(1);
+    })
+
+    it('should render Filters', () => {
+      const wrapper = shallow(<Filters {...params }/>, { context: { router }});
+      expect(wrapper.find('PriceFilter').length).toEqual(1);
+      expect(wrapper.find('CategoryFilter').length).toEqual(1);
     })
   })
 })

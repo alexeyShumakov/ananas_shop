@@ -62,23 +62,6 @@ describe('filters actions', () => {
   });
 
   describe('sync', () => {
-    it('#setPriceFilter', () => {
-      let price = { foo: 'bar' };
-      const action = {
-        type: actionTypes.SET_PRICE_FILTER,
-        price
-      };
-      expect(actions.setPriceFilter(price)).toEqual(action);
-    });
-
-    it('#setCategoryId', () => {
-      let categoryId = 42;
-      const action = {
-        type: actionTypes.SET_CATEGORY_ID,
-        categoryId
-      };
-      expect(actions.setCategoryId(categoryId)).toEqual(action);
-    });
 
     it('#setFilters', () => {
       let filters = { foo: 'bar' }

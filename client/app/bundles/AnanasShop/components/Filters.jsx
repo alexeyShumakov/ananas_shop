@@ -12,17 +12,17 @@ export default class Filters extends React.Component {
 
   static propTypes = {
     fetchData:  PropTypes.func.isRequired,
-    setFilter:   PropTypes.func.isRequired
+    setFilter:   PropTypes.func.isRequired,
+    updateFilter: PropTypes.func.isRequired,
+    filters: PropTypes.instanceOf(Immutable.List).isRequired,
+    query: PropTypes.object,
+    params: PropTypes.object
   }
 
   constructor(props, context) {
     super(props, context);
     const { fetchData, query, params } = props;
-    if( !_.isEmpty(query)) {
-      fetchData(query);
-    } else {
-      fetchData(params);
-    }
+    _.isEmpty(query) ? fetchData(params) : fetchData(query);
   }
 
   render() {

@@ -1,4 +1,5 @@
 import { jsdom } from 'jsdom'
+import ReactOnRails from 'react-on-rails'
 
 var exposedProperties = ['window', 'navigator', 'document'];
 

@@ -5,16 +5,8 @@ import actionTypes from '../../app/bundles/AnanasShop/constants/filtersConstants
 
 let initialState = Immutable.fromJS({
   filtersLoading: true,
-  filters: {
-    categoryId: null,
-    price: {
-      min: 0,
-      max: 100,
-      minB: 0,
-      maxB: 100
-    }
-  },
   showcaseLoading: true,
+  filters: [],
   products: []
 });
 
@@ -30,29 +22,31 @@ describe('filters reducer', () => {
     })).toEqual(initialState.set('filtersLoading', false))
   })
 
+  it('#SET_FILTER', () => {
+    let newFilter = Immutable.fromJS({
+      type: 'PriceFilter',
+      name: 'price',
+      params: [],
+      test: 'new test'
+    });
+
+    expect(reducer(initialState, {
+      type: actionTypes.SET_FILTER,
+      newFilter
+    })).toEqual(initialState)
+  })
+
   it('#SET_FILTERS', () => {
+    let filters = Immutable.fromJS([{
+      type: 'PriceFilter',
+      name: 'price',
+      params: [],
+      test: 'new test'
+    }]);
     expect(reducer( initialState, {
       type: actionTypes.SET_FILTERS,
-      filters: 'filters'
-    })).toEqual(initialState.set('filters', 'filters'))
-  })
-
-  it('#SET_PRICE_FILTER', () => {
-    let price = {min: 0, max: 1};
-    let tmp = initialState.setIn(['filters', 'price', 'minB'], price.min );
-    tmp = initialState.setIn(['filters', 'price', 'maxB'], price.max );
-    expect(reducer( initialState, {
-      type: actionTypes.SET_PRICE_FILTER,
-      price
-    })).toEqual(tmp)
-  })
-
-  it('#SET_CATEGORY_ID', () => {
-    let categoryId = 42;
-    expect(reducer( initialState, {
-      type: actionTypes.SET_CATEGORY_ID,
-      categoryId
-    })).toEqual(initialState.setIn(['filters', 'categoryId'], categoryId))
+      filters
+    })).toEqual(initialState.set('filters', filters))
   })
 
   it('#SET_SHOWCASE_LOADING', () => {

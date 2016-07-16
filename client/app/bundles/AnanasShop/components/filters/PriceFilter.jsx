@@ -7,6 +7,10 @@ import _ from 'lodash';
 
 export default class PriceFilter extends React.Component {
   static propTypes = {
+    setFilter: PropTypes.func.isRequired,
+    updateFilter: PropTypes.func.isRequired,
+    fetchData: PropTypes.func.isRequired,
+    filter: PropTypes.instanceOf(Immutable.Map)
   }
 
   constructor(props, context) {
@@ -27,14 +31,14 @@ export default class PriceFilter extends React.Component {
   }
 
   updateFilter() {
-    let { filter, setFilter } = this.props;
+    let { filter, setFilter, updateFilter } = this.props;
     let { min, max, minB, maxB, minFormB, maxFormB } = filter.toJS();
     let minForm = this.getValidValue(minFormB, minB, min, maxB);
     let maxForm = this.getValidValue(maxFormB, maxB, minB, max);
 
     let params = Immutable.List([minForm, maxForm]);
     let newFilter = filter.set('minB', minForm).set('maxB', maxForm).set('params', params);
-    this.props.updateFilter(newFilter);
+    updateFilter(newFilter);
   }
 
   getValidValue(value, defaultValue, min, max) {

@@ -21,6 +21,7 @@ class Api::V1::FiltersController < ApplicationController
       price = params[:price].split(';')
       minB = price[0].to_i
       maxB = price[1].to_i
+      @products = @products.where 'price >= ? AND price <= ?', minB, maxB
 
       filters <<
       {
@@ -48,6 +49,19 @@ class Api::V1::FiltersController < ApplicationController
         maxFormB: max
       }
     end
+
+    page = params[:page]
+    page = page.to_i if page.present?
+    @products = @products.page(page)
+    filters <<
+    {
+      type: 'PageFilter',
+      name: 'page',
+      params: page.present? ? [page] : [],
+      page: page || 1,
+      totalPages: @products.total_pages,
+      totalCount: @products.total_count
+    }
 
 
     render json: { filters: filters }

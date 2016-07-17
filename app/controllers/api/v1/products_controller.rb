@@ -7,7 +7,7 @@ class Api::V1::ProductsController < ApplicationController
 
     if params[:category].present?
       category = Category.find params[:category]
-      @products = category.total_products.page(1).per(24)
+      @products = category.total_products
     end
 
     if params[:price].present?
@@ -15,6 +15,9 @@ class Api::V1::ProductsController < ApplicationController
       @products = @products.where 'price >= ? AND price <= ?', price[0], price[1]
     end
 
+    @products = @products.page(params[:page])
+
     render json: @products
+
   end
 end

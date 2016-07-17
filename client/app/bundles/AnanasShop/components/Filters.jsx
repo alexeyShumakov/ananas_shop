@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 import PriceFilter from '../components/filters/PriceFilter';
 import CategoryFilter from '../components/filters/CategoryFilter';
+import PageFilter from '../components/filters/PageFilter';
 
 export default class Filters extends React.Component {
   static contextTypes = {
@@ -26,7 +27,7 @@ export default class Filters extends React.Component {
   }
 
   render() {
-    let filterClasses = { PriceFilter, CategoryFilter };
+    let filterClasses = { PriceFilter, CategoryFilter, PageFilter };
     const { filters, setFilter, updateFilter, fetchData } = this.props;
     let list = filters.map((filter, key) => {
       let fClass = filterClasses[filter.get('type')];

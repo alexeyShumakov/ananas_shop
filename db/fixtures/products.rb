@@ -1,6 +1,6 @@
 product_id = 1
 1.upto(9) do |category_id|
-  10.times do
+  400.times do
     Product.seed do |s|
       s.id = product_id
       s.category_id = category_id

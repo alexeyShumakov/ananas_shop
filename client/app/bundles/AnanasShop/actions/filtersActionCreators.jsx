@@ -16,13 +16,18 @@ export function setFilter(filter) {
 export function updateFilter(filter) {
   return function(dispatch) {
     dispatch(setFilter(filter));
-    dispatch(fetchData());
+    if( filter.get('name') === 'page') {
+      dispatch(fetchData(null, false));
+    } else {
+      dispatch(fetchData());
+    }
   }
 }
 
-export function fetchData(query) {
+export function fetchData(query, resetPage = true) {
   if (_.isEmpty(query)) {
-    query = getParams();
+    query = getParams(resetPage);
+    if (resetPage) { delete query['page'] }
     let pathname = window.location.pathname;
     browserHistory.push({pathname, query});
   }

@@ -26,7 +26,7 @@ export default class PageFilter extends React.Component {
         <nav>
           Товаров: <b>{totalCount}</b>
           <ReactPaginate
-            containerClassName='pagination'
+            containerClassName='pagination pagination-sm'
             clickCallback={this.clickHandler}
             previousLabel={prev}
             nextLabel={next}
@@ -36,7 +36,7 @@ export default class PageFilter extends React.Component {
             forceSelected={page - 1}
             pageNum={totalPages}
             marginPagesDisplayed={1}
-            pageRangeDisplayed={5} />
+            pageRangeDisplayed={3} />
         </nav>
       </div>
     );

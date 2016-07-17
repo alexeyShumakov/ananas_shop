@@ -15,6 +15,12 @@ class Api::V1::ProductsController < ApplicationController
       @products = @products.where 'price >= ? AND price <= ?', price[0], price[1]
     end
 
+    if params[:sort].present?
+      @products = @products.order params[:sort]
+    else
+      @products = @products.order 'updated_at desc'
+    end
+
     @products = @products.page(params[:page])
 
     if params[:per].present?

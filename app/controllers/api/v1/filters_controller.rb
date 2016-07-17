@@ -50,9 +50,36 @@ class Api::V1::FiltersController < ApplicationController
       }
     end
 
+    sort = params[:sort]
+    orders = [{name: 'updated_at desc', title: 'обновлению'},{name: 'price', title: 'цене'}]
+    if sort.present?
+      @products = @products.order sort
+      filters <<
+      {
+        type: 'SortFilter',
+        name: 'sort',
+        params: [sort],
+        sort: sort,
+        orders: orders
+      }
+    else
+      @products = @products.order 'updated_at desc'
+      filters <<
+      {
+        type: 'SortFilter',
+        name: 'sort',
+        params: [],
+        sort: 'updated_at desc',
+        orders: orders
+      }
+    end
+
     page = params[:page]
     page = page.to_i if page.present?
-    @products = @products.page(page)
+
+    per = params[:per]
+    per = per.to_i if per.present?
+    @products = @products.page(page).per(per)
     filters <<
     {
       type: 'PageFilter',
@@ -63,8 +90,6 @@ class Api::V1::FiltersController < ApplicationController
       totalCount: @products.total_count
     }
 
-    per = params[:per]
-    per = per.to_i if per.present?
     filters <<
     {
       type: 'PageSizeFilter',

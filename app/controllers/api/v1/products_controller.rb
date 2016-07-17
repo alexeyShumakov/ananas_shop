@@ -17,6 +17,10 @@ class Api::V1::ProductsController < ApplicationController
 
     @products = @products.page(params[:page])
 
+    if params[:per].present?
+      @products = @products.per(params[:per])
+    end
+
     render json: @products
 
   end

@@ -1,0 +1,20 @@
+.page-size__selected {
+  color: $orange;
+}
+.page-size {
+  li {
+    cursor: pointer;
+  }
+}
+
+.pagination {
+  li {
+    cursor: pointer;
+  }
+  .previous.disabled {
+    display: none;
+  }
+  .next.disabled {
+    display: none;
+  }
+}

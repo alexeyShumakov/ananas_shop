@@ -63,6 +63,16 @@ class Api::V1::FiltersController < ApplicationController
       totalCount: @products.total_count
     }
 
+    per = params[:per]
+    per = per.to_i if per.present?
+    filters <<
+    {
+      type: 'PageSizeFilter',
+      name: 'per',
+      params: per.present? ? [per] : [],
+      size: per || 24
+    }
+
 
     render json: { filters: filters }
   end

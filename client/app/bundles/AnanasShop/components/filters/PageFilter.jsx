@@ -18,6 +18,8 @@ export default class PageFilter extends React.Component {
 
   render() {
     let breakLabel = <a>...</a>
+    let prev = String.fromCharCode(8592)
+    let next = String.fromCharCode(8594)
     let { totalCount, page, totalPages } = this.props.filter.toJS();
     return(
       <div>
@@ -26,6 +28,8 @@ export default class PageFilter extends React.Component {
           <ReactPaginate
             containerClassName='pagination'
             clickCallback={this.clickHandler}
+            previousLabel={prev}
+            nextLabel={next}
             breakLabel={breakLabel}
             breakClassName='disabled'
             activeClassName='active'

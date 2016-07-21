@@ -22,6 +22,7 @@ module AnanasShop
 
     config.autoload_paths << "#{config.root}/app/mutations"
     config.autoload_paths << "#{config.root}/app/forms"
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

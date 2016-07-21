@@ -100,7 +100,17 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe 'GET #new' do
-    it 'returns http success' do
+    it 'redirect_to root if cart is empty' do
+      get :new
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'http success if cart is not empty' do
+      cart = create :cart
+      create :line_item, cart: cart, count: 4
+      create :line_item, cart: cart, count: 2
+
+      @request.cookies[:cart_id] = cart.id
       get :new
       expect(response).to have_http_status(:success)
     end

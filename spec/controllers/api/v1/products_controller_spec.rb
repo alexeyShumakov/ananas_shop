@@ -5,12 +5,12 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
     it 'assigns @products' do
       product = create(:product, title: 'Ananas')
       get :index, { keyword: 'ananas' }
-      expect(assigns(:products)).to eq([product])
+      expect(assigns(:filters).result.products).to eq([product])
     end
     it 'products are empty array' do
       product = create(:product, title: 'Tomato')
       get :index, { keyword: 'ananas' }
-      expect(assigns(:products)).to eq([])
+      expect(assigns(:filters).result.products).to eq([])
     end
   end
 end

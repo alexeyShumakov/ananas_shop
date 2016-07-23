@@ -22,6 +22,7 @@ module.exports = {
     // webpack.rails.config
     app: [
       './app/bundles/AnanasShop/startup/clientRegistration',
+      './app/bundles/admin/startup/clientRegistration'
     ],
   },
   resolve: {

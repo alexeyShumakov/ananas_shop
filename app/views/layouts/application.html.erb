@@ -8,7 +8,7 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
-  <body>
+  <body class='body'>
     <%= redux_store 'cartStore', props: { totalPrice: @cart.total_price, totalCount: @cart.total_count } %>
     <header>
       <%= render 'layouts/navigation' %>

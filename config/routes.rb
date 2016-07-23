@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   resources 'orders', only: ['new', 'create']
 
   devise_for :users
@@ -10,6 +11,12 @@ Rails.application.routes.draw do
   root to: 'products#index'
 
   get 'my_cart', to: 'carts#my_cart'
+
+  namespace :admin do
+    root to: 'dashboard#index'
+    get 'dashboard/index'
+    resources :products
+  end
 
   namespace :api do
     namespace :v1 do

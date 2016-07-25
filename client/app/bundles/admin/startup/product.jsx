@@ -6,7 +6,7 @@ export default (props) => {
   const store = ReactOnRails.getStore("adminStore");
   const reactComponent = (
     <Provider store={store}>
-      <ProductContainer/>
+      <ProductContainer id={props.id}/>
     </Provider>
   );
   return reactComponent;

@@ -13,7 +13,7 @@ class Product < ActiveRecord::Base
   has_many :line_items
 
   def cover_url(style = 'thumb')
-    pic = pictures.first
+    pic = pictures.last
     pic.present? ? pic.image.url(style) : Picture.new.image.url(style)
   end
 end

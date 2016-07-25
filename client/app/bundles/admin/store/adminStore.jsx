@@ -7,9 +7,10 @@ import reducers from '../reducers';
 import { initialStates } from '../reducers';
 
 export default props => {
-  const { $$sidebarState } = initialStates;
+  const { $$sidebarState, $$adminState } = initialStates;
   const initialState = {
-    $$sidebarStore: $$sidebarState
+    $$sidebarStore: $$sidebarState,
+    $$adminStore: $$adminState
   };
 
   const reducer = combineReducers(reducers);

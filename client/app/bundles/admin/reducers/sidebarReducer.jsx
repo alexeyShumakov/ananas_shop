@@ -12,7 +12,7 @@ export const $$initialState = Immutable.fromJS({
   categories: []
 });
 
-export default function cartReducer($$state = $$initialState, action) {
+export default function sidebarReducer($$state = $$initialState, action) {
   const { type, product, categories, productErrors } = action;
 
   switch (type) {

@@ -8,10 +8,10 @@ export default class Sidebar extends React.Component {
     super(props, context);
   }
   render() {
-    let { product, setProduct } = this.props;
+    let { product, productErrors, categories, setProduct, createProduct, fetchCategories } = this.props;
     return (
       <div>
-        <NewModalProduct {...{product, setProduct}}/>
+        <NewModalProduct {...{product, productErrors, categories, setProduct, createProduct, fetchCategories}}/>
       </div>
     );
   }

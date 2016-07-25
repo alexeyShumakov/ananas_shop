@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   resources 'orders', only: ['new', 'create']
 
   devise_for :users
@@ -20,10 +19,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :categories
       resources :filters, only: [:index]
       resources :line_items, only: [:create, :destroy, :update]
       resources :carts, only: [:show]
-      resources :products, only: [:index]
+      resources :products, only: [:index, :create, :show]
     end
   end
 end

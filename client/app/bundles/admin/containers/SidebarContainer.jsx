@@ -21,11 +21,13 @@ class SidebarContainer extends React.Component {
   render() {
     const { $$sidebarStore, dispatch } = this.props;
     const actions = bindActionCreators(sidebarActionCreators, dispatch);
-    let { setProduct } = actions;
+    let { setProduct, fetchCategories, createProduct } = actions;
     let product = $$sidebarStore.get('product');
+    let categories = $$sidebarStore.get('categories');
+    let productErrors = $$sidebarStore.get('productErrors');
 
     return (
-      <Sidebar {...{product, setProduct} } />
+      <Sidebar {...{product, productErrors, categories, setProduct, createProduct, fetchCategories} } />
     );
   }
 }

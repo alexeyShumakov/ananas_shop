@@ -1,6 +1,8 @@
 class Product < ActiveRecord::Base
   include PgSearch
 
+  validates :category, :title, :price, presence: true
+
   pg_search_scope :search_by_title,
     against: :title,
     using: {tsearch: {prefix: true}}

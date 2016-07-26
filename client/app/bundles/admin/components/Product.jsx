@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
-import axios from '../utils/axios';
 
-import Image from './product/Image'
+import ImageList from './product/ImageList';
 
 export default class Sidebar extends React.Component {
 
@@ -19,7 +18,7 @@ export default class Sidebar extends React.Component {
     this.props.createPicture(formData);
   }
   render() {
-    let { product, productLoading, deletePicture } = this.props;
+    let { product, productLoading, deletePicture, updatePicture } = this.props;
     let price = product.get('price');
     let title = product.get('title');
     let pictures = product.get('pictures');
@@ -28,17 +27,16 @@ export default class Sidebar extends React.Component {
     if (productLoading) {
       productElem = <div className="loader"></div>
     } else {
-      pictures = pictures.map( pic => {
-        return <Image key={pic.get('id')} picture={pic} deletePicture={deletePicture}/>
-      })
       productElem =
         <div>
-            {pictures}
+          <div>Добавить изобр:<input type='file' onChange={this.uploadImage}/></div>
+          <hr/>
+          <ImageList {...{pictures, deletePicture, updatePicture}}/>
+          <hr/>
           <ul>
             <li><b>title:</b>{title}</li>
             <li><b>price:</b>{price}</li>
           </ul>
-          <input type='file' onChange={this.uploadImage}/>
         </div>
     }
     return (

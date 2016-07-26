@@ -1,0 +1,24 @@
+.admin-products-image {
+  position: relative;
+}
+
+.admin-products-image:hover .admin-products-image__control-block {
+  display: inline-block;
+  position: absolute;
+  left: 5px;
+  top: 0px;
+}
+.admin-products-image__control-block {
+  display: none;
+  position: absolute;
+  left: 5px;
+  top: 0px;
+}
+
+.admin-products-image__hover-label {
+  position: absolute;
+  left: 5px;
+  bottom: 10px;
+}
+
+

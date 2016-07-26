@@ -38,6 +38,16 @@ export function createPicture(picture) {
   };
 }
 
+export function updatePicture(id, picture) {
+  return dispatch => {
+    return axios.put(`/api/v1/pictures/${id}`, picture).then(
+      responce => {
+        let product = Immutable.fromJS(responce.data.product);
+        dispatch(setProduct(product));
+      });
+  };
+}
+
 export function deletePicture(id) {
   return dispatch => {
     return axios.delete(`/api/v1/pictures/${id}`).then(

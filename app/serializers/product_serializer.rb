@@ -9,4 +9,8 @@ class ProductSerializer < ActiveModel::Serializer
   def medium_cover_url
     object.cover_url(:medium)
   end
+
+  def pictures
+    object.pictures.order(:created_at)
+  end
 end

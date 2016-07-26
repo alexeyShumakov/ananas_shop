@@ -1,14 +1,18 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
-import Modal from 'react-modal';
 
+import Modal from 'react-modal';
+import Select from 'react-select';
+
+import FormGroup from './sidebar/FormGroup'
 export default class NewModalProduct extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = {modal: false};
     Modal.setAppElement('body');
-    _.bindAll(this, 'openModal', 'closeModal', 'setTitle', 'setPrice', 'setCategory');
+    props.fetchCategories();
+    this.state = {modal: false, category: null};
+    _.bindAll(this, 'openModal', 'createProduct', 'closeModal', 'setValue', 'setCategory');
   }
 
   openModal() {
@@ -19,44 +23,66 @@ export default class NewModalProduct extends React.Component {
     this.setState({modal: false});
   }
 
-  setTitle(e) {
-    let newProductState = this.props.product.set('title', e.target.value);
-    this.props.setProduct(newProductState)
+  setValue(field, value) {
+    let newProductState = this.props.product.set(field, value);
+    this.props.setProduct(newProductState);
   }
 
-  setPrice(e) {
-    let newProductState = this.props.product.set('price', e.target.value);
-    this.props.setProduct(newProductState)
+  setCategory(category) {
+    this.setState({category: category});
+    let value = category ? category.value : '';
+    let newProductState = this.props.product.set('category_id', value);
+    this.props.setProduct(newProductState);
   }
 
-  setCategory(e) {
-    let newProductState = this.props.product.set('category', e.target.value);
-    this.props.setProduct(newProductState)
+  createProduct() {
+    let { createProduct, product } = this.props;
+    createProduct(product.toJS());
   }
   render() {
-    let { title, category, price } = this.props.product.toJS();
+    let { categories, product, productErrors } = this.props;
+    let { title, category_id, price } = product.toJS();
+
+    let categoryError = productErrors.get('category');
+    if (categoryError) { categoryError = categoryError.first() }
+    let options = categories.map( category => {
+      return {value: category.get('id'), label: category.get('title')};
+    }).toJS();
+
     return (
       <div>
-        <button className='list-group-item' onClick={this.openModal}>
-          new product
-        </button>
+        <button className='list-group-item' onClick={this.openModal}> new product </button>
         <Modal isOpen={this.state.modal}>
           <button className='btn-default btn pull-right' onClick={this.closeModal}>x</button>
           <form>
-            <div className="form-group">
-              <label>Название</label>
-              <input value={title} onChange={this.setTitle} className='form-control' placeholder="название продукта"/>
-            </div>
-            <div className="form-group">
-              <label>Цена</label>
-              <input value={price} onChange={this.setPrice} className='form-control' placeholder="цена"/>
-            </div>
-            <div className="form-group">
+            <FormGroup
+              label='Название'
+              setValue={this.setValue}
+              errors={productErrors.get('title')}
+              value={title}
+              field='title'/>
+
+            <FormGroup
+              label='Цена'
+              setValue={this.setValue}
+              errors={productErrors.get('price')}
+              value={price}
+              field='price'/>
+
+            <div className="form-group has-error">
               <label>Категория</label>
-              <input value={category} onChange={this.setCategory} className='form-control'/>
+              <Select
+                  name="form-control"
+                  value={this.state.category}
+                  options={options}
+                  onChange={this.setCategory}
+              />
+              <span className="help-block">
+                {categoryError}
+              </span>
             </div>
-            <button type="submit" className="btn btn-default">Submit</button>
           </form>
+          <button onClick={this.createProduct} className="btn btn-default">Создать продукт</button>
         </Modal>
       </div>
     );

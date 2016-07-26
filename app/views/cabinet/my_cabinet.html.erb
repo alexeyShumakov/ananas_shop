@@ -1,0 +1,42 @@
+<div class="row">
+    <p>User:  <%= current_user.email %></p> 
+    <h4>Ваши адреса:</h4>
+    <table class="table table-bordered">
+        <tr>
+            <td>Город</td>
+            <td>Адрес</td>
+        </tr>    
+    <% current_user.addresses.each do |f|%>
+        <tr> 
+            <td><%= f.city %></td>
+            <td><%= f.address %></td>
+        </tr>
+    <% end %>
+    </table>
+    <p>
+    <h4>Ваши заказы:</h4>
+    </p>
+    <% current_user.orders.each do |line|%>
+                <table class="table table-bordered">
+                    <tr>
+                        <td colspan="2"> Заказ № <%= line.id%></td>
+                        <td> Status: <%= line.status%></td>
+                    </tr> 
+        <tr>
+            <td>Товар</td>
+            <td>Цена/stuck</td>
+            <td>Количество</td>
+        </tr>    
+       
+            <% line.line_items.where(order_id: line.id).each do |i|%>    
+                <tr> 
+                <% Product.where(id: i.product_id).each do |x|%>
+                    <td><%= x.title%></td>        
+<% end %>
+            <td><%= i.fixed_price %></td>
+            <td><%= i.count %></td>
+        </tr>
+<% end %>
+<% end %>
+    </table>
+</div>

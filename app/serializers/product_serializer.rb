@@ -1,5 +1,5 @@
 class ProductSerializer < ActiveModel::Serializer
-  attributes :id, :price, :thumb_cover_url, :medium_cover_url, :title
+  attributes :id, :price, :thumb_cover_url, :medium_cover_url, :title, :description
   has_many :pictures
 
   def thumb_cover_url

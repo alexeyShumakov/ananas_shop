@@ -41,7 +41,7 @@ export default class NewModalProduct extends React.Component {
   }
   render() {
     let { categories, product, productErrors } = this.props;
-    let { title, category_id, price } = product.toJS();
+    let { title, category_id, price, description } = product.toJS();
 
     let categoryError = productErrors.get('category');
     if (categoryError) { categoryError = categoryError.first() }
@@ -69,7 +69,7 @@ export default class NewModalProduct extends React.Component {
               value={price}
               field='price'/>
 
-            <div className="form-group has-error">
+            <div className="form-group">
               <label>Категория</label>
               <Select
                   name="form-control"
@@ -81,6 +81,14 @@ export default class NewModalProduct extends React.Component {
                 {categoryError}
               </span>
             </div>
+
+            <FormGroup
+              textarea={true}
+              label='Описание'
+              setValue={this.setValue}
+              errors={productErrors.get('description')}
+              value={description}
+              field='description'/>
           </form>
           <button onClick={this.createProduct} className="btn btn-default">Создать продукт</button>
         </Modal>

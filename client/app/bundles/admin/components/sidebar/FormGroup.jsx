@@ -14,20 +14,29 @@ export default class FormGroup extends React.Component {
 
   }
   render() {
-    let { label, value, errors } = this.props;
+    let input;
+    let { label, value, errors, textarea } = this.props;
     let hasErrors = !_.isUndefined(errors);
     let errorTag;
     if (hasErrors) {
       errorTag = <span className='help-block'>{errors.first()}</span>
     }
+    input =
+      <input
+        value={value}
+        onChange={this.setValue}
+        className='form-control' />
+    if (textarea) {
+      input =
+        <textarea
+          value={value}
+          onChange={this.setValue}
+          className='form-control' />
+    }
     return (
       <div className={hasErrors ? 'form-group has-error' : 'form-group'}>
         <label>{label}</label>
-        <input
-          value={value}
-          onChange={this.setValue}
-          className='form-control'
-          placeholder="название продукта"/>
+        {input}
         {errorTag}
       </div>
     );

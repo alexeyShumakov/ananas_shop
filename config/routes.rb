@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       resources :filters, only: [:index]
       resources :line_items, only: [:create, :destroy, :update]
       resources :carts, only: [:show]
-      resources :products, only: [:index, :create, :show]
+      resources :products, only: [:index, :create, :show, :update]
     end
   end
 end

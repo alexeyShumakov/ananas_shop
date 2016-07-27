@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
 import ImageList from './product/ImageList';
+import Field from './product/Field';
 
 export default class Sidebar extends React.Component {
 
@@ -18,7 +19,10 @@ export default class Sidebar extends React.Component {
     this.props.createPicture(formData);
   }
   render() {
-    let { product, productLoading, deletePicture, updatePicture } = this.props;
+    let { product, setProductErrors,
+      productErrors, productLoading,
+      updateProduct, setProduct,
+      deletePicture, updatePicture } = this.props;
     let price = product.get('price');
     let title = product.get('title');
     let pictures = product.get('pictures');
@@ -33,10 +37,33 @@ export default class Sidebar extends React.Component {
           <hr/>
           <ImageList {...{pictures, deletePicture, updatePicture}}/>
           <hr/>
-          <ul>
-            <li><b>title:</b>{title}</li>
-            <li><b>price:</b>{price}</li>
-          </ul>
+          <div className="form-horizontal">
+            <Field
+              field='title'
+              label='Название'
+              product={product}
+              productErrors={productErrors}
+              setProduct={setProduct}
+              setProductErrors={setProductErrors}
+              updateProduct={updateProduct} />
+            <Field
+              field='price'
+              label='Цена'
+              product={product}
+              productErrors={productErrors}
+              setProduct={setProduct}
+              setProductErrors={setProductErrors}
+              updateProduct={updateProduct} />
+            <Field
+              textarea={true}
+              field='description'
+              label='Описание'
+              product={product}
+              productErrors={productErrors}
+              setProduct={setProduct}
+              setProductErrors={setProductErrors}
+              updateProduct={updateProduct} />
+          </div>
         </div>
     }
     return (

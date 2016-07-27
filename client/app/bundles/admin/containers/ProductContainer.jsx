@@ -23,9 +23,17 @@ class ProductContainer extends React.Component {
     const actions = bindActionCreators(productActionCreators, dispatch);
     let productLoading = $$adminStore.get('productLoading');
     let product = $$adminStore.get('product');
-    let { fetchProduct, deletePicture, createPicture, updatePicture } = actions;
+    let productErrors = $$adminStore.get('productErrors');
+    let { setProductErrors,
+      fetchProduct, updateProduct,
+      setProduct, deletePicture,
+      createPicture, updatePicture } = actions;
     return (
-      <Product {...{id, fetchProduct, deletePicture, updatePicture, createPicture, productLoading, product}}/>
+      <Product {...{id, fetchProduct,
+        updateProduct, setProduct, setProductErrors,
+        deletePicture, updatePicture,
+        createPicture, productLoading,
+        product, productErrors}}/>
     );
   }
 }

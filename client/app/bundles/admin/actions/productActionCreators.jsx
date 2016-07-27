@@ -9,6 +9,12 @@ export function setProduct(product) {
     product
   }
 }
+export function setProductErrors(errors) {
+  return {
+    type: actionTypes.SET_PRODUCT_ERRORS,
+    errors
+  }
+}
 export function setProductLoading(loading) {
   return {
     type: actionTypes.SET_PRODUCT_LOADING,
@@ -24,6 +30,22 @@ export function fetchProduct(id) {
         let product = Immutable.fromJS(responce.data.product);
         dispatch(setProduct(product));
         dispatch(setProductLoading(false));
+      });
+  };
+}
+
+export function updateProduct(id, product) {
+  return dispatch => {
+    return axios.put(`/api/v1/products/${id}`, {product}).then(
+      responce => {
+        let product = Immutable.fromJS(responce.data.product);
+        dispatch(setProductErrors(Immutable.Map({})));
+        dispatch(setProduct(product));
+        return true;
+      }, errors => {
+        errors = Immutable.fromJS(errors.data);
+        dispatch(setProductErrors(errors));
+        return false;
       });
   };
 }

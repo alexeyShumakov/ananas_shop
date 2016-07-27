@@ -79,3 +79,20 @@ export function deletePicture(id) {
       });
   };
 }
+
+export function setCategories(categories) {
+  return {
+    type: actionTypes.SET_CATEGORIES,
+    categories
+  }
+}
+
+export function fetchCategories() {
+  return dispatch => {
+    return axios.get('/api/v1/categories').then(
+      responce => {
+        let categories = Immutable.fromJS(responce.data.categories);
+        dispatch(setCategories(categories));
+      });
+  };
+}

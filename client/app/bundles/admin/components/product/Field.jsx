@@ -53,7 +53,7 @@ export default class Field extends React.Component {
       error = <span className='help-block'>{productErrors.get(field).first()}</span>
     }
     if (isEdit) {
-      input = 
+      input =
         <input className='form-control'
           ref= {
             (component) => {
@@ -77,7 +77,7 @@ export default class Field extends React.Component {
           value={value}
           onKeyUp={this.enterEvent}
           onChange={this.setProduct}/>
-      } 
+      }
       component =
         <div className={hasError ? 'form-group has-error' : 'form-group'}>
           <label className='col-sm-2 control-label'>{label}</label>
@@ -101,8 +101,8 @@ export default class Field extends React.Component {
         <div className='form-group'>
           <label className='col-sm-2 control-label'>{label}</label>
           <div className="col-sm-10">
-            <i>{value}</i>
-            <button className="btn btn-default" onClick={this.showForm}>
+            <i className='admin-product__field-value'>{value}</i>
+            <button className="btn btn-default pull-right" onClick={this.showForm}>
               <span className="glyphicon glyphicon-pencil"/>
             </button>
           </div>

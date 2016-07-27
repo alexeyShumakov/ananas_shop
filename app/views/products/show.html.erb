@@ -4,14 +4,5 @@
       <%= render partial: 'breadcrumb', locals: { category: @product.category, title: @product.title } %>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-md-3">
-      <%= image_tag @product.cover_url(:medium) %>
-    </div>
-
-    <div class="col-md-9">
-      <h1><%= @product.title %></h1>
-    </div>
-  </div>
+  <%= react_component 'FullProduct', props: {id: @product.id} %>
 </div>

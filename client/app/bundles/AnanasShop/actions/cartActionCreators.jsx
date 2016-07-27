@@ -75,3 +75,22 @@ export function destroyLineItem(id) {
     )
   };
 }
+
+
+export function setProduct(product) {
+  return {
+    type: actionTypes.SET_PRODUCT,
+    product
+  }
+}
+
+export function fetchProduct(id) {
+  return dispatch => {
+    return axios.get(`/api/v1/products/${id}`).then(
+      responce => {
+        let product = Immutable.fromJS(responce.data.product);
+        dispatch(setProduct(product));
+        return true;
+      });
+  };
+}

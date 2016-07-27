@@ -39,6 +39,12 @@ export default class FullProduct extends React.Component {
           thumbnail: pic.get('thumb')
         }
       }).toJS();
+      if (galleryImages.length < 1) {
+        galleryImages = [{
+          original: product.get('medium_cover_url'),
+          thumbnail: product.get('thumb_cover_url')
+        }]
+      }
       productComp =
         <div className='row'>
           <div className="col-md-5">

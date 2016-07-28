@@ -24,13 +24,15 @@ export default class Sidebar extends React.Component {
 
   uploadImage(event) {
     let _this = this;
-    this.setState({imageLoading: true});
     let formData = new FormData();
     formData.append('picture[product_id]', this.props.id);
     formData.append('picture[image]', event.target.files[0]);
-    this.props.createPicture(formData).then(() => {
-      _this.setState({imageLoading: false});
-    })
+    if (event.target.files[0]) {
+      this.setState({imageLoading: true});
+      this.props.createPicture(formData).then(() => {
+        _this.setState({imageLoading: false});
+      })
+    }
   }
   render() {
     let imageLoading;

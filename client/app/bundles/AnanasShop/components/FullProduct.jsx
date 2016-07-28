@@ -23,7 +23,7 @@ export default class FullProduct extends React.Component {
     let { product, productId, addToCart, selectedProductId } = this.props;
 
     if (this.state.loading) {
-      productComp = <Loader/>
+      productComp = <div className="loader"/>
     } else {
       let title = product.get('title');
       let price = product.get('price');

@@ -14,6 +14,17 @@ export default class Products extends React.Component {
   constructor(props, context) {
     super(props, context);
   }
+
+  coverUrl(pictures, defaultUrl) {
+    if (!pictures.isEmpty()) {
+      let coverPic = pictures.find( p => {
+        p.get('is_hover') == true;
+      }) || pictures.first();
+      return coverPic.get('thumb');
+    } else {
+      return defaultUrl;
+    }
+  }
   render() {
     let selectedProductId = this.props.selectedProductId;
     let addToCart = this.props.addToCart;
@@ -21,7 +32,8 @@ export default class Products extends React.Component {
       let title = product.get('title');
       let productId = product.get('id');
       let price = product.get('price');
-      let thumbCoverUrl = product.get('thumb_cover_url')
+      let thumbCoverUrl = this.coverUrl(product.get('pictures'), product.get('default_thumb_cover_url'));
+
       return <Product key={productId} {...{productId, title, price, thumbCoverUrl, selectedProductId, addToCart}}/>
     });
     return (

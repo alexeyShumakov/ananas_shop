@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726070859) do
+ActiveRecord::Schema.define(version: 20160729153346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 20160726070859) do
     t.datetime "updated_at", null: false
     t.string   "ancestry"
   end
+
+  create_table "fields", force: :cascade do |t|
+    t.string "title"
+    t.string "slug"
+  end
+
+  create_table "fields_values", force: :cascade do |t|
+    t.string  "title"
+    t.integer "field_id"
+  end
+
+  add_index "fields_values", ["field_id"], name: "index_fields_values_on_field_id", using: :btree
 
   create_table "line_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -89,6 +101,24 @@ ActiveRecord::Schema.define(version: 20160726070859) do
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
 
+  create_table "products_fields", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "field_id"
+  end
+
+  add_index "products_fields", ["field_id"], name: "index_products_fields_on_field_id", using: :btree
+  add_index "products_fields", ["product_id"], name: "index_products_fields_on_product_id", using: :btree
+
+  create_table "products_fields_values", force: :cascade do |t|
+    t.integer  "products_field_id"
+    t.integer  "fields_value_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "products_fields_values", ["fields_value_id"], name: "index_products_fields_values_on_fields_value_id", using: :btree
+  add_index "products_fields_values", ["products_field_id"], name: "index_products_fields_values_on_products_field_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -112,10 +142,15 @@ ActiveRecord::Schema.define(version: 20160726070859) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "fields_values", "fields"
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
+  add_foreign_key "products_fields", "fields"
+  add_foreign_key "products_fields", "products"
+  add_foreign_key "products_fields_values", "fields_values"
+  add_foreign_key "products_fields_values", "products_fields"
 end

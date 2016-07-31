@@ -2,7 +2,7 @@ class Api::V1::PicturesController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
     if @picture.save
-      render json: Product.find(product_id), root: 'product'
+      render json: Product.find(product_id), root: 'product', include: ['**']
     end
   end
 
@@ -14,7 +14,7 @@ class Api::V1::PicturesController < ApplicationController
       pic.save
     end
     if @picture.update picture_params
-      render json: Product.find(product_id), root: 'product'
+      render json: Product.find(product_id), root: 'product', include: ['**']
     end
 
   end
@@ -22,7 +22,7 @@ class Api::V1::PicturesController < ApplicationController
   def destroy
     @picture = Picture.find(params[:id])
     if @picture.delete
-      render json: Product.find(product_id), root: 'product'
+      render json: Product.find(product_id), root: 'product', include: ['**']
     end
   end
 

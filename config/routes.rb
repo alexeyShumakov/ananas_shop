@@ -26,6 +26,8 @@ Rails.application.routes.draw do
       resources :line_items, only: [:create, :destroy, :update]
       resources :carts, only: [:show]
       resources :products, only: [:index, :create, :show, :update]
+      resources :fields
+      resources :products_fields
     end
   end
 end

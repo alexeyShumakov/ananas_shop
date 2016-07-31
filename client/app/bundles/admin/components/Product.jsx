@@ -4,19 +4,22 @@ import _ from 'lodash';
 
 import ImageList from './product/ImageList';
 import Field from './product/Field';
+import NewField from './product/NewField';
+import ProductsFields from './product/ProductsFields';
 
-export default class Sidebar extends React.Component {
+export default class Product extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    props.fetchProduct(props.id);
-    props.fetchCategories();
+    props.actions.fetchProduct(props.id);
+    props.actions.fetchCategories();
     this.state = {imageLoading: false};
     _.bindAll(this, 'uploadImage', 'setCategory');
   }
 
   setCategory(category) {
-    let {updateProduct, product} = this.props;
+    let { updateProduct } = this.props.actions;
+    let product = this.props.store.get('product');
     let value = category ? category.value : '';
     let newProductState = product.set('category_id', value);
     updateProduct(product.get('id'), newProductState);
@@ -29,17 +32,25 @@ export default class Sidebar extends React.Component {
     formData.append('picture[image]', event.target.files[0]);
     if (event.target.files[0]) {
       this.setState({imageLoading: true});
-      this.props.createPicture(formData).then(() => {
+      this.props.actions.createPicture(formData).then(() => {
         _this.setState({imageLoading: false});
       })
     }
   }
   render() {
     let imageLoading;
-    let { product, setProductErrors, categories,
-      productErrors, productLoading,
-      updateProduct, setProduct,
-      deletePicture, updatePicture } = this.props;
+    let { store, actions, id } = this.props;
+    let product = store.get('product');
+    let categories = store.get('categories');
+    let fields = store.get('fields');
+    let productErrors = store.get('productErrors');
+    let productLoading = store.get('productLoading');
+    let {
+      setProductErrors, updateProduct,
+      setProduct, fetchFields,
+      deletePicture, updatePicture,
+      createProductsField, updateProductsField
+    } = this.props.actions;
     let price = product.get('price');
     let title = product.get('title');
     let pictures = product.get('pictures');
@@ -58,6 +69,7 @@ export default class Sidebar extends React.Component {
         value: product.getIn(['category', 'id']),
         label: product.getIn(['category', 'title'])
       }
+      let productsFields = product.get('products_fields');
       productElem =
         <div>
           <div>
@@ -105,6 +117,9 @@ export default class Sidebar extends React.Component {
                 />
               </div>
             </div>
+          <hr/>
+          <ProductsFields {...{id, productsFields, updateProductsField}}/>
+          <NewField {...{id, fields, fetchFields, createProductsField}}/>
           </div>
         </div>
     }

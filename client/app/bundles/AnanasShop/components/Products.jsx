@@ -18,7 +18,7 @@ export default class Products extends React.Component {
   coverUrl(pictures, defaultUrl) {
     if (!pictures.isEmpty()) {
       let coverPic = pictures.find( p => {
-        p.get('is_hover') == true;
+        return p.get('is_hover');
       }) || pictures.first();
       return coverPic.get('thumb');
     } else {

@@ -1,0 +1,9 @@
+.control-icon {
+  cursor: pointer;
+  opacity: 0.5;
+  margin-right: 4px;
+  margin-left: 4px;
+  &:hover {
+    opacity: 1;
+  }
+}

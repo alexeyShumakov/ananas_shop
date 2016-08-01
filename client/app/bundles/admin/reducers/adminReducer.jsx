@@ -7,11 +7,13 @@ export const $$initialState = Immutable.fromJS({
   product: {},
   productErrors: {},
   categories: [],
-  fields: []
+  fields: [],
+  field: { title: '' },
+  fieldsValue: { title: ''}
 });
 
 export default function adminReducer($$state = $$initialState, action) {
-  const { type, product, loading, errors, categories, fields } = action;
+  const { type, product, loading, errors, categories, fields, field, fieldsValue } = action;
 
   switch (type) {
     case(actionTypes.SET_PRODUCT):
@@ -28,6 +30,13 @@ export default function adminReducer($$state = $$initialState, action) {
 
     case actionTypes.SET_FIELDS:
       return $$state.set('fields', fields);
+
+    case actionTypes.SET_FIELD:
+      return $$state.set('field', field);
+
+    case actionTypes.SET_FIELDS_VALUE:
+      return $$state.set('fieldsValue', fieldsValue);
+
     default:
       return $$state;
   }

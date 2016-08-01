@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :carts, only: [:show]
       resources :products, only: [:index, :create, :show, :update]
       resources :fields
+      resources :fields_values
       resources :products_fields
     end
   end

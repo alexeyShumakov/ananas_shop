@@ -16,6 +16,15 @@ class Api::V1::ProductsFieldsController < ApplicationController
     else
       render json: @products_field.errors, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @products_field = ProductsField.find params[:id]
+    if @products_field.destroy
+      render json: @products_field.product, root: 'product', include: ['**']
+    else
+      render json: @products_field.errors, status: :unprocessable_entity
+    end
 
   end
 

@@ -5,6 +5,7 @@ import _ from 'lodash';
 import ImageList from './product/ImageList';
 import Field from './product/Field';
 import NewField from './product/NewField';
+import CreateField from './product/CreateField';
 import ProductsFields from './product/ProductsFields';
 
 export default class Product extends React.Component {
@@ -43,14 +44,18 @@ export default class Product extends React.Component {
     let product = store.get('product');
     let categories = store.get('categories');
     let fields = store.get('fields');
+    let fieldsValue = store.get('fieldsValue');
     let productErrors = store.get('productErrors');
     let productLoading = store.get('productLoading');
     let {
       setProductErrors, updateProduct,
       setProduct, fetchFields,
       deletePicture, updatePicture,
-      createProductsField, updateProductsField
+      createProductsField, updateProductsField, deleteProductsField,
+      createField, setField,
+      setFieldsValue, createFieldsValue
     } = this.props.actions;
+    let field = store.get('field');
     let price = product.get('price');
     let title = product.get('title');
     let pictures = product.get('pictures');
@@ -118,8 +123,15 @@ export default class Product extends React.Component {
               </div>
             </div>
           <hr/>
-          <ProductsFields {...{id, productsFields, updateProductsField}}/>
+          <ProductsFields {...{id,
+            productsFields,
+            fieldsValue,
+            updateProductsField,
+            deleteProductsField,
+            setFieldsValue,
+            createFieldsValue}}/>
           <NewField {...{id, fields, fetchFields, createProductsField}}/>
+          <CreateField {...{createField, setField, field}}/>
           </div>
         </div>
     }

@@ -34,10 +34,43 @@ export function fetchProduct(id) {
   };
 }
 
+export function setFieldsValue(fieldsValue) {
+  return {
+    type: actionTypes.SET_FIELDS_VALUE,
+    fieldsValue
+  }
+}
+
+export function createFieldsValue(product_id, fields_value) {
+  return dispatch => {
+    return axios.post('/api/v1/fields_values', {fields_value, product_id}).then(
+      responce => {
+        let product = Immutable.fromJS(responce.data.product);
+        dispatch(setProduct(product));
+    });
+  }
+}
+
 export function setFields(fields) {
   return {
     type: actionTypes.SET_FIELDS,
     fields
+  }
+}
+
+
+export function setField(field) {
+  return {
+    type: actionTypes.SET_FIELD,
+    field
+  }
+}
+
+export function createField(field) {
+  return dispatch => {
+    return axios.post('/api/v1/fields', {field}).then(
+      responce => {
+    });
   }
 }
 
@@ -54,6 +87,16 @@ export function fetchFields() {
 export function createProductsField(products_field) {
   return dispatch => {
     return axios.post('/api/v1/products_fields', {products_field}).then(
+      responce => {
+        let product = Immutable.fromJS(responce.data.product);
+        dispatch(setProduct(product));
+    });
+  }
+}
+
+export function deleteProductsField(id) {
+  return dispatch => {
+    return axios.delete(`/api/v1/products_fields/${id}`).then(
       responce => {
         let product = Immutable.fromJS(responce.data.product);
         dispatch(setProduct(product));

@@ -23,22 +23,18 @@ export default class AddToCart extends React.Component {
   render() {
     var button;
     if (this.isSelected()) {
-      button =<a
-        href='/my_cart'
-        className='button btn btn-success btn-lg'>
-        Перейти в корзину
-      </a>
+      button =
+        <a href='/my_cart' className='button btn btn-success btn-lg'>
+          Перейти в корзину
+        </a>
     } else {
-      button =<button
-                onClick={this.handleChange}
-                className='btn btn-primary btn-lg'>
-                Добавить в корзину
-              </button>
+      button =
+        <button onClick={this.handleChange} className='btn btn-primary btn-lg'>
+          Добавить в корзину
+        </button>
     }
     return (
-      <div>
-        {button}
-      </div>
+      <div> {button} </div>
     );
   }
 }

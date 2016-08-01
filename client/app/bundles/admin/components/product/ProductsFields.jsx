@@ -10,12 +10,15 @@ export default class ProductsFields extends React.Component {
   }
 
   render() {
-    let {updateProductsField, productsFields, id} = this.props;
+    let { setFieldsValue, createFieldsValue, deleteProductsField, updateProductsField, productsFields, fieldsValue, id } = this.props;
+    let product_id = id;
     let fields = productsFields.map( f => {
       let key = id = f.get('id');
       let field = f.get('field');
       let fieldsValues = f.get('fields_values');
-      return <ProductsField {...{key, id, field, fieldsValues, updateProductsField}}/>
+      return <ProductsField {...{key, id, product_id, fieldsValue,
+        field, fieldsValues, updateProductsField,
+        deleteProductsField, setFieldsValue, createFieldsValue}}/>
     })
     return (
       <div className='form-horizontal'>

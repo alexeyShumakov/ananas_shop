@@ -25,6 +25,18 @@ export default class FullProduct extends React.Component {
     if (this.state.loading) {
       productComp = <div className="loader"/>
     } else {
+      let fields = product.get('products_fields');
+      fields = fields.map( (f, key) => {
+        let values = f.get('fields_values').map( (fv, key) => {
+          return fv.get('title');
+        }).join(', ');
+        return(
+          <div {...{key}}>
+            <dt>{f.getIn(['field', 'title'])}</dt>
+            <dd>{values}</dd>
+          </div>
+        )
+      })
       let title = product.get('title');
       let price = product.get('price');
       let description = product.get('description');
@@ -63,6 +75,11 @@ export default class FullProduct extends React.Component {
               <dd>{price} руб.</dd>
               <dt>Описание</dt>
               <dd>{description}</dd>
+            </dl>
+            <hr/>
+            <h4>Свойства</h4>
+            <dl className="dl-horizontal">
+              {fields}
             </dl>
             <AddToCart {...{addToCart, productId, selectedProductId}} />
           </div>

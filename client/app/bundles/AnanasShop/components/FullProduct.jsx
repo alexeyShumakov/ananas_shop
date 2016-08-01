@@ -3,6 +3,7 @@ import Gallery from 'react-image-gallery';
 
 import Loader from './Loader';
 import AddToCart from './fullProduct/AddToCart';
+import FieldsList from './fullProduct/FieldsList';
 
 export default class FullProduct extends React.Component {
   static propTypes = {
@@ -26,17 +27,6 @@ export default class FullProduct extends React.Component {
       productComp = <div className="loader"/>
     } else {
       let fields = product.get('products_fields');
-      fields = fields.map( (f, key) => {
-        let values = f.get('fields_values').map( (fv, key) => {
-          return fv.get('title');
-        }).join(', ');
-        return(
-          <div {...{key}}>
-            <dt>{f.getIn(['field', 'title'])}</dt>
-            <dd>{values}</dd>
-          </div>
-        )
-      })
       let title = product.get('title');
       let price = product.get('price');
       let description = product.get('description');
@@ -68,19 +58,10 @@ export default class FullProduct extends React.Component {
             />
           </div>
           <div className="col-md-7">
-            <dl className="dl-horizontal">
-              <dt>Название</dt>
-              <dd>{title}</dd>
-              <dt>Цена</dt>
-              <dd>{price} руб.</dd>
-              <dt>Описание</dt>
-              <dd>{description}</dd>
-            </dl>
-            <hr/>
-            <h4>Свойства</h4>
-            <dl className="dl-horizontal">
-              {fields}
-            </dl>
+            <h3>{title}</h3>
+            <h2 className='text-primary'><b>{price} руб.</b></h2>
+            <p>{description}</p>
+            <FieldsList {...{fields}}/>
             <AddToCart {...{addToCart, productId, selectedProductId}} />
           </div>
         </div>

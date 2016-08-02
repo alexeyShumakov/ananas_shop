@@ -33,7 +33,11 @@ export default class PreviewProduct extends React.Component {
     return (
       <div>
         <button className='hidden-xs btn btn-success btn-sm preview-product__show-button' onClick={this.openModal}>Быстрый просмотр</button>
-        <Modal isOpen={this.state.modal} className='modal-dialog modal-lg shop__modal' style={style}>
+        <Modal
+          isOpen={this.state.modal}
+          onRequestClose={this.closeModal}
+          className='modal-dialog modal-lg shop__modal'
+          style={style}>
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" onClick={this.closeModal}><span>&times;</span></button>

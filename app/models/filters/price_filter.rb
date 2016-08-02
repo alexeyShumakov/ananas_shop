@@ -5,6 +5,18 @@ class PriceFilter < BaseFilter
     price.split(';')
   end
 
+  def fields
+    params[:fields].present? ? params[:fields].split(';') : []
+  end
+
+  def fields_products
+    if params[:fields].present?
+      @filter.products.joins( products_fields: :fields_values).where(fields_values: { id: fields }).uniq
+    else
+      @filter.products
+    end
+  end
+
   def min_b
     price[0].to_i
   end
@@ -13,14 +25,15 @@ class PriceFilter < BaseFilter
     price[1].to_i
   end
 
+
   def min
-    minimum = @filter.products.minimum(:price)
+    minimum = fields_products.minimum(:price)
     return 0 unless minimum
     minimum.to_i
   end
 
   def max
-    maximum = @filter.products.maximum(:price)
+    maximum = fields_products.maximum(:price)
     return 100 unless maximum
     maximum.ceil
   end

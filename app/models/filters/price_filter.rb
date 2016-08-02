@@ -43,10 +43,11 @@ class PriceFilter < BaseFilter
   end
 
   def set_filters
+    filter_params = params[:price].present? ? [min_b, max_b] : []
     @filter.filters <<
       { type: 'PriceFilter',
         name: 'price',
-        params: [min_b, max_b],
+        params: filter_params,
         min:  min,
         max:  max,
         minB: min_b,

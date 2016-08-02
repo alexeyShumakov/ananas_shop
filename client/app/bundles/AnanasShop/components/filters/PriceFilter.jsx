@@ -20,7 +20,12 @@ export default class PriceFilter extends React.Component {
 
   setFilter(value) {
     let { filter, setFilter } = this.props;
+    let min = filter.get('min');
+    let max = filter.get('max');
     let params = Immutable.List(value);
+    if (params.equals(Immutable.List([min, max])))  {
+      params = Immutable.List();
+    }
     let newFilter = filter.set('minB', value[0]).set('maxB', value[1])
     .set('minFormB', value[0]).set('maxFormB', value[1]).set('params', params);
     setFilter(newFilter);

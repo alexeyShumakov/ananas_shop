@@ -7,6 +7,7 @@ import CategoryFilter from '../components/filters/CategoryFilter';
 import PageFilter from '../components/filters/PageFilter';
 import PageSizeFilter from '../components/filters/PageSizeFilter';
 import SortFilter from '../components/filters/SortFilter';
+import FieldFilter from '../components/filters/FieldFilter';
 
 export default class Filters extends React.Component {
   static contextTypes = {
@@ -29,7 +30,7 @@ export default class Filters extends React.Component {
   }
 
   render() {
-    let filterClasses = { SortFilter, PriceFilter, CategoryFilter, PageFilter, PageSizeFilter };
+    let filterClasses = { SortFilter, PriceFilter, CategoryFilter, PageFilter, PageSizeFilter, FieldFilter };
     const { filters, setFilter, updateFilter, fetchData } = this.props;
     let list = filters.map((filter, key) => {
       let fClass = filterClasses[filter.get('type')];

@@ -29,10 +29,11 @@ class showcaseContainer extends React.Component {
   render() {
     const { dispatch, $$cartStore, $$filtersStore } = this.props;
     const actions = bindActionCreators(cartActionCreators, dispatch);
-    let { addToCart } = actions;
+    let { addToCart, fetchProduct } = actions;
     let products = $$filtersStore.get('products');
     let isLoading = $$filtersStore.get('showcaseLoading');
     let selectedProductId = $$cartStore.get('selectedProductId');
+    let preveiwProduct = $$cartStore.get('product');
     let loader;
     if (isLoading) {
       loader = <Loader/>
@@ -40,7 +41,7 @@ class showcaseContainer extends React.Component {
     return (
       <div className='showcase'>
         {loader}
-        <Products {...{products, selectedProductId, addToCart}}/>
+        <Products {...{preveiwProduct, products, fetchProduct, selectedProductId, addToCart}}/>
       </div>
     );
   }

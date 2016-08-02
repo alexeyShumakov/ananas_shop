@@ -3,6 +3,7 @@
   flex-flow: row wrap;
 }
 .product-thumb {
+  position: relative;
   &:hover {
     border: 1px solid $orange;
   }
@@ -13,4 +14,20 @@
   max-height: 18px;
   margin-bottom: 2px;
   overflow: hidden;
+}
+
+
+.product-thumb:hover .preview-product__show-button {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  margin-left: -65px;
+}
+
+.preview-product__show-button {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 20px;
 }

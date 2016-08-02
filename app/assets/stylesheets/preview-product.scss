@@ -1,0 +1,17 @@
+.preview-product {
+  position: relative;
+}
+
+.preview-product:hover .preview-product__show-button {
+  display: inline-block;
+  position: absolute;
+  left: 5px;
+  top: 0px;
+}
+
+.preview-product__show-button {
+  display: none;
+  position: absolute;
+  left: 5px;
+  top: 0px;
+}

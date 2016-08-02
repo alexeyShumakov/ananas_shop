@@ -12,7 +12,7 @@ export default class FieldsList extends React.Component {
   render() {
     let { fields } = this.props;
     let list;
-    if(!fields.isEmpty()) {
+    if(fields && !fields.isEmpty()) {
       fields = fields.map( (f, key) => {
         let values = f.get('fields_values').map( (fv, key) => {
           return fv.get('title');

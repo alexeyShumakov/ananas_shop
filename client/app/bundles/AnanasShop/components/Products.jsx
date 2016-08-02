@@ -26,15 +26,16 @@ export default class Products extends React.Component {
     }
   }
   render() {
-    let selectedProductId = this.props.selectedProductId;
-    let addToCart = this.props.addToCart;
-    let products = this.props.products.map((product)=>{
+    let {selectedProductId, addToCart, fetchProduct, products, preveiwProduct } = this.props;
+    products = products.map((product)=>{
       let title = product.get('title');
       let productId = product.get('id');
       let price = product.get('price');
       let thumbCoverUrl = this.coverUrl(product.get('pictures'), product.get('default_thumb_cover_url'));
-
-      return <Product key={productId} {...{productId, title, price, thumbCoverUrl, selectedProductId, addToCart}}/>
+      product = preveiwProduct;
+      return <Product key={productId} {...{productId, product,
+        fetchProduct, title, price,
+        thumbCoverUrl, selectedProductId, addToCart}}/>
     });
     return (
       <div className="products-grid">

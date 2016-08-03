@@ -7,6 +7,7 @@ import _ from 'lodash';
 import * as filtersActionCreators from '../actions/filtersActionCreators';
 
 import Filters from '../components/Filters';
+import SidebarFilters from '../components/SidebarFilters';
 
 function select(state) {
   return { $$filtersStore: state.$$filtersStore };
@@ -30,17 +31,28 @@ class FiltersContainer extends React.Component {
     let params = this.props.params;
     let query = this.props.location.query;
     return (
-      <div>
-        <Filters {...{
-          fetchData,
-          setFilter,
-          updateFilter,
-          filters,
-          query,
-          params
-        }}/>
-        <hr/>
-        {this.props.children}
+      <div className='row'>
+        <div className='col-sm-3 hidden-xs' >
+          <SidebarFilters {...{
+            fetchData,
+            setFilter,
+            updateFilter,
+            filters,
+            query,
+            params
+          }}/>
+        </div>
+        <div className="col-sm-9">
+          <Filters {...{
+            fetchData,
+            setFilter,
+            updateFilter,
+            filters,
+            query,
+            params
+          }}/>
+          {this.props.children}
+        </div>
       </div>
     );
   }

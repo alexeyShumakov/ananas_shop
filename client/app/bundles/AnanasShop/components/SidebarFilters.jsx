@@ -9,7 +9,7 @@ import PageSizeFilter from '../components/filters/PageSizeFilter';
 import SortFilter from '../components/filters/SortFilter';
 import FieldFilter from '../components/filters/FieldFilter';
 
-export default class Filters extends React.Component {
+export default class SidebarFilters extends React.Component {
   static contextTypes = {
     router: PropTypes.object.isRequired
   }
@@ -25,8 +25,6 @@ export default class Filters extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    const { fetchData, query, params } = props;
-    _.isEmpty(query) ? fetchData(params) : fetchData(query);
   }
 
   getFilter(type) {
@@ -40,14 +38,12 @@ export default class Filters extends React.Component {
     }
   }
   render() {
-    let sf = this.getFilter('SortFilter');
-    let pf = this.getFilter('PageFilter');
-    let psf = this.getFilter('PageSizeFilter');
+    let priceFilter = this.getFilter('PriceFilter');
+    let fieldFilter = this.getFilter('FieldFilter');
 
     return (
       <div className='filters'>
-        <div> {sf} {pf} {psf} </div>
-        <div className="clearfix"/>
+        <div> {priceFilter} {fieldFilter}</div>
       </div>
     );
   }

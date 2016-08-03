@@ -18,8 +18,7 @@ export default class PageSizeFilter extends React.Component {
       return <Size {...{size, key, filter, updateFilter } }/>
     })
     return(
-      <div className='page-size'>
-        <hr/>
+      <div className='page-size pull-right'>
         <ul className='list-inline'>Показывать по: {sizes}</ul>
       </div>
     );

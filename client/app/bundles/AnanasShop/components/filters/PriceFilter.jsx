@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Rcslider from 'rc-slider';
 import Immutable from 'immutable';
-import { FormControl } from 'react-bootstrap';
+import { FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 import _ from 'lodash';
 
 export default class PriceFilter extends React.Component {
@@ -79,22 +79,33 @@ export default class PriceFilter extends React.Component {
     let value = [minB, maxB];
     return (
       <div>
-        <FormControl
-          ref='minInput'
-          className='form-control price-filter__input'
-          value={minFormB}
-          onChange={this.updateMinForm}
-          onBlur={this.updateFilter}
-          onKeyUp={this.blurInput}
-          />
-        <FormControl
-          ref='maxInput'
-          className='form-control price-filter__input'
-          value={maxFormB}
-          onChange={this.updateMaxForm}
-          onBlur={this.updateFilter}
-          onKeyUp={this.blurInput}
-          />
+        <h4>Цена</h4>
+        <div className='price-filter'>
+          <FormGroup bsSize='sm'>
+            <ControlLabel>от</ControlLabel>
+              <FormControl
+                ref='minInput'
+                className='form-control price-filter__input'
+                value={minFormB}
+                onChange={this.updateMinForm}
+                onBlur={this.updateFilter}
+                onKeyUp={this.blurInput}
+                />
+          </FormGroup>
+
+          <FormGroup bsSize='sm'>
+            <ControlLabel>до</ControlLabel>
+            <FormControl
+              ref='maxInput'
+              className='form-control price-filter__input'
+              value={maxFormB}
+              onChange={this.updateMaxForm}
+              onBlur={this.updateFilter}
+              onKeyUp={this.blurInput}
+              />
+          </FormGroup>
+        </div>
+
         <Rcslider
            range
            allowCross={false}
@@ -105,6 +116,7 @@ export default class PriceFilter extends React.Component {
            onChange={this.setFilter}
            onAfterChange={this.fetchData}
             />
+            <hr/>
       </div>
     );
   }

@@ -29,15 +29,15 @@ export default class Value extends React.Component {
     let valueTag;
     if (isSelected) {
       valueTag =
-        <div>
+        <div className='fields-filter__value_selected'>
           <span className="glyphicon glyphicon-ok text-success"/>
-          <b>{title}</b>
+          <b className='fields-filter__value-title_selected'>{title}</b>
         </div>
     } else {
-        valueTag = <div> {title} </div>
+        valueTag = <div> <span className='fields-filter__value-title'>{title}</span> </div>
     }
     return(
-      <div onClick={this.updateFilter}>
+      <div onClick={this.updateFilter} className='fields-filter__value'>
         {valueTag}
       </div>
     );

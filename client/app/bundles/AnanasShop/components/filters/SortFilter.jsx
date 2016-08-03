@@ -13,11 +13,7 @@ export default class SortFilter extends React.Component {
       return <Item {...{key, filter, updateFilter, item}}/>
     })
     return(
-      <div>
-        <hr/>
-        <ul className='list-inline'> сортировать по: {items} </ul>
-        <hr/>
-      </div>
+      <ul className='list-inline sort-filter'> сортировать по: {items} </ul>
     );
   }
 }

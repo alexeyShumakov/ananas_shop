@@ -14,8 +14,8 @@ export default class Field extends React.Component {
       return <Value {...{key, value, filter, updateFilter}}/>
     });
     return(
-      <div>
-        <b>{title}</b>
+      <div className='fields-filter__field'>
+        <b className='fields-filter__title'>{title}</b>
         {values}
       </div>
     );

@@ -22,11 +22,13 @@ export default class PageFilter extends React.Component {
     let next = String.fromCharCode(8594)
     let { totalCount, page, totalPages } = this.props.filter.toJS();
     return(
-      <div>
+      <div className='shop-pager'>
         <nav>
-          Товаров: <b>{totalCount}</b>
+          <div className='shop-pager__total-count pull-left'>
+            Товаров: <b>{totalCount}</b>
+          </div>
           <ReactPaginate
-            containerClassName='pagination pagination-sm'
+            containerClassName='pagination pagination-sm shop-pager__pagination pull-left'
             clickCallback={this.clickHandler}
             previousLabel={prev}
             nextLabel={next}

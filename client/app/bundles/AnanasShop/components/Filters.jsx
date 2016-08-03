@@ -46,7 +46,7 @@ export default class Filters extends React.Component {
 
     return (
       <div className='filters'>
-        <div> {sf} {pf} {psf} </div>
+        <div>{sf} {pf} <div className="hidden-xs hidden-sm">{psf} </div> </div>
         <div className="clearfix"/>
       </div>
     );

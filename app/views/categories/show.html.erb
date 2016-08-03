@@ -1,19 +1,1 @@
-<div class="row">
-  <div class="col-sm-3 hidden-xs">
-    <div class="sidebar panel">
-      <div class="panel-body">
-        <%= render partial: 'categories_bar', locals: {categories: Category.roots, current_category: @category} %>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-9">
-    <div class="row">
-      <div class="col-md-12">
-      <%= render partial: 'breadcrumb', locals: { category: @category } %>
-      </div>
-    </div>
-    <h2><%= @category.title %></h2>
-  </div>
-</div>
 <%= react_component 'Showcase' %>

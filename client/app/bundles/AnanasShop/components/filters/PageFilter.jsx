@@ -24,7 +24,7 @@ export default class PageFilter extends React.Component {
     return(
       <div className='shop-pager'>
         <nav>
-          <div className='shop-pager__total-count pull-left'>
+          <div className='shop-pager__total-count pull-left hidden-xs'>
             Товаров: <b>{totalCount}</b>
           </div>
           <ReactPaginate

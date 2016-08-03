@@ -38,12 +38,13 @@ export default class SidebarFilters extends React.Component {
     }
   }
   render() {
+    let categoryFilter = this.getFilter('CategoryFilter');
     let priceFilter = this.getFilter('PriceFilter');
     let fieldFilter = this.getFilter('FieldFilter');
 
     return (
       <div className='filters'>
-        <div> {priceFilter} {fieldFilter}</div>
+        <div>{categoryFilter} {priceFilter} {fieldFilter}</div>
       </div>
     );
   }

@@ -92,6 +92,24 @@ export function fetchProducts(params) {
   };
 }
 
+export function setCategory(category) {
+  return {
+    type: actionTypes.SET_CATEGORY,
+    category
+  }
+}
+
+export function fetchCategory(id) {
+  return function(dispatch) {
+    return axios.get(`/api/v1/categories/${id}`).then(
+      (responce) => {
+        let category = Immutable.fromJS(responce.data.category);
+        dispatch(setCategory(category));
+      }
+    )
+  };
+}
+
 export function setProducts(products) {
   return {
     type: actionTypes.SET_PRODUCTS,

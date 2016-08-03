@@ -5,12 +5,13 @@ import actionTypes from '../constants/filtersConstants';
 export const $$initialState = Immutable.fromJS({
   filtersLoading: true,
   showcaseLoading: true,
+  category: {},
   filters: [],
   products: []
 });
 
 export default function filtersReducer($$state = $$initialState, action) {
-  const { loadingState, filter, filters, products, type } = action;
+  const { loadingState, filter, filters, products, category, type } = action;
 
   switch (type) {
     case actionTypes.SET_FILTER:
@@ -33,6 +34,9 @@ export default function filtersReducer($$state = $$initialState, action) {
 
     case actionTypes.SET_PRODUCTS:
       return $$state.set('products', products);
+
+    case actionTypes.SET_CATEGORY:
+      return $$state.set('category', category);
 
     default:
       return $$state;

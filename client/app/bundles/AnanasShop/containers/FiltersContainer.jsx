@@ -7,6 +7,7 @@ import _ from 'lodash';
 import * as filtersActionCreators from '../actions/filtersActionCreators';
 
 import Filters from '../components/Filters';
+import Category from '../components/Category';
 import SidebarFilters from '../components/SidebarFilters';
 
 function select(state) {
@@ -25,9 +26,10 @@ class FiltersContainer extends React.Component {
   render() {
     const { dispatch, $$filtersStore } = this.props;
     const actions = bindActionCreators(filtersActionCreators, dispatch);
-    let { fetchData, setFilter, updateFilter } = actions;
+    let { fetchData, setFilter, updateFilter, fetchCategory } = actions;
 
     let filters = $$filtersStore.get('filters');
+    let category = $$filtersStore.get('category');
     let params = this.props.params;
     let query = this.props.location.query;
     return (
@@ -43,6 +45,7 @@ class FiltersContainer extends React.Component {
           }}/>
         </div>
         <div className="col-sm-9">
+          <Category {...{params, fetchCategory, category}}/>
           <Filters {...{
             fetchData,
             setFilter,

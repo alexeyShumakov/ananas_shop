@@ -9,12 +9,12 @@ class PaginationFilter < BaseFilter
     per.to_i if per.present?
   end
 
-  def products
-    @filter.products.page(page).per(per_page)
+  def set_products
+    @products = @filter.products.page(page).per(per_page)
   end
 
   def set_filters
-    filters <<
+    @filters = @filter.filters <<
       {
         type: 'PageFilter',
         name: 'page',
@@ -23,7 +23,7 @@ class PaginationFilter < BaseFilter
         totalPages: products.total_pages,
         totalCount: products.total_count
       }
-    filters <<
+    @filters <<
       {
         type: 'PageSizeFilter',
         name: 'per',

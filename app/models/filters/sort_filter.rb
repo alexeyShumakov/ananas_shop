@@ -7,17 +7,17 @@ class SortFilter < BaseFilter
     sort? ? params[:sort] : 'updated_at desc'
   end
 
-  def products
-    @filter.products.order sort
-  end
-
   def orders
     [{ name: 'updated_at desc', title: 'обновлению' },
      { name: 'price', title: 'цене' }]
   end
 
+  def set_products
+    @products = @filter.products.order sort
+  end
+
   def set_filters
-    @filter.filters << {
+    @filters = @filter.filters << {
       type: 'SortFilter',
       name: 'sort',
       params: sort? ? [sort] : [],

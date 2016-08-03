@@ -1,9 +1,13 @@
 class SearchFilter < BaseFilter
-  def products
+  def set_products
     if params[:keyword].present?
-      Product.search_by_title(params[:keyword]).limit(10)
+      @products = Product.search_by_title(params[:keyword]).limit(10)
     else
-      @filter.products
+      @products = @filter.products
     end
+  end
+
+  def set_filters
+    @filters = []
   end
 end

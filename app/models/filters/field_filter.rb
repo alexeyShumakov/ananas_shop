@@ -1,18 +1,18 @@
 class FieldFilter < BaseFilter
-  def products
-    if fields?
-      @filter.products.joins( products_fields: :fields_values).where(fields_values: { id: fields }).uniq
-    else
-      @filter.products
-    end
-  end
-
   def fields
     fields? ? params[:fields].split(';') : []
   end
 
   def fields?
     params[:fields].present?
+  end
+
+  def set_products
+    if fields?
+      @products = @filter.products.joins( products_fields: :fields_values).where(fields_values: { id: fields }).uniq
+    else
+      @products = @filter.products
+    end
   end
 
   def set_filters
@@ -25,7 +25,7 @@ class FieldFilter < BaseFilter
       end
       {title: f.title, id: f.id, values: values}
     end
-    @filter.filters <<
+    @filters = @filter.filters <<
       { type: 'FieldFilter',
         name: 'fields',
         params: fields,

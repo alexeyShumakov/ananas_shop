@@ -38,13 +38,13 @@ class PriceFilter < BaseFilter
     maximum.ceil
   end
 
-  def products
-    @filter.products.where 'price >= ? AND price <= ?', min_b, max_b
+  def set_products
+    @products = @filter.products.where 'price >= ? AND price <= ?', min_b, max_b
   end
 
   def set_filters
     filter_params = params[:price].present? ? [min_b, max_b] : []
-    @filter.filters <<
+    @filters = @filter.filters <<
       { type: 'PriceFilter',
         name: 'price',
         params: filter_params,

@@ -20,7 +20,7 @@ export default class AppBanner extends React.Component {
       images = this.state.images.map( i => {
         return {original: i.image}
       })
-      gallery = <div> <Gallery items={images} showThumbnails={false} showBullets={true} showNav={false} /> </div>
+      gallery = <div> <Gallery items={images} disableArrowKeys={true} showThumbnails={false} showBullets={true} showNav={false} /> </div>
     }
     return (
       <div> {gallery} </div>

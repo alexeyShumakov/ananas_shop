@@ -8,6 +8,7 @@ import PageFilter from '../components/filters/PageFilter';
 import PageSizeFilter from '../components/filters/PageSizeFilter';
 import SortFilter from '../components/filters/SortFilter';
 import FieldFilter from '../components/filters/FieldFilter';
+import ToTopButton from '../components/ToTopButton';
 
 export default class SidebarFilters extends React.Component {
   static contextTypes = {
@@ -45,6 +46,7 @@ export default class SidebarFilters extends React.Component {
     return (
       <div className='filters'>
         <div>{categoryFilter} {priceFilter} {fieldFilter}</div>
+        <ToTopButton/>
       </div>
     );
   }

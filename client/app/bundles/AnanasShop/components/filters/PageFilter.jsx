@@ -13,6 +13,8 @@ export default class PageFilter extends React.Component {
     let { updateFilter, filter } = this.props;
     let page = e.selected + 1;
     let newFilter = filter.set('page', page).set('params', Immutable.List([page]))
+    let element = document.getElementById('scroll-anchor');
+    element.scrollIntoView();
     updateFilter(newFilter);
   }
 

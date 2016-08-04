@@ -26,7 +26,7 @@ export default class AddToButton extends React.Component {
         </ol>
     }
     return (
-      <div>
+      <div id='scroll-anchor'>
         {breadcrumb}
         <h2>{title}</h2>
       </div>

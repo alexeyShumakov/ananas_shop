@@ -9,6 +9,7 @@ import * as filtersActionCreators from '../actions/filtersActionCreators';
 import Filters from '../components/Filters';
 import Category from '../components/Category';
 import SidebarFilters from '../components/SidebarFilters';
+import BottomFilters from '../components/BottomFilters';
 
 function select(state) {
   return { $$filtersStore: state.$$filtersStore };
@@ -55,6 +56,14 @@ class FiltersContainer extends React.Component {
             params
           }}/>
           {this.props.children}
+          <BottomFilters {...{
+            fetchData,
+            setFilter,
+            updateFilter,
+            filters,
+            query,
+            params
+          }}/>
         </div>
       </div>
     );

@@ -11,6 +11,8 @@ export default class PageSizeItem extends React.Component {
   clickHandler() {
     let { filter, updateFilter, size } = this.props;
     let newFilter = filter.set('size', size ).set('params', Immutable.List([size]))
+    let element = document.getElementById('scroll-anchor');
+    element.scrollIntoView();
     updateFilter(newFilter);
   }
 

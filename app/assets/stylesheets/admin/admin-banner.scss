@@ -1,0 +1,17 @@
+.admin-banner-image {
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.admin-banner-image:hover .admin-banner-image__control-block {
+  display: inline-block;
+  position: absolute;
+  left: 5px;
+  top: 0px;
+}
+.admin-banner-image__control-block {
+  display: none;
+  position: absolute;
+  left: 5px;
+  top: 0px;
+}

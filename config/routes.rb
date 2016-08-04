@@ -16,11 +16,13 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
     get 'dashboard/index'
     resources :products
+    resources :banner_items
   end
 
   namespace :api do
     namespace :v1 do
       resources :categories
+      resources :banner_items
       resources :pictures
       resources :filters, only: [:index]
       resources :line_items, only: [:create, :destroy, :update]

@@ -21,8 +21,10 @@ class MyProfileContainer extends React.Component {
   }
 
   render() {
+    const { dispatch, $$cartStore } = this.props;
+    const actions = bindActionCreators(cartActionCreators, dispatch);
     return (
-      <MyProfile />
+      <MyProfile actions={actions} store={$$cartStore} />
     );
   }
 }

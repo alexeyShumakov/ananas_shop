@@ -34,6 +34,10 @@ Rails.application.routes.draw do
       resources :fields
       resources :fields_values
       resources :products_fields
+      resources :users do
+        get 'my_profile', on: :collection
+        put 'my_profile', to: 'users#update_profile', on: :collection
+      end
     end
   end
 end

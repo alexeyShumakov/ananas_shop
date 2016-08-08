@@ -24,8 +24,18 @@ class OrdersController < ApplicationController
   end
 
   def set_form
+    form_data = {}
     address = Address.new(user: current_user)
-    order = Order.new(address: address, user: current_user)
+    if user_signed_in?
+      form_data.merge!({
+        email: current_user.email,
+        phone: current_user.phone,
+        name: current_user.name
+      })
+      address = current_user.addresses.last || Address.new(user: current_user)
+    end
+    form_data.merge!({ address: address, user: current_user })
+    order = Order.new(form_data)
     @form = OrderForm.new order
   end
 end

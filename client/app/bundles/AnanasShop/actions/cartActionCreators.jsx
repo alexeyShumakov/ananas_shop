@@ -94,3 +94,32 @@ export function fetchProduct(id) {
       });
   };
 }
+
+export function setProfile(profile) {
+  return {
+    type: actionTypes.SET_PROFILE,
+    profile
+  }
+}
+
+export function fetchProfile() {
+  return dispatch => {
+    return axios.get(`/api/v1/users/my_profile`).then(
+      responce => {
+        let profile = Immutable.fromJS(responce.data.profile);
+        dispatch(setProfile(profile));
+        return true;
+      });
+  };
+}
+
+export function updateProfile(profile) {
+  return dispatch => {
+    return axios.put(`/api/v1/users/my_profile`, {user: profile}).then(
+      responce => {
+        let profile = Immutable.fromJS(responce.data.profile);
+        dispatch(setProfile(profile));
+        return true;
+      });
+  };
+}

@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= render partial: 'cabinet_nav' %>
+  </div>
+  <div class="col-md-9">
+    <p>
+    <h4>Ваши заказы:</h4>
+    </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Номер заказа</td>
+            <td>Время и дата</td>
+            <td>Статус</td>
+          </tr> 
+        </thead>
+        <tbody>
+        <% @orders.each do |order|%>
+          <tr>
+            <td><%= order.id %></td>
+            <td><%= order.created_at.strftime('%d.%m.%Y %H:%M') %></td>
+            <td><%= order.status %></td>
+          </tr>
+        <% end %>
+    </table>
+  </div>
+</div>

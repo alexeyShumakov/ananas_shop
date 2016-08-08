@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= render partial: 'cabinet_nav' %>
+  </div>
+  <div class="col-md-9">
+    <h3>Мой профиль</h3>
+    <%= react_component 'MyProfile' %>
+    <dl class='dl-horizontal'>
+      <dt>E-mail:</dt>
+      <dd><%= current_user.email %></dd>
+      <dt>Ф.И.О</dt>
+      <dd>==========</dd>
+      <dt>Телефон</dt>
+      <dd>==========</dd>
+      <dt>Клинет ID:</dt>
+      <dd><%= current_user.id %></dd>
+      <dt>Пароль</dt>
+      <dd>==========</dd>
+      <dt>Адрес</dt>
+      <dd>==========</dd>
+    </dl>
+  </div>
+</div>

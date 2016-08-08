@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   root to: 'products#index'
 
   get 'my_cart', to: 'carts#my_cart'
-  get 'my_cabinet', to: 'cabinet#my_cabinet'
+  namespace :my_cabinet do
+    root to: 'cabinet#my_cabinet'
+    get 'orders', to: 'cabinet#orders'
+  end
 
   namespace :admin do
     root to: 'dashboard#index'

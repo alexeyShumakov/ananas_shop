@@ -16,7 +16,7 @@
             </a>
         <ul class="dropdown-menu">
           <li class="dropdown-header"><%= current_user.email %></li>
-          <li><a href="#">Личный кабинет</a></li>
+          <li><%= link_to 'Личный кабинет', my_cabinet_root_path %></li>
           <li><%= link_to 'Моя корзина', my_cart_path %></li>
           <li role="separator" class="divider"></li>
           <li><%= link_to 'Выход', destroy_user_session_path, method: :delete %></li>

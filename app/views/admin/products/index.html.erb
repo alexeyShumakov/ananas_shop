@@ -1,2 +1,30 @@
-<h1>Admin::Products#index</h1>
-<p>Find me in app/views/admin/products/index.html.erb</p>
+<div class="row">
+  <div class="col-sm-3">
+    <%= render partial: '/admin/admin_nav' %>
+  </div>
+  <div class="col-sm-9">
+    <h2>Продукты</h2>
+    <%= react_component 'Sidebar' %>
+    <table class="table">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>Категория</td>
+          <td>Название</td>
+          <td>Цена</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.id %></td>
+            <td><%= product.category.title %></td>
+            <td><%= link_to product.title, admin_product_path(product.id) %></td>
+            <td><%= product.price %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= render partial: 'pager', locals: { collection: @products } %>
+  </div>
+</div>

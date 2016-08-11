@@ -31,6 +31,7 @@ export default class FullProduct extends React.Component {
       let price = product.get('price');
       let description = product.get('description');
       let pictures = product.get('pictures');
+      let forExample = product.get('example');
       let startIndex = 0;
       let galleryImages = pictures.map( (pic, i) => {
         if (pic.get('is_hover')) {
@@ -47,6 +48,10 @@ export default class FullProduct extends React.Component {
           thumbnail: product.get('thumb_cover_url')
         }]
       }
+      let exampleElement;
+      if(forExample) {
+        exampleElement = <div><b>Продукт выставлен для примера</b></div>
+      }
       productComp =
         <div className='row'>
           <div className="col-md-5">
@@ -59,6 +64,7 @@ export default class FullProduct extends React.Component {
           </div>
           <div className="col-md-7">
             <h3>{title}</h3>
+            {exampleElement}
             <h2 className='text-primary'><b>{price} руб.</b></h2>
             <p>{description}</p>
             <FieldsList {...{fields}}/>

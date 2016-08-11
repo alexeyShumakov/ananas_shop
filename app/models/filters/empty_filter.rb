@@ -1,7 +1,7 @@
 class EmptyFilter
   attr_accessor :products, :filters, :params
   def initialize(params)
-    @products = Product.all
+    @products = Product.where(public: true)
     @filters = []
     @params = params
   end

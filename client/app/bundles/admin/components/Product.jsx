@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Select from 'react-select';
 import _ from 'lodash';
+import Toggle from 'react-toggle';
 
 import ImageList from './product/ImageList';
 import Field from './product/Field';
@@ -15,7 +16,7 @@ export default class Product extends React.Component {
     props.actions.fetchProduct(props.id);
     props.actions.fetchCategories();
     this.state = {imageLoading: false};
-    _.bindAll(this, 'uploadImage', 'setCategory');
+    _.bindAll(this, 'uploadImage', 'setCategory', 'togglePublic', 'toggleExample');
   }
 
   setCategory(category) {
@@ -23,6 +24,22 @@ export default class Product extends React.Component {
     let product = this.props.store.get('product');
     let value = category ? category.value : '';
     let newProductState = product.set('category_id', value);
+    updateProduct(product.get('id'), newProductState);
+  }
+
+  togglePublic(e) {
+    let { updateProduct } = this.props.actions;
+    let product = this.props.store.get('product');
+    let newPublic = !product.get('public');
+    let newProductState = product.set('public', newPublic);
+    updateProduct(product.get('id'), newProductState);
+  }
+
+  toggleExample(e) {
+    let { updateProduct } = this.props.actions;
+    let product = this.props.store.get('product');
+    let newExample = !product.get('example');
+    let newProductState = product.set('example', newExample);
     updateProduct(product.get('id'), newProductState);
   }
 
@@ -58,6 +75,8 @@ export default class Product extends React.Component {
     let field = store.get('field');
     let price = product.get('price');
     let title = product.get('title');
+    let isPublic = product.get('public');
+    let forExample = product.get('example');
     let pictures = product.get('pictures');
     let productElem;
     let options = categories.map( category => {
@@ -85,6 +104,24 @@ export default class Product extends React.Component {
           <ImageList {...{pictures, deletePicture, updatePicture}}/>
           <hr/>
           <div className="form-horizontal">
+            <div className="form-group">
+              <label className="col-sm-2 control-label">Опубликовано</label>
+              <div className="col-sm-10">
+                <span className="admin-product__field-value">
+                  <Toggle defaultChecked={isPublic} onChange={this.togglePublic} />
+                </span>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="col-sm-2 control-label">Для примера</label>
+              <div className="col-sm-10">
+                <span className="admin-product__field-value">
+                  <Toggle defaultChecked={forExample} onChange={this.toggleExample} />
+                </span>
+              </div>
+            </div>
+
             <Field
               field='title'
               label='Название'

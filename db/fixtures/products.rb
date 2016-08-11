@@ -7,6 +7,7 @@ product_id = 1
       s.title = Faker::Commerce.product_name
       s.price = Faker::Commerce.price
       s.description = Faker::Hipster.paragraph
+      s.public = true
       product_id += 1
     end
   end

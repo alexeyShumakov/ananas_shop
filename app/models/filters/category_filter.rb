@@ -6,7 +6,7 @@ class CategoryFilter < BaseFilter
 
   def set_products
     if category_id.present?
-      @products = Category.find(category_id).total_products
+      @products = Category.find(category_id).total_products.where public: true
     else
       @products = @filter.products
     end

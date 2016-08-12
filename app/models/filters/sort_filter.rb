@@ -8,8 +8,21 @@ class SortFilter < BaseFilter
   end
 
   def orders
-    [{ name: 'updated_at desc', title: 'обновлению' },
-     { name: 'price', title: 'цене' }]
+    [
+      {
+        title: 'цене ',
+        values: [
+          { title: 'цене↑', name: 'price asc' },
+          { title: 'цене↓', name: 'price desc' }
+        ]
+      },
+      {
+        title: 'обновлению',
+        values: [
+          { title: 'обновлению', name: 'updated_at desc' }
+        ]
+      }
+    ]
   end
 
   def set_products

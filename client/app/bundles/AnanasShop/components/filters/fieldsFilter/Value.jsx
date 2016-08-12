@@ -25,16 +25,17 @@ export default class Value extends React.Component {
   render() {
     let { value } = this.props;
     let title = value.get('title');
+    let count = value.get('count');
     let isSelected = value.get('selected');
     let valueTag;
     if (isSelected) {
       valueTag =
         <div className='fields-filter__value_selected'>
           <span className="glyphicon glyphicon-ok text-success"/>
-          <b className='fields-filter__value-title_selected'>{title}</b>
+          <b className='fields-filter__value-title_selected'>{title} ({count})</b>
         </div>
     } else {
-        valueTag = <div> <span className='fields-filter__value-title'>{title}</span> </div>
+        valueTag = <div> <span className='fields-filter__value-title'>{title} ({count})</span> </div>
     }
     return(
       <div onClick={this.updateFilter} className='fields-filter__value'>

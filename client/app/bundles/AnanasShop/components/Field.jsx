@@ -8,7 +8,7 @@ export default class Field extends React.Component {
   constructor(props, context) {
     super(props, context);
     let { model, field } = props;
-    let value = props.model.get(props.field);
+    let value = model.get(props.field);
     value = value || '';
     this.state = { isEdit: false, value: value }
     _.bindAll(this, 'updateModel', 'setValue', 'showForm', 'hideForm', 'enterEvent');

@@ -10,9 +10,11 @@ export default class MyOrders extends React.Component {
   }
   render() {
     let orders = this.props.store.getIn(['profile', 'orders']);
-    orders = orders.map((order, i) => {
-      return <Order key={i} order={order}/>
-    })
+    if (orders) {
+      orders = orders.map((order, i) => {
+        return <Order key={i} order={order}/>
+      });
+    }
     return (
       <div>
         <h4>Ваши заказы:</h4>

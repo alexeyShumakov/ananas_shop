@@ -7,7 +7,6 @@ export const $$initialState = Immutable.fromJS({
   isCartLoading: true,
   selectedProductId: 0,
   profile: {
-    orders: []
   },
   product: {},
   cart: {

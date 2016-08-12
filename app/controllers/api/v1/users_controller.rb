@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   def my_profile
-    render json: current_user, root: :profile
+    render json: current_user, root: :profile, include: ['orders.line_items.product']
   end
 
   def update_profile
@@ -9,7 +9,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-
   end
 
   private

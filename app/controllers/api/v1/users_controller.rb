@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   def my_profile
-    render json: current_user, root: :profile, include: ['orders.line_items.product']
+    render json: current_user, root: :profile, include: ['orders.line_items.product', 'addresses']
   end
 
   def update_profile

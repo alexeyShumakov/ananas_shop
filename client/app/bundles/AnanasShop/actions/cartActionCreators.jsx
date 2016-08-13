@@ -123,3 +123,22 @@ export function updateProfile(profile) {
       });
   };
 }
+
+export function setAddress(address) {
+  return {
+    type: actionTypes.SET_ADDRESS,
+    address
+  }
+}
+
+export function createAddress(address) {
+  return dispatch => {
+    return axios.post('/api/v1/addresses', {address});
+  }
+}
+
+export function updateAddress(id, address) {
+  return dispatch => {
+    return axios.post(`/api/v1/addresses${id}`, {address});
+  }
+}

@@ -11,7 +11,6 @@ class Api::V1::AddressesController < ApplicationController
     else
       render json: @address.errors, status: :unprocessable_entity
     end
-
   end
 
   def update

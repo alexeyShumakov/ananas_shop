@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   namespace :my_cabinet do
     root to: 'cabinet#my_cabinet'
     get 'orders', to: 'cabinet#orders'
+    get 'addresses', to: 'cabinet#addresses'
   end
 
   namespace :admin do

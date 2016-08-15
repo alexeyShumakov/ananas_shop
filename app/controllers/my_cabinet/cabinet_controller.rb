@@ -5,6 +5,8 @@ class MyCabinet::CabinetController < ApplicationController
   end
 
   def orders
-    @orders = current_user.orders
+  end
+
+  def addresses
   end
 end

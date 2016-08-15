@@ -139,6 +139,12 @@ export function createAddress(address) {
 
 export function updateAddress(id, address) {
   return dispatch => {
-    return axios.post(`/api/v1/addresses${id}`, {address});
+    return axios.post(`/api/v1/addresses/${id}`, {address});
+  }
+}
+
+export function destroyAddress(id) {
+  return dispatch => {
+    return axios.delete(`/api/v1/addresses/${id}`);
   }
 }

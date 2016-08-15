@@ -3,6 +3,7 @@ import CartApp from './cartApp';
 import FullCartApp from './fullCartApp';
 import MyProfile from './myProfile';
 import MyOrders from './myOrders';
+import MyAddresses from './myAddresses';
 import FullProduct from './fullProduct';
 import Showcase from './showcaseApp'
 import AddToButton from './addToButtonApp';
@@ -13,7 +14,7 @@ import IndexProducts from './indexPageProducts'
 
 ReactOnRails.registerStore({ cartStore });
 let components = {
-  Showcase, MyProfile, MyOrders, CartApp, AddToButton,
+  Showcase, MyProfile, MyOrders, MyAddresses, CartApp, AddToButton,
   AppBanner, FullCartApp, FullProduct, NavbarProductSearch,
   IndexProducts
 }

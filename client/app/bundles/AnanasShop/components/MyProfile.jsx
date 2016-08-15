@@ -7,7 +7,7 @@ import Modal from 'react-modal';
 import axios from '../utils/axios';
 
 import Field from './Field';
-import NewAdress from './cabinet/NewAddress';
+import NewAddress from './cabinet/NewAddress';
 
 export default class MyProfile extends React.Component {
   constructor(props, context) {
@@ -82,7 +82,7 @@ export default class MyProfile extends React.Component {
           <div className="form-group">
             <div className="col-sm-2">
               <label className="control-label pull-right">Адрес:
-                <NewAdress {...{address, setAddress, createAddress, fetchProfile}}/>
+                <NewAddress {...{address, setAddress, createAddress, fetchProfile}}/>
               </label>
             </div>
             <div className="col-sm-10">

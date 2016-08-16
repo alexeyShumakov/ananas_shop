@@ -6,6 +6,15 @@ export const $$initialState = Immutable.fromJS({
   count: 0,
   isCartLoading: true,
   selectedProductId: 0,
+  order: {
+    name: '',
+    email: '',
+    phone: '',
+    address: {
+      city: '',
+      address: ''
+    }
+  },
   address: {
     city: '',
     address: '',
@@ -31,7 +40,7 @@ export const $$initialState = Immutable.fromJS({
 });
 
 export default function cartReducer($$state = $$initialState, action) {
-  const { loadingState, cart, address, productId, product, profile, type } = action;
+  const { loadingState, order, cart, address, productId, product, profile, type } = action;
 
   switch (type) {
     case actionTypes.SET_CART_LOADING_STATE:
@@ -54,6 +63,9 @@ export default function cartReducer($$state = $$initialState, action) {
 
     case actionTypes.SET_ADDRESS:
       return $$state.set('address', address);
+
+    case actionTypes.SET_ORDER:
+      return $$state.set('order', order);
 
     default:
       return $$state;

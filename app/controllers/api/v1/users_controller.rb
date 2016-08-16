@@ -1,4 +1,5 @@
 class Api::V1::UsersController < ApplicationController
+  before_action :authenticate_user!
   def my_profile
     render json: current_user, root: :profile, include: ['orders.line_items.product', 'addresses']
   end

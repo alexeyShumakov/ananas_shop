@@ -108,7 +108,7 @@ export function fetchProfile() {
       responce => {
         let profile = Immutable.fromJS(responce.data.profile);
         dispatch(setProfile(profile));
-        return true;
+        return profile;
       });
   };
 }
@@ -146,5 +146,12 @@ export function updateAddress(id, address) {
 export function destroyAddress(id) {
   return dispatch => {
     return axios.delete(`/api/v1/addresses/${id}`);
+  }
+}
+
+export function setOrder(order) {
+  return {
+    type: actionTypes.SET_ORDER,
+    order
   }
 }

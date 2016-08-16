@@ -1,7 +1,10 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :authenticate_user!
   def my_profile
-    render json: current_user, root: :profile, include: ['orders.line_items.product', 'addresses']
+    if user_signed_in?
+      render json: current_user, root: :profile, include: ['orders.line_items.product', 'addresses']
+    else
+      render json: nil, status: 401
+    end
   end
 
   def update_profile

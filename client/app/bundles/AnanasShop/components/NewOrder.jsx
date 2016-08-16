@@ -37,7 +37,14 @@ export default class NewOrder extends React.Component {
   }
 
   createOrder() {
-    console.log('ggod');
+    let _this = this;
+    let { store, actions } = this.props;
+    let order = store.get('order');
+    actions.createOrder(order).then(()=> {
+      window.location= '/my_cabinet';
+    }, (errors) => {
+      _this.setState({errors: Immutable.fromJS(errors.data)});
+    })
   }
   updateAddress(address) {
     let { store, actions } = this.props;
@@ -94,51 +101,58 @@ export default class NewOrder extends React.Component {
   }
 
   render() {
-    let orderElement, tabs, tabIndex;
+    let orderElement, tabs, tabIndex, addresses, options;
+    let { selectedAddress, errors } = this.state;
+
     let { store, actions } = this.props;
     let order = store.get('order');
     let profile = store.get('profile');
     let address = order.get('address');
 
-    let { selectedAddress, errors } = this.state;
-
-    if (!order.isEmpty()) {
-      let addresses = profile.get('addresses');
-      let options = addresses.map((address) => {
+    if (!profile.isEmpty()) {
+      addresses = profile.get('addresses');
+      options = addresses.map((address) => {
         let value = address.get('id');
         let label = `${address.get('city')}, ${address.get('address')}`;
         return {value, label}
       }).toJS();
+      tabs =
+        <Tabs onSelect={this.handleSelect} selectedIndex={this.state.selectedTab} >
+          <TabList>
+            <Tab>Выбрать адрес</Tab>
+            <Tab>Новый адрес</Tab>
+          </TabList>
 
-      orderElement =
-        <div className='form form-horizontal'>
-          <h4>Ваши личные данные</h4>
-          <FormGroup label='Имя' field='name' object={order} errors={errors} update={this.updateOrder}/>
-          <FormGroup label='E-mail' field='email' object={order} errors={errors} update={this.updateOrder}/>
-          <FormGroup label='Телефон' field='phone' object={order} errors={errors} update={this.updateOrder}/>
-          <hr/>
-
-          <Tabs onSelect={this.handleSelect} selectedIndex={this.state.selectedTab} >
-            <TabList>
-              <Tab>Выбрать адрес</Tab>
-              <Tab>Новый адрес</Tab>
-            </TabList>
-
-            <TabPanel>
-              <Select
-                value={selectedAddress}
-                options={options}
-                onChange={this.updateAddress}
-                clearable={false}
-              />
-            </TabPanel>
-            <TabPanel>
-              <FormGroup label='Город' field='city' object={address} errors={errors} update={this.updateFormAddress}/>
-              <FormGroup label='Адрес' field='address' object={address} errors={errors} update={this.updateFormAddress}/>
-            </TabPanel>
-          </Tabs>
+          <TabPanel>
+            <Select
+              value={selectedAddress}
+              options={options}
+              onChange={this.updateAddress}
+              clearable={false}
+            />
+          </TabPanel>
+          <TabPanel>
+            <FormGroup label='Город' field='city' object={address} errors={errors} update={this.updateFormAddress}/>
+            <FormGroup label='Адрес' field='address' object={address} errors={errors} update={this.updateFormAddress}/>
+          </TabPanel>
+        </Tabs>
+    } else {
+      tabs =
+        <div>
+          <h4>Ваш адрес</h4>
+            <FormGroup label='Город' field='city' object={address} errors={errors} update={this.updateFormAddress}/>
+            <FormGroup label='Адрес' field='address' object={address} errors={errors} update={this.updateFormAddress}/>
         </div>
     }
+    orderElement =
+      <div className='form form-horizontal'>
+        <h4>Ваши личные данные</h4>
+        <FormGroup label='Имя' field='name' object={order} errors={errors} update={this.updateOrder}/>
+        <FormGroup label='E-mail' field='email' object={order} errors={errors} update={this.updateOrder}/>
+        <FormGroup label='Телефон' field='phone' object={order} errors={errors} update={this.updateOrder}/>
+        <hr/>
+        {tabs}
+      </div>
 
     return (
       <div>

@@ -109,6 +109,8 @@ export function fetchProfile() {
         let profile = Immutable.fromJS(responce.data.profile);
         dispatch(setProfile(profile));
         return profile;
+      }, error => {
+        return null;
       });
   };
 }
@@ -153,5 +155,10 @@ export function setOrder(order) {
   return {
     type: actionTypes.SET_ORDER,
     order
+  }
+}
+export function createOrder(order) {
+  return dispatch => {
+    return axios.post('/api/v1/orders', {order});
   }
 }

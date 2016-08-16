@@ -23,8 +23,8 @@ export default class HFormGroup extends React.Component {
         <label className=" col-sm-3 control-label">{label}</label>
         <div className="col-sm-9">
           <input className="form-control" value={value} onChange={this.update}/>
+          {error}
         </div>
-        {error}
       </div>
     );
   }

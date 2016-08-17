@@ -108,6 +108,11 @@ export default class NewOrder extends React.Component {
     let order = store.get('order');
     let profile = store.get('profile');
     let address = order.get('address');
+    let addressForm =
+      <div>
+        <FormGroup label='Город' field='address.city' object={order} errors={errors} update={this.updateFormAddress}/>
+        <FormGroup label='Адрес' field='address.address' object={order} errors={errors} update={this.updateFormAddress}/>
+      </div>
 
     if (!profile.isEmpty()) {
       addresses = profile.get('addresses');
@@ -132,16 +137,14 @@ export default class NewOrder extends React.Component {
             />
           </TabPanel>
           <TabPanel>
-            <FormGroup label='Город' field='city' object={address} errors={errors} update={this.updateFormAddress}/>
-            <FormGroup label='Адрес' field='address' object={address} errors={errors} update={this.updateFormAddress}/>
+            {addressForm}
           </TabPanel>
         </Tabs>
     } else {
       tabs =
         <div>
           <h4>Ваш адрес</h4>
-            <FormGroup label='Город' field='city' object={address} errors={errors} update={this.updateFormAddress}/>
-            <FormGroup label='Адрес' field='address' object={address} errors={errors} update={this.updateFormAddress}/>
+          {addressForm}
         </div>
     }
     orderElement =

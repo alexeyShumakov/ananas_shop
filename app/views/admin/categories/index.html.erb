@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-sm-3">
+    <%= render partial: '/admin/admin_nav' %>
+  </div>
+  <div class="col-sm-9">
+    <h1>categories
+      <%= link_to new_admin_category_path do %>
+        <span class="glyphicon glyphicon-plus text-success control-icon"/>
+      <% end %>
+    </h1>
+    <ul>
+      <% @categories.all.each do |category| %>
+        <li><%= link_to category.tree_name, admin_category_path(category.id) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

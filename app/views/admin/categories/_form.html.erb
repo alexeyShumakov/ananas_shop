@@ -1,0 +1,5 @@
+<%= simple_form_for [:admin, @category] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :parent_id, collection: @categories, label: "Родительская категория" %>
+  <%= f.button :submit %>
+<% end %>

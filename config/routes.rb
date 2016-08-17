@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     get 'dashboard/index'
     resources :products
     resources :banner_items
+    resources :categories
   end
 
   namespace :api do

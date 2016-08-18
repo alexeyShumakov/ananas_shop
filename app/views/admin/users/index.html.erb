@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-sm-3">
+    <%= render partial: '/admin/admin_nav' %>
+  </div>
+  <div class="col-sm-9">
+    <h2>Пользователи</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>Имя</td>
+          <td>email</td>
+          <td>Телефон</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.name %></td>
+            <td><%= link_to user.email, admin_user_path(user.id) %></td>
+            <td><%= user.phone %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= render partial: 'pager', locals: { collection: @users } %>
+  </div>
+</div>

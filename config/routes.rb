@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :products
     resources :banner_items
     resources :categories
+    resources :users
   end
 
   namespace :api do

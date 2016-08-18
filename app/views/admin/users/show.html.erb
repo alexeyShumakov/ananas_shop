@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-sm-3">
+    <%= render partial: '/admin/admin_nav' %>
+  </div>
+  <div class="col-sm-9">
+    <h3>User <%= @user.name %></h3>
+    <dl class='dl-horizontal'>
+      <dt>id</dt>
+      <dd><%= @user.id %></dd>
+
+      <dt>name</dt>
+      <dd><%= @user.name %></dd>
+
+      <dt>phone</dt>
+      <dd><%= @user.phone %></dd>
+
+      <dt>email</dt>
+      <dd><%= @user.email %></dd>
+
+      <dt>order</dt>
+      <dd>
+        <ul>
+        <% @user.orders.each do |order| %>
+          <li>
+            <b>#<%= order.id %></b>,
+            status: <%= order.status %>,
+            <%= order.fixed_total_price %> руб.
+          </li>
+        <% end %>
+        </ul>
+      </dd>
+    </dl>
+
+  </div>
+</div>

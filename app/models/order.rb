@@ -3,10 +3,13 @@ class Order < ActiveRecord::Base
   belongs_to :address
   has_many :line_items
 
+  before_save 
+
   enum status: [:in_proccess, :delivering, :done, :abort]
+  validates :email, :phone, :name, presence: true
 
   def fixed_total_price
-    line_items.to_a.sum(&:fixed_total_price)
+    line_items.to_a.sum(&:fixed_total_price) + delivery_price
   end
 
   def total_count

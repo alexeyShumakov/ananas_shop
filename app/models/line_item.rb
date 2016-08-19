@@ -11,6 +11,6 @@ class LineItem < ActiveRecord::Base
   end
 
   def fixed_total_price
-    count * fixed_price
+    count * fixed_price if fixed_price
   end
 end

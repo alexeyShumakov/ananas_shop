@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :banner_items
     resources :categories
     resources :users
+    resources :orders
   end
 
   namespace :api do

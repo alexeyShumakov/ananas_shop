@@ -3,7 +3,9 @@ class OrderForm < Reform::Form
   property :name
   property :email
   property :phone
+  property :delivery_price
   validates :name, :email, :phone, presence: true
+  validates :delivery_price, numericality: {allow_nil: true}
 
   property :address do
     property :user_id

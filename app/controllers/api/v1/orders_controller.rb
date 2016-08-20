@@ -2,16 +2,16 @@ class Api::V1::OrdersController < ApplicationController
   before_action :set_form, only: [:create, :update]
 
   def show
-    render json: Order.find(params[:id]), include: ['line_items.product', 'address']
+    render json: Order.find(params[:id]), include: ['line_items.product', 'address', 'orders_status']
   end
 
   def update
     @order = Order.find(params[:id])
 
     form = OrderForm.new @order
-    if form.validate(order_params) 
+    if form.validate(order_params)
       form.save
-      render json: @order, include: ['line_items.product', 'address']
+      render json: @order, include: ['line_items.product', 'address', 'orders_status']
     else
       render json: form.errors, status: :unprocessable_entity
     end
@@ -31,7 +31,7 @@ class Api::V1::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :delivery_price, :email, :phone, address: [:city, :address])
+    params.require(:order).permit(:orders_status, :name, :delivery_price, :email, :phone, address: [:city, :address])
   end
 
   def adapted_params

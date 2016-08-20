@@ -1,9 +1,8 @@
 class Order < ActiveRecord::Base
+  belongs_to :orders_status
   belongs_to :user
   belongs_to :address
   has_many :line_items
-
-  before_save 
 
   enum status: [:in_proccess, :delivering, :done, :abort]
   validates :email, :phone, :name, presence: true

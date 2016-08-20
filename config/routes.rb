@@ -25,12 +25,14 @@ Rails.application.routes.draw do
     resources :categories
     resources :users
     resources :orders
+    resources :orders_statuses
   end
 
   namespace :api do
     namespace :v1 do
       resources :addresses
       resources :orders
+      resources :orders_statuses
       resources :categories
       resources :banner_items
       resources :pictures

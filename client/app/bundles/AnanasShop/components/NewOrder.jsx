@@ -10,7 +10,7 @@ export default class NewOrder extends React.Component {
   constructor(props, context) {
     super(props, context);
     let _this = this;
-    this.state = {errors: Immutable.Map(), selectedAddress: {value: null, label: null}, selectedTab: 1};
+    this.state = {errors: Immutable.Map(), selectedAddress: {value: null, label: null}, selectedTab: 1, disabledButton: false};
     let { store, actions } = props;
     let { fetchProfile, setOrder } = actions;
     _.bindAll(this, 'handleSelect', 'updateAddress',
@@ -37,14 +37,17 @@ export default class NewOrder extends React.Component {
   }
 
   createOrder() {
-    let _this = this;
-    let { store, actions } = this.props;
-    let order = store.get('order');
-    actions.createOrder(order).then(()=> {
-      window.location= '/my_cabinet';
-    }, (errors) => {
-      _this.setState({errors: Immutable.fromJS(errors.data)});
-    })
+    if (!this.state.disabledButton) {
+      let _this = this;
+      let { store, actions } = this.props;
+      let order = store.get('order');
+      this.setState({disabledButton: true});
+      actions.createOrder(order).then(()=> {
+        window.location= '/my_cabinet';
+      }, (errors) => {
+        _this.setState({errors: Immutable.fromJS(errors.data), disabledButton: false});
+      })
+    }
   }
   updateAddress(address) {
     let { store, actions } = this.props;
@@ -165,7 +168,10 @@ export default class NewOrder extends React.Component {
             <a href="/my_cart" className='btn btn-default'>В корзину</a>
           </div>
           <div className="col-xs-8">
-            <div className="btn btn-primary btn-lg pull-right" onClick={this.createOrder}>Оформить заказ</div>
+            <div
+              disabled={this.state.disabledButton ? 'disabled' : ''}
+              className="btn btn-primary btn-lg pull-right"
+              onClick={this.createOrder}>Оформить заказ</div>
           </div>
         </div>
       </div>

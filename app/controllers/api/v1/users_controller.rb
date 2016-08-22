@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   def my_profile
     if user_signed_in?
-      render json: current_user, root: :profile, include: ['orders.line_items.product', 'addresses']
+      render json: current_user, root: :profile, include: ['orders.line_items.product', 'addresses', 'orders.orders_status']
     else
       render json: nil, status: 401
     end

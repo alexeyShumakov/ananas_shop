@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
 import LineItem from './order/LineItem';
+import Status from './order/Status';
 
 export default class Order extends React.Component {
   constructor(props, context) {
@@ -36,7 +37,7 @@ export default class Order extends React.Component {
           <dt>дата:</dt>
           <dd>{order.get('created_at')}</dd>
           <dt>статус:</dt>
-          <dd>{order.get('status')}</dd>
+          <dd><Status order={order}/></dd>
           <dt>сумма:</dt>
           <dd>{order.get('fixed_total_price')} руб.</dd>
           <dt>товары:</dt>

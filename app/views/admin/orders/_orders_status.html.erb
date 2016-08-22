@@ -1,0 +1,5 @@
+<% if status.present? %>
+  <b style="<%= "color: #{status.color}"%>"><%= status.title %></b>
+<% else %>
+  <b>нет</b>
+<% end %>

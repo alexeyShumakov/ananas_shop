@@ -23,7 +23,7 @@
             <td><%= link_to order.email, admin_order_path(order.id) %></td>
             <td><%= order.phone %></td>
             <td><%= order.fixed_total_price %></td>
-            <td><%= order.status %></td>
+            <td><%= render partial: 'orders_status', locals: {status: order.orders_status} %></td>
           </tr>
         <% end %>
       </tbody>

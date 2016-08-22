@@ -5,6 +5,7 @@ import Loader from './Loader';
 import Field from './order/Field';
 import Status from './order/Status';
 import ProductsList from './order/ProductsList';
+import NewLineItem from './order/NewLineItem';
 
 export default class Order extends React.Component {
   constructor(props, context) {
@@ -25,7 +26,9 @@ export default class Order extends React.Component {
     let { actions, store } = this.props;
     let {
       updateOrder, fetchOrder, fetchOrdersStatuses,
-      updateAddress, updateLineItem, destroyLineItem } = actions;
+      updateAddress, updateLineItem, destroyLineItem,
+      createLineItem
+    } = actions;
     let order = store.get('order');
     let ordersStatuses = store.get('ordersStatuses');
 
@@ -92,7 +95,7 @@ export default class Order extends React.Component {
             updateModel={updateOrder}
             fetchModel={fetchOrder}
           />
-          <h4>Продукты</h4>
+          <h4>Продукты <NewLineItem {...{store, actions}}/> </h4>
           <ProductsList
             products={order.get('line_items')}
             fetchOrder={this.fetchOrder}

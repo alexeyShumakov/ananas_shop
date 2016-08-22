@@ -18,8 +18,8 @@ export default class HFormGroup extends React.Component {
   }
   update(e) {
     let { field, object, update} = this.props;
-    field = _.last(field.split('.'));
-    let newObj = object.set(field, e.target.value);
+    field = field.split('.');
+    let newObj = object.setIn(field, e.target.value);
     update(newObj);
   }
 

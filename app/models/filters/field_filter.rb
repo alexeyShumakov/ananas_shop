@@ -9,7 +9,7 @@ class FieldFilter < BaseFilter
 
   def set_products
     if fields?
-      @products = @filter.products.joins( products_fields: :fields_values).where(fields_values: { id: fields }).uniq
+      @products = @filter.products.joins(products_fields: :fields_values).where(fields_values: { id: fields }).uniq
     else
       @products = @filter.products
     end

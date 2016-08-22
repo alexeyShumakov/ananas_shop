@@ -15,7 +15,7 @@ export default class NewOrder extends React.Component {
     let { fetchProfile, setOrder } = actions;
     _.bindAll(this, 'handleSelect', 'updateAddress',
               'updateOrder', 'setSelectedAddress',
-              'updateFormAddress', 'createOrder');
+              'createOrder');
     fetchProfile().then((profile)=>{
       if(profile) {
         let addresses = profile.get('addresses');
@@ -43,7 +43,7 @@ export default class NewOrder extends React.Component {
       let order = store.get('order');
       this.setState({disabledButton: true});
       actions.createOrder(order).then(()=> {
-        window.location= '/my_cabinet';
+        window.location= '/';
       }, (errors) => {
         _this.setState({errors: Immutable.fromJS(errors.data), disabledButton: false});
       })
@@ -58,13 +58,6 @@ export default class NewOrder extends React.Component {
     order = order.set('address', address);
     this.updateOrder(order);
     this.setSelectedAddress(address);
-  }
-
-  updateFormAddress(address) {
-    let { store, actions } = this.props;
-    let { setOrder } = actions;
-    let order = store.get('order').set('address', address);
-    setOrder(order);
   }
 
   setSelectedAddress(address) {
@@ -113,8 +106,8 @@ export default class NewOrder extends React.Component {
     let address = order.get('address');
     let addressForm =
       <div>
-        <FormGroup label='Город' field='address.city' object={order} errors={errors} update={this.updateFormAddress}/>
-        <FormGroup label='Адрес' field='address.address' object={order} errors={errors} update={this.updateFormAddress}/>
+        <FormGroup label='Город' field='address.city' object={order} errors={errors} update={this.updateOrder}/>
+        <FormGroup label='Адрес' field='address.address' object={order} errors={errors} update={this.updateOrder}/>
       </div>
 
     if (!profile.isEmpty()) {

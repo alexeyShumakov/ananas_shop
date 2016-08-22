@@ -15,7 +15,7 @@ class Product < ActiveRecord::Base
   paginates_per 24
 
   def cover_url(style = 'thumb')
-    pic = pictures.find_by(is_hover: true) || pictures.last || Picture.new
+    pic = pictures.find_by(is_hover: true) || pictures.first || Picture.new
     pic.image.url(style)
   end
 

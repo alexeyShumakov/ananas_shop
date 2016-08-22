@@ -3,7 +3,14 @@ class Api::V1::LineItemsController < ApplicationController
   before_action :set_line_item, only: [:destroy, :update]
 
   def create
-    exec = CreateLineItem.run(product: @product, cart: @cart, count: params[:count] || 1 )
+    line_item_params = {
+      product: @product,
+      cart: @cart,
+      count: params[:count] || 1,
+      order_id: params[:order_id],
+      fixed_price: params[:fixed_price]
+    }
+    exec = CreateLineItem.run line_item_params
     @line_item = exec.result
     @cart.reload
     render json: @cart, root: 'cart', include: ['line_items.product']

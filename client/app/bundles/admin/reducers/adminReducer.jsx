@@ -16,12 +16,15 @@ export const $$initialState = Immutable.fromJS({
   fields: [],
   field: { title: '' },
   fieldsValue: { title: ''},
-  bannerItems: []
+  bannerItems: [],
+  products: [],
+  filters: []
 });
 
 export default function adminReducer($$state = $$initialState, action) {
   const {
-    type, order,product, loading,
+    products, filters, filter,
+    type, order, product, loading,
     errors, categories, fields, field,
     fieldsValue, bannerItems, ordersStatuses, ordersStatus
   } = action;
@@ -59,6 +62,22 @@ export default function adminReducer($$state = $$initialState, action) {
 
     case actionTypes.SET_ORDERS_STATUS:
       return $$state.set('ordersStatus', ordersStatus);
+
+    case actionTypes.SET_PRODUCTS:
+      return $$state.set('products', products);
+
+    case actionTypes.SET_FILTERS:
+      return $$state.set('filters', filters);
+
+    case actionTypes.SET_FILTER:
+      let newFilters = $$state.get('filters');
+      $$state.get('filters').forEach((fltr, index, filters) => {
+        if( filter.get('name') === fltr.get('name')) {
+          newFilters = filters.set(index, filter);
+        }
+      });
+      return $$state.set('filters', newFilters);
+
     default:
       return $$state;
   }

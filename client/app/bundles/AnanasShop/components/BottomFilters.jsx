@@ -26,7 +26,6 @@ export default class Filters extends React.Component {
   constructor(props, context) {
     super(props, context);
     const { fetchData, query, params } = props;
-    _.isEmpty(query) ? fetchData(params) : fetchData(query);
   }
 
   getFilter(type) {

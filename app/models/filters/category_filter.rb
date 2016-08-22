@@ -14,17 +14,13 @@ class CategoryFilter < BaseFilter
 
   def set_filters
     categories = get_tree(Category.roots)
-    if category_id.present?
-      @filters = @filter.filters << {
-        type: 'CategoryFilter',
-        name: 'category',
-        params: [category_id],
-        id: category_id,
-        categories: categories
-      }
-    else
-      @filters = @filter.filters
-    end
+    @filters = @filter.filters << {
+      type: 'CategoryFilter',
+      name: 'category',
+      params: [category_id],
+      id: category_id,
+      categories: categories
+    }
   end
 
   def get_tree(categories)

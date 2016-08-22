@@ -4,9 +4,9 @@ class Category < ActiveRecord::Base
 
   validates :title, presence: true
 
-  def total_products
+  def total_products(products = Product.all)
     @ids = self.descendant_ids << self.id
-    Product.where category: @ids
+    products.where category: @ids
   end
 
   def tree_name

@@ -1,5 +1,5 @@
 class Api::V1::OrdersController < ApplicationController
-  before_action :set_form, only: [:create, :update]
+  before_action :set_form, only: [:create]
 
   def show
     render json: Order.find(params[:id]), include: ['line_items.product', 'address', 'orders_status']
@@ -7,6 +7,7 @@ class Api::V1::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
+    @order.orders_status = OrdersStatus.find(params[:order][:orders_status][:id])
 
     form = OrderForm.new @order
     if form.validate(order_params)
@@ -31,7 +32,7 @@ class Api::V1::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:orders_status, :name, :delivery_price, :email, :phone, address: [:city, :address])
+    params.require(:order).permit(:name, :orders_status, :delivery_price, :email, :phone, address: [:city, :address])
   end
 
   def adapted_params
@@ -39,7 +40,7 @@ class Api::V1::OrdersController < ApplicationController
   end
 
   def set_form
-    form_data = {}
+    form_data = {orders_status: OrdersStatus.first}
     address = Address.new(user: current_user)
     if user_signed_in?
       form_data.merge!({

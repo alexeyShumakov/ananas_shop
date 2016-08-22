@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import Loader from './Loader';
 import Field from './order/Field';
+import Status from './order/Status';
 import ProductsList from './order/ProductsList';
 
 export default class Order extends React.Component {
@@ -23,9 +24,10 @@ export default class Order extends React.Component {
   render() {
     let { actions, store } = this.props;
     let {
-      updateOrder, fetchOrder,
+      updateOrder, fetchOrder, fetchOrdersStatuses,
       updateAddress, updateLineItem, destroyLineItem } = actions;
     let order = store.get('order');
+    let ordersStatuses = store.get('ordersStatuses');
 
     let element;
     if (this.state.loading) {
@@ -33,7 +35,15 @@ export default class Order extends React.Component {
     } else {
       element =
         <div>
-          <span className='pull-right'>{order.get('status')}</span>
+          <div className='pull-right'>
+            <Status
+              status={order.get('orders_status')}
+              statuses={ordersStatuses}
+              order={order}
+              fetchOrder={fetchOrder}
+              updateOrder={updateOrder}
+              fetch={fetchOrdersStatuses}/>
+          </div>
           <h3> Заказ #{this.props.id} </h3>
           <hr/>
           <h4>Личные данные</h4>

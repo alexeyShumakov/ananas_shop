@@ -1,0 +1,35 @@
+$border-color: darken($light-gray, 30%);
+.orders-status {
+  position: relative;
+}
+
+.orders-status__list {
+  z-index: 50;
+  position: absolute;
+  top: 25px;
+  right: 0px;
+  border: 1px $border-color solid;
+  cursor: pointer;
+  border-radius: 2px ;
+  background-color: #fff;
+  min-width: 160px;
+}
+
+.orders-status__item {
+  padding: 3px;
+}
+.orders-status__item:hover {
+  background-color: $light-gray;
+}
+
+.orders-status__triangle {
+  z-index: 51;
+  position: absolute;
+  right: 5px;
+  top: -10px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 5px 10px 5px;
+  border-color: transparent transparent $border-color transparent;
+}

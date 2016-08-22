@@ -49,3 +49,21 @@ export function createLineItem(line_item) {
     return axios.post(`/api/v1/line_items`, {line_item});
   };
 }
+
+
+export function setOrdersStatuses(ordersStatuses) {
+  return {
+    type: actionTypes.SET_ORDERS_STATUSES,
+    ordersStatuses
+  }
+}
+
+export function fetchOrdersStatuses() {
+  return dispatch => {
+    return axios.get(`/api/v1/orders_statuses`).then(
+      responce => {
+        let statuses = Immutable.fromJS(responce.data.orders_statuses);
+        dispatch(setOrdersStatuses(statuses));
+      });
+  };
+}

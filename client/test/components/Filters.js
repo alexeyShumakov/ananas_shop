@@ -36,8 +36,9 @@ describe('component', () => {
 
     it('should render Filters', () => {
       const wrapper = shallow(<Filters {...params }/>, { context: { router }});
-      expect(wrapper.find('PriceFilter').length).toEqual(1);
-      expect(wrapper.find('CategoryFilter').length).toEqual(1);
+      expect(wrapper.find('SortFilter').length).toEqual(1);
+      expect(wrapper.find('PageFilter').length).toEqual(1);
+      expect(wrapper.find('PageSizeFilter').length).toEqual(1);
     })
   })
 })

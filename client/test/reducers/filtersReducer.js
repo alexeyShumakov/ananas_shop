@@ -6,6 +6,7 @@ import actionTypes from '../../app/bundles/AnanasShop/constants/filtersConstants
 let initialState = Immutable.fromJS({
   filtersLoading: true,
   showcaseLoading: true,
+  category: {},
   filters: [],
   products: []
 });

@@ -4,7 +4,8 @@ RSpec.describe EmptyFilter, type: :model do
     let(:empty_filter) { EmptyFilter.new({number: 42}) }
 
     it '#initialize' do
-      expect(empty_filter.products).to eq(Product.none)
+      product = create :product
+      expect(empty_filter.products).to eq([product])
       expect(empty_filter.filters).to eq([])
       expect(empty_filter.params).to eq({number: 42})
     end

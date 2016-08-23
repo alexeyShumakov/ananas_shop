@@ -1,11 +1,10 @@
 require 'rails_helper'
-Struct.new('Filter', :params, :filters, :products)
 
 RSpec.describe SortFilter, type: :model do
   describe 'with params' do
     let!(:product_1) { create :product, price: 1 }
     let!(:product_2) { create :product, price: 2 }
-    let!(:filter) { Struct::Filter.new({ sort: 'price' }, [], Product.all)}
+    let!(:filter) { EmptyFilter.new({ sort: 'price' })}
     let(:sort_filter) { SortFilter.new(filter)}
 
     it '#sort?' do
@@ -23,8 +22,17 @@ RSpec.describe SortFilter, type: :model do
         name: 'sort',
         params: ['price'],
         sort: 'price',
-        orders: [{ name: 'updated_at desc', title: 'обновлению' },
-                 { name: 'price', title: 'цене' }]
+        orders:
+          [{ title: 'цене ',
+              values: [
+                { title: 'цене↑', name: 'price asc' },
+                { title: 'цене↓', name: 'price desc' }
+              ]
+            }, {
+              title: 'обновлению',
+              values: [ { title: 'обновлению', name: 'updated_at desc' } ]
+            }]
+
       }]
       expect(sort_filter.filters).to eq(filters)
       expect(sort_filter.filters).to eq(filter.filters)
@@ -38,7 +46,7 @@ RSpec.describe SortFilter, type: :model do
   describe 'without params' do
     let!(:product_1) { create :product, price: 1 }
     let!(:product_2) { create :product, price: 2 }
-    let!(:filter) { Struct::Filter.new({}, [], Product.all)}
+    let!(:filter) { EmptyFilter.new({})}
     let(:sort_filter) { SortFilter.new(filter)}
 
     it '#sort?' do
@@ -56,8 +64,16 @@ RSpec.describe SortFilter, type: :model do
         name: 'sort',
         params: [],
         sort: 'updated_at desc',
-        orders: [{ name: 'updated_at desc', title: 'обновлению' },
-                 { name: 'price', title: 'цене' }]
+        orders:
+          [{ title: 'цене ',
+              values: [
+                { title: 'цене↑', name: 'price asc' },
+                { title: 'цене↓', name: 'price desc' }
+              ]
+            }, {
+              title: 'обновлению',
+              values: [ { title: 'обновлению', name: 'updated_at desc' } ]
+            }]
       }]
       expect(sort_filter.filters).to eq(filters)
       expect(sort_filter.filters).to eq(filter.filters)

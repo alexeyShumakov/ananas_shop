@@ -1,11 +1,10 @@
 require 'rails_helper'
-Struct.new('Filter', :params, :filters, :products)
 
 RSpec.describe PaginationFilter, type: :model do
   describe 'with params' do
-    let(:product_1) { create :product }
-    let(:product_2) { create :product }
-    let!(:filter) { Struct::Filter.new({page: 1, per: 4 }, [], Product.all)}
+    let!(:product_1) { create :product }
+    let!(:product_2) { create :product }
+    let!(:filter) { EmptyFilter.new({page: 1, per: 4 })}
     let(:pagination_filter) { PaginationFilter.new(filter)}
 
     it '#page' do
@@ -28,7 +27,7 @@ RSpec.describe PaginationFilter, type: :model do
   describe 'without params' do
     let!(:product_1) { create :product }
     let!(:product_2) { create :product }
-    let!(:filter) { Struct::Filter.new({}, [], Product.all)}
+    let!(:filter) { EmptyFilter.new({})}
     let(:pagination_filter) { PaginationFilter.new(filter)}
 
     it '#page' do

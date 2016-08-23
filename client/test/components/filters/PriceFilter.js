@@ -42,7 +42,7 @@ describe('component', () => {
       rcSlider.simulate('change', [0, 100]);
 
       expect(params.setFilter.calls[0].arguments)
-        .toEqual([params.filter.set('params', Immutable.List([0,100]))]);
+        .toEqual([params.filter]);
     })
 
     it('should call updateFilter then form is onBlur', () => {

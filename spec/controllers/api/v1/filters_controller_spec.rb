@@ -5,7 +5,7 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
   describe "GET #index" do
     let!(:product_1) { create :product, price: 15}
     it "returns http success" do
-      get :index, { category: '1'}
+      get :index
       expect(response).to have_http_status(:success)
     end
 

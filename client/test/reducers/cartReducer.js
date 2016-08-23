@@ -7,6 +7,23 @@ let initialState = Immutable.fromJS({
   count: 0,
   isCartLoading: true,
   selectedProductId: 0,
+  order: {
+    name: '',
+    email: '',
+    phone: '',
+    address: {
+      city: '',
+      address: ''
+    }
+  },
+  address: {
+    city: '',
+    address: '',
+    current: true
+  },
+  profile: {
+  },
+  product: {},
   cart: {
     id: 0,
     total_count: 0,

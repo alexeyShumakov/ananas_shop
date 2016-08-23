@@ -1,11 +1,10 @@
 require 'rails_helper'
-Struct.new('Filter', :params, :filters, :products)
 
 RSpec.describe PriceFilter, type: :model do
   describe 'with params' do
     let!(:product_1) { create :product, price: 10 }
     let!(:product_2) { create :product, price: 20 }
-    let!(:filter) { Struct::Filter.new({ price: '10;15' }, [], Product.all)}
+    let!(:filter) { EmptyFilter.new({ price: '10;15' })}
     let(:price_filter) { PriceFilter.new(filter)}
 
     it '#price' do
@@ -50,7 +49,7 @@ RSpec.describe PriceFilter, type: :model do
   describe 'without params' do
     let!(:product_1) { create :product, price: 10 }
     let!(:product_2) { create :product, price: 20 }
-    let!(:filter) { Struct::Filter.new({}, [], Product.all)}
+    let!(:filter) { EmptyFilter.new({})}
     let(:price_filter) { PriceFilter.new(filter)}
 
     it '#price' do
@@ -77,7 +76,7 @@ RSpec.describe PriceFilter, type: :model do
       filters <<
         { type: 'PriceFilter',
           name: 'price',
-          params: [10, 20],
+          params: [],
           min:  10,
           max:  20,
           minB: 10,

@@ -7,14 +7,14 @@ import Products from '../../app/bundles/AnanasShop/components/Products'
 import Product from '../../app/bundles/AnanasShop/components/Product'
 
 describe('component', () => {
-  describe('Filters', () => {
+  describe('Products', () => {
     let params;
     beforeEach( () => {
       params = {
         selectedProductId: 1,
         products: Immutable.fromJS([
-          { id: '1', title: 'title', price: 1, thumb_cover_url: '/img1' },
-          { id: '2', title: 'title1', price: 1, thumb_cover_url: '/img1' }
+          { id: '1', title: 'title', price: 1, thumb_cover_url: '/img1', pictures:[] },
+          { id: '2', title: 'title1', price: 1, thumb_cover_url: '/img1', pictures:[] }
         ]),
         addToCart: expect.createSpy()
       }

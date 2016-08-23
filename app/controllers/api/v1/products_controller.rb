@@ -1,7 +1,8 @@
 class Api::V1::ProductsController < ApplicationController
   def index
     @filters = FilterProducts.run(filters: params)
-    render json: @filters.result.products.includes(:pictures), each_serializer: ShortProductSerializer
+    @products = @filters.result.products.includes(:pictures)
+    render json: @products, each_serializer: ShortProductSerializer
   end
 
   def show

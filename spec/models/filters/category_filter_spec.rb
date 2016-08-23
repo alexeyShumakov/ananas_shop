@@ -1,12 +1,11 @@
 require 'rails_helper'
-Struct.new('Filter', :params, :filters, :products)
 
 RSpec.describe CategoryFilter, type: :model do
   describe 'check methods' do
-    let(:category) { create :category }
-    let(:product) { create :product, category: category }
-    let!(:filter) { Struct::Filter.new({category: category.id }, [], Product.none)}
-    let(:category_filter) { CategoryFilter.new(filter)}
+    let!(:category) { create :category }
+    let!(:product) { create :product, category: category }
+    let!(:filter) { EmptyFilter.new({category: category.id})}
+    let!(:category_filter) { CategoryFilter.new(filter)}
 
     it '#category_id' do
       expect(category_filter.category_id).to eq(category.id)
@@ -17,7 +16,7 @@ RSpec.describe CategoryFilter, type: :model do
     end
 
     it '#products' do
-      expect(category_filter.products).to eq(category.total_products)
+      expect(category_filter.products).to eq([product])
     end
   end
 end

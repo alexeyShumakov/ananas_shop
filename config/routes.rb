@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
     get 'dashboard/index'
     resources :products
-    resources :banner_items
+    resources :banner_items, only: [:index]
     resources :categories
     resources :users
     resources :orders

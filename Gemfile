@@ -22,6 +22,7 @@ gem "paperclip", "~> 4"
 gem 'active_model_serializers', '~> 0.10.0'
 gem "react_on_rails", "~> 5"
 gem 'kaminari'
+gem 'pundit'
 
 gem 'reform'
 gem 'reform-rails'

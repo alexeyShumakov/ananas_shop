@@ -14,6 +14,7 @@ class Api::V1::AddressesController < ApplicationController
   end
 
   def update
+    authorize @address
     if @address.update address_params
       current_user.reset_addresses(@address.id) if @address.current?
       render json: @address
@@ -23,6 +24,7 @@ class Api::V1::AddressesController < ApplicationController
   end
 
   def destroy
+    authorize @address
     @address.update current: false, deleted: true
     render json: @address
   end

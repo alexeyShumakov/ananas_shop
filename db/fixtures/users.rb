@@ -4,4 +4,5 @@ User.seed do |s|
   s.password = "password"
   s.password_confirmation = "password"
   s.confirmed_at = Date.today
+  s.role = 1
 end

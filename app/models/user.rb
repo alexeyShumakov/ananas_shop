@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :addresses
 
+  enum role: [:regular, :admin]
+
   def reset_addresses(address_id = nil)
     addresses.where.not(id: address_id).each do |address|
       address.current = false

@@ -1,22 +1,17 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
-import Modal from 'react-modal';
+import ModalWrapper from '../ModalWrapper';
 
 export default class CreateField extends React.Component {
   constructor(props, context) {
     super(props, context);
-    Modal.setAppElement('body');
     this.state = {modal: false};
-    _.bindAll(this, 'openModal', 'closeModal', 'createField', 'setField');
+    _.bindAll(this, 'createField', 'setField', 'toggleModal');
   }
 
-  openModal() {
-    this.setState({modal: true});
-  }
-
-  closeModal() {
-    this.setState({modal: false});
+  toggleModal() {
+    this.setState({modal: !this.state.modal});
   }
 
   setField(e) {
@@ -29,17 +24,19 @@ export default class CreateField extends React.Component {
     let _this = this;
     let { field, createField } = this.props;
     createField(field).then(()=> {
-      _this.setState({modal: false});
+      _this.toggleModal();
     })
   }
   render() {
     let { field } = this.props;
     let title = field.get('title');
     return (
-      <div>
-        <button className="btn btn-success" onClick={this.openModal}>Создать свойство</button>
-        <Modal isOpen={this.state.modal}>
-          <button className='btn-default btn pull-right' onClick={this.closeModal}>x</button>
+      <div className='control-button'>
+        <button className="btn btn-success" onClick={this.toggleModal}>Создать свойство</button>
+        <ModalWrapper
+          title='Создать св-во'
+          modal={this.state.modal}
+          toggleModal={this.toggleModal}>
           <form>
             <div className="form-group">
               <label className="label-control">Название</label>
@@ -47,7 +44,7 @@ export default class CreateField extends React.Component {
             </div>
           </form>
           <button className='btn btn-success' onClick={this.createField}>Создать</button>
-        </Modal>
+        </ModalWrapper>
       </div>
     );
   }

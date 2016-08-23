@@ -1,24 +1,21 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
-
-import Modal from 'react-modal';
 import Select from 'react-select';
+
+import ModalWrapper from '../ModalWrapper';
 
 export default class NewField extends React.Component {
   constructor(props, context) {
     super(props, context);
-    Modal.setAppElement('body');
     this.state = {modal: false, field: null};
-    _.bindAll(this, 'openModal', 'closeModal', 'setField', 'createProductsField');
+    _.bindAll(this, 'toggleModal', 'setField', 'createProductsField');
   }
 
-  openModal() {
-    this.props.fetchFields();
-    this.setState({modal: true});
-  }
-
-  closeModal() {
-    this.setState({modal: false});
+  toggleModal() {
+    let newModal = !this.state.modal;
+    this.setState({modal: newModal});
+    if (newModal)
+      this.props.fetchFields();
   }
 
   setField(field) {
@@ -26,15 +23,14 @@ export default class NewField extends React.Component {
   }
 
   createProductsField() {
+    let _this = this;
     let { id, createProductsField } = this.props;
     let { field } = this.state;
     let fieldId = field ? field.value : '';
-    let products_field = {
-      product_id: id,
-      field_id: fieldId
-    }
-
-    createProductsField(products_field);
+    let products_field = { product_id: id, field_id: fieldId };
+    createProductsField(products_field).then(()=> {
+      _this.toggleModal();
+    })
   }
   render() {
     let { fields } = this.props;
@@ -42,10 +38,12 @@ export default class NewField extends React.Component {
       return {value: field.get('id'), label: field.get('title')};
     }).toJS();
     return (
-      <div>
-        <button className="btn btn-success" onClick={this.openModal}>Добавить свойство</button>
-        <Modal isOpen={this.state.modal}>
-          <button className='btn-default btn pull-right' onClick={this.closeModal}>x</button>
+      <div className='control-button'>
+        <button className="btn btn-success" onClick={this.toggleModal}>Добавить свойство</button>
+        <ModalWrapper
+          title='Добавить св-во'
+          modal={this.state.modal}
+          toggleModal={this.toggleModal}>
           <form>
             <div className="form-group">
               <label>Выберите св-во</label>
@@ -59,8 +57,8 @@ export default class NewField extends React.Component {
               </span>
             </div>
           </form>
-          <button className='btn btn-success' onClick={this.createProductsField}>add field to product</button>
-        </Modal>
+          <button className='btn btn-success' onClick={this.createProductsField}>добавить</button>
+        </ModalWrapper>
       </div>
     );
   }

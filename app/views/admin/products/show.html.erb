@@ -1,2 +1,9 @@
-<h1 class='text-center'><%= @product.title %></h1>
-<%= react_component 'Product', props: { id: @product.id } %>
+<div class="row">
+  <div class="col-sm-3">
+    <%= render partial: '/admin/admin_nav' %>
+  </div>
+  <div class="col-sm-9">
+    <h1 class='text-center'><%= @product.title %></h1>
+    <%= react_component 'Product', props: { id: @product.id } %>
+  </div>
+</div>

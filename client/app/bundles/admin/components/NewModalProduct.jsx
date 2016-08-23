@@ -1,26 +1,21 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
-import Modal from 'react-modal';
 import Select from 'react-select';
 
 import FormGroup from './sidebar/FormGroup'
+import ModalWrapper from './ModalWrapper';
 export default class NewModalProduct extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    Modal.setAppElement('body');
     props.fetchCategories();
     this.state = {modal: false, category: null};
-    _.bindAll(this, 'openModal', 'createProduct', 'closeModal', 'setValue', 'setCategory');
+    _.bindAll(this, 'toggleModal', 'createProduct', 'setValue', 'setCategory');
   }
 
-  openModal() {
-    this.setState({modal: true});
-  }
-
-  closeModal() {
-    this.setState({modal: false});
+  toggleModal() {
+    this.setState({modal: !this.state.modal});
   }
 
   setValue(field, value) {
@@ -51,9 +46,11 @@ export default class NewModalProduct extends React.Component {
 
     return (
       <div>
-        <button className='list-group-item' onClick={this.openModal}> new product </button>
-        <Modal isOpen={this.state.modal}>
-          <button className='btn-default btn pull-right' onClick={this.closeModal}>x</button>
+        <button className='btn btn-default' onClick={this.toggleModal}>Создать продукт</button>
+        <ModalWrapper
+          title='Создать продукт'
+          modal={this.state.modal}
+          toggleModal={this.toggleModal}>
           <form>
             <FormGroup
               label='Название'
@@ -91,7 +88,7 @@ export default class NewModalProduct extends React.Component {
               field='description'/>
           </form>
           <button onClick={this.createProduct} className="btn btn-default">Создать продукт</button>
-        </Modal>
+        </ModalWrapper>
       </div>
     );
   }

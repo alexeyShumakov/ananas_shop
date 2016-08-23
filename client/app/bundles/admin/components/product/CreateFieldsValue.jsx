@@ -1,30 +1,26 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 import Tooltip from 'rc-tooltip';
-import Modal from 'react-modal';
 
+import ModalWrapper from '../ModalWrapper';
 export default class CreateFieldsValue extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    Modal.setAppElement('body');
     this.state = {modal: false};
-    _.bindAll(this, 'openModal', 'closeModal', 'createFieldsValue', 'setFieldsValue');
+    _.bindAll(this, 'toggleModal', 'createFieldsValue', 'setFieldsValue');
   }
 
-  openModal() {
-    this.setState({modal: true});
+  toggleModal() {
+    this.setState({modal: !this.state.modal});
   }
 
-  closeModal() {
-    this.setState({modal: false});
-  }
   createFieldsValue() {
     let _this = this;
     let {fieldsValue, createFieldsValue, setFieldsValue, product_id} = this.props;
     createFieldsValue(product_id, fieldsValue).then(()=> {
       let newFieldsValue = fieldsValue.set('title', '');
-      _this.setState({modal: false});
+      _this.toggleModal();
       setFieldsValue(newFieldsValue);
     });
   }
@@ -45,12 +41,13 @@ export default class CreateFieldsValue extends React.Component {
           overlay={<div>Создать значение св-ва</div>}
           mouseEnterDelay={0}
           mouseLeaveDelay={0.1}>
-
-          <span className="glyphicon glyphicon-plus text-success control-icon" onClick={this.openModal}></span>
+          <span className="glyphicon glyphicon-plus text-success control-icon" onClick={this.toggleModal}/>
         </Tooltip>
 
-        <Modal isOpen={this.state.modal}>
-          <button type="button" className="close" aria-label="Close" onClick={this.closeModal}><span aria-hidden="true">&times;</span></button>
+        <ModalWrapper
+          title='Созадть Значение св-ва'
+          modal={this.state.modal}
+          toggleModal={this.toggleModal} >
           <form>
             <div className="form-group">
               <label className="label-control">Название</label>
@@ -58,7 +55,7 @@ export default class CreateFieldsValue extends React.Component {
             </div>
           </form>
           <button className='btn btn-success' onClick={this.createFieldsValue}>Создать</button>
-        </Modal>
+        </ModalWrapper>
       </div>
     );
   }

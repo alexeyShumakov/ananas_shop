@@ -96,13 +96,17 @@ export default class Product extends React.Component {
       let productsFields = product.get('products_fields');
       productElem =
         <div>
+          <h4>Изображения</h4>
+          <hr/>
+
           <div>
             Добавить изобр: {imageLoading}
             <input type='file' onChange={this.uploadImage}/>
           </div>
-          <hr/>
           <ImageList {...{pictures, deletePicture, updatePicture}}/>
+          <h4>Параметры</h4>
           <hr/>
+
           <div className="form-horizontal">
             <div className="form-group">
               <label className="col-sm-2 control-label">Опубликовано</label>
@@ -159,7 +163,12 @@ export default class Product extends React.Component {
                 />
               </div>
             </div>
+            <h4>Свойства
+              <NewField {...{id, fields, fetchFields, createProductsField}}/>
+              <CreateField {...{createField, setField, field}}/>
+            </h4>
           <hr/>
+
           <ProductsFields {...{id,
             productsFields,
             fieldsValue,
@@ -167,8 +176,6 @@ export default class Product extends React.Component {
             deleteProductsField,
             setFieldsValue,
             createFieldsValue}}/>
-          <NewField {...{id, fields, fetchFields, createProductsField}}/>
-          <CreateField {...{createField, setField, field}}/>
           </div>
         </div>
     }

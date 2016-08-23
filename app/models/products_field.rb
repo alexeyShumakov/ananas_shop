@@ -4,4 +4,6 @@ class ProductsField < ActiveRecord::Base
 
   has_many :products_fields_values, dependent: :destroy
   has_many :fields_values, through: :products_fields_values
+
+  validates :product, :field, presence: true
 end

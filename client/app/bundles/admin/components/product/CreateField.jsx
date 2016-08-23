@@ -33,10 +33,7 @@ export default class CreateField extends React.Component {
     return (
       <div className='control-button'>
         <button className="btn btn-success" onClick={this.toggleModal}>Создать свойство</button>
-        <ModalWrapper
-          title='Создать св-во'
-          modal={this.state.modal}
-          toggleModal={this.toggleModal}>
+        <ModalWrapper title='Создать св-во' modal={this.state.modal} toggleModal={this.toggleModal}>
           <form>
             <div className="form-group">
               <label className="label-control">Название</label>

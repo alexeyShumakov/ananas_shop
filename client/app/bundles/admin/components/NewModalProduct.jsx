@@ -47,10 +47,7 @@ export default class NewModalProduct extends React.Component {
     return (
       <div>
         <button className='btn btn-default' onClick={this.toggleModal}>Создать продукт</button>
-        <ModalWrapper
-          title='Создать продукт'
-          modal={this.state.modal}
-          toggleModal={this.toggleModal}>
+        <ModalWrapper title='Создать продукт' modal={this.state.modal} toggleModal={this.toggleModal}>
           <form>
             <FormGroup
               label='Название'

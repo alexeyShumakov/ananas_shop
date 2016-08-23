@@ -44,10 +44,7 @@ export default class CreateFieldsValue extends React.Component {
           <span className="glyphicon glyphicon-plus text-success control-icon" onClick={this.toggleModal}/>
         </Tooltip>
 
-        <ModalWrapper
-          title='Созадть Значение св-ва'
-          modal={this.state.modal}
-          toggleModal={this.toggleModal} >
+        <ModalWrapper title='Созадть Значение св-ва' modal={this.state.modal} toggleModal={this.toggleModal} >
           <form>
             <div className="form-group">
               <label className="label-control">Название</label>

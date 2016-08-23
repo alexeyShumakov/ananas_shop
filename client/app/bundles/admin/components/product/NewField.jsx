@@ -40,19 +40,11 @@ export default class NewField extends React.Component {
     return (
       <div className='control-button'>
         <button className="btn btn-success" onClick={this.toggleModal}>Добавить свойство</button>
-        <ModalWrapper
-          title='Добавить св-во'
-          modal={this.state.modal}
-          toggleModal={this.toggleModal}>
+        <ModalWrapper title='Добавить св-во' modal={this.state.modal} toggleModal={this.toggleModal}>
           <form>
             <div className="form-group">
               <label>Выберите св-во</label>
-              <Select
-                  name="form-control"
-                  value={this.state.field}
-                  options={options}
-                  onChange={this.setField}
-              />
+              <Select name="form-control" value={this.state.field} options={options} onChange={this.setField} />
               <span className="help-block">
               </span>
             </div>

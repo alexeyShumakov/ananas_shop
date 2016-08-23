@@ -1,9 +1,11 @@
 class Api::V1::BannerItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
   def index
     render json: BannerItem.all
   end
 
   def create
+    authorize BannerItem
     @banner_item = BannerItem.new banner_item_params
     if @banner_item.save
       render json: BannerItem.all
@@ -13,6 +15,7 @@ class Api::V1::BannerItemsController < ApplicationController
   end
 
   def destroy
+    authorize BannerItem
     @banner_item = BannerItem.find(params[:id]).destroy
     render json: BannerItem.all
   end

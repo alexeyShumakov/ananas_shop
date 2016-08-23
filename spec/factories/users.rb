@@ -6,7 +6,7 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
     confirmed_at Date.today
-    role 1
+    role 0
 
     factory :admin_user do
       role 1

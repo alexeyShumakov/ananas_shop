@@ -2,27 +2,35 @@ require 'rails_helper'
 
 RSpec.describe BannerItemPolicy do
 
-  let(:user) { User.new }
+  let(:user) { create :user }
+  let(:admin) { create :admin_user }
+  let(:banner_item) { create :banner_item }
 
   subject { described_class }
 
   permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
   end
 
   permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it 'admin can create banner_item' do
+      expect(subject).to permit(admin, banner_item)
+    end
+
+    it 'user can`t create banner_item' do
+      expect(subject).not_to permit(user, banner_item)
+    end
   end
 
   permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
   end
 
   permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it 'admin can destroy banner_item' do
+      expect(subject).to permit(admin, banner_item)
+    end
+
+    it 'user can`t destroy banner_item' do
+      expect(subject).not_to permit(user, banner_item)
+    end
   end
 end

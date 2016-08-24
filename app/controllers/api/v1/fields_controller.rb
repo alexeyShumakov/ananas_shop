@@ -1,9 +1,12 @@
 class Api::V1::FieldsController < ApplicationController
   def index
-    render json: Field.all
+    authorize Field
+    @fields = Field.all
+    render json: @fields
   end
 
   def create
+    authorize Field
     @field = Field.new fields_params
     if @field.save
       render json: @field

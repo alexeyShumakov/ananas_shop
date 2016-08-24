@@ -15,5 +15,4 @@ RSpec.describe Api::V1::FiltersController, type: :controller do
       expect(assigns(:filters).result.filters).not_to be_empty
     end
   end
-
 end

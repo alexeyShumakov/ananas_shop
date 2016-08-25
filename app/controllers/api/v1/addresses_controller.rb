@@ -1,4 +1,4 @@
-class Api::V1::AddressesController < ApplicationController
+class Api::V1::AddressesController < Api::V1::BaseController
   before_action :authenticate_user!
   before_action :set_address, only: [:update, :destroy]
 

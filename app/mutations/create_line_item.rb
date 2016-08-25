@@ -8,10 +8,11 @@ class CreateLineItem < Mutations::Command
     model :cart
     integer :order_id
     string :fixed_price
+    model :user
   end
 
   def execute
-    order = Order.find_by id: inputs[:order_id]
+    order = Order.find_by(id: inputs[:order_id]) if user && user.admin?
     cart = inputs[:cart]
     cart = nil if order.present?
 

@@ -1,5 +1,7 @@
-class Api::V1::PicturesController < ApplicationController
+class Api::V1::PicturesController < Api::V1::BaseController
+  before_action :authenticate_user!
   def create
+    authorize Picture
     @picture = Picture.new(picture_params)
     if @picture.save
       render json: Product.find(product_id), root: 'product', include: ['**']
@@ -7,6 +9,7 @@ class Api::V1::PicturesController < ApplicationController
   end
 
   def update
+    authorize Picture
     @picture = Picture.find(params[:id])
     product = @picture.product
     product.pictures.each do |pic|
@@ -20,6 +23,7 @@ class Api::V1::PicturesController < ApplicationController
   end
 
   def destroy
+    authorize Picture
     @picture = Picture.find(params[:id])
     if @picture.delete
       render json: Product.find(product_id), root: 'product', include: ['**']

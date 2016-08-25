@@ -1,4 +1,5 @@
-class Api::V1::ProductsController < ApplicationController
+class Api::V1::ProductsController < Api::V1::BaseController
+  before_action :authenticate_user!, only: [:update, :create]
   def index
     @filters = FilterProducts.run(filters: params)
     @products = @filters.result.products.includes(:pictures)
@@ -11,6 +12,7 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def update
+    authorize Product
     @product = Product.find(params[:id])
     if @product.update product_params
       render json: @product, include: ['**']
@@ -20,6 +22,7 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def create
+    authorize Product
     @product = Product.new(product_params);
     if @product.save
       render json: @product, include: ['**']

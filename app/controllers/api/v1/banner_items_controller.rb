@@ -1,4 +1,4 @@
-class Api::V1::BannerItemsController < ApplicationController
+class Api::V1::BannerItemsController < Api::V1::BaseController
   before_action :authenticate_user!, only: [:create, :destroy]
   def index
     render json: BannerItem.all

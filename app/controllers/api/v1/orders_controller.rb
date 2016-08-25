@@ -1,12 +1,16 @@
-class Api::V1::OrdersController < ApplicationController
+class Api::V1::OrdersController < Api::V1::BaseController
+  before_action :authenticate_user!, only: [:show, :update]
   before_action :set_form, only: [:create]
 
   def show
-    render json: Order.find(params[:id]), include: ['line_items.product', 'address', 'orders_status']
+    @order = Order.find(params[:id])
+    authorize @order
+    render json: @order, include: ['line_items.product', 'address', 'orders_status']
   end
 
   def update
     @order = Order.find(params[:id])
+    authorize @order
     @order.orders_status = OrdersStatus.find(params[:order][:orders_status][:id])
 
     form = OrderForm.new @order

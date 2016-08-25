@@ -30,19 +30,19 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :addresses
-      resources :orders
-      resources :orders_statuses
-      resources :categories
-      resources :banner_items
-      resources :pictures
+      resources :addresses, only: [:crete, :update, :destroy]
+      resources :banner_items, only: [:index, :create, :destroy]
+      resources :carts, only: [:show]
+      resources :categories, only: [:index, :show]
+      resources :fields, only: [:index, :create]
+      resources :fields_values, only: [:create]
       resources :filters, only: [:index]
       resources :line_items, only: [:create, :destroy, :update]
-      resources :carts, only: [:show]
+      resources :orders, only: [:show, :update, :create]
+      resources :orders_statuses, only: [:index, :create, :update, :destroy]
+      resources :pictures, only: [:create, :update, :destroy]
       resources :products, only: [:index, :create, :show, :update]
-      resources :fields
-      resources :fields_values
-      resources :products_fields
+      resources :products_fields, only: [:create, :update, :destroy]
       resources :users do
         get 'my_profile', on: :collection
         put 'my_profile', to: 'users#update_profile', on: :collection

@@ -1,4 +1,4 @@
-class Api::V1::FieldsValuesController < ApplicationController
+class Api::V1::FieldsValuesController < Api::V1::BaseController
   def create
     authorize FieldsValue
     @fields_value = FieldsValue.new fields_values_params

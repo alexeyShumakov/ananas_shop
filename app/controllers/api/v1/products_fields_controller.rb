@@ -1,5 +1,7 @@
-class Api::V1::ProductsFieldsController < ApplicationController
+class Api::V1::ProductsFieldsController < Api::V1::BaseController
+  before_action :authenticate_user!
   def create
+    authorize ProductsField
     @products_field = ProductsField.new products_fields_params
     if @products_field.save
       render json: @products_field.product, root: 'product', include: ['**']
@@ -9,6 +11,7 @@ class Api::V1::ProductsFieldsController < ApplicationController
   end
 
   def update
+    authorize ProductsField
     @products_field = ProductsField.find params[:id]
     @products_field.fields_values = FieldsValue.find products_fields_params[:fields_values].split(';')
     if @products_field.save
@@ -19,6 +22,7 @@ class Api::V1::ProductsFieldsController < ApplicationController
   end
 
   def destroy
+    authorize ProductsField
     @products_field = ProductsField.find params[:id]
     if @products_field.destroy
       render json: @products_field.product, root: 'product', include: ['**']

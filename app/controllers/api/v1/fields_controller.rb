@@ -1,4 +1,4 @@
-class Api::V1::FieldsController < ApplicationController
+class Api::V1::FieldsController < Api::V1::BaseController
   def index
     authorize Field
     @fields = Field.all

@@ -4,6 +4,7 @@
   </div>
   <div class="col-sm-9">
     <h3>User <%= @user.name %></h3>
+    <%= react_component 'admin_user', props: {id: @user.id} %>
     <dl class='dl-horizontal'>
       <dt>id</dt>
       <dd><%= @user.id %></dd>
@@ -23,7 +24,7 @@
         <% @user.orders.each do |order| %>
           <li>
             <b>#<%= order.id %></b>,
-            status: <%= order.status %>,
+            status: <%= order.orders_status.title if order.orders_status %>,
             <%= order.fixed_total_price %> руб.
           </li>
         <% end %>

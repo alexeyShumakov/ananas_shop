@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       resources :products_fields, only: [:create, :update, :destroy]
       resources :users do
         get 'my_profile', on: :collection
+        get 'roles', on: :collection
         put 'my_profile', to: 'users#update_profile', on: :collection
       end
     end

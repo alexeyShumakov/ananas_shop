@@ -1,28 +1,57 @@
-<footer class="row">
+<footer>
   <hr>
-  <ul class="list-inline text-center">
-    <li><%= link_to 'О нас', '#' %></li>
-    <li><%= link_to 'Сотрудничество', '#' %></li>
-    <li><%= link_to 'Поделитесь своей историей', '#' %></li>
-  </ul>
-  <ul class="list-inline text-center social-links">
-    <li>
-      <%= link_to '#' do %>
-        <%= image_tag('fb-art.jpg') %>
-      <% end %>
-    </li>
+  <div class="container">
+    <div class="row footer-top">
+      <div class="col-md-3 col-sm-6 text-center">
+        <h4><b>8 (909) 082-70-23</b></h4>
+        <small>в любой день с 9:00 до 20:00</small>
+      </div>
 
-    <li>
-      <%= link_to '#' do %>
-        <%= image_tag('Instagram_logo.png') %>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to '#' do %>
-        <%= image_tag('vk_logo_small_blue.png') %>
-      <% end %>
-    </li>
-  </ul>
-  <h4 class='text-center'>Ананас</h4>
-  <p class='text-center'>2016</p>
+      <div class="col-md-5 hidden-sm hidden-xs">
+        <ul class="list-inline">
+          <li>
+            <ul class="list-unstyled footer-list">
+              <li><%= link_to 'О нас', page_path('about') %></li>
+              <li><%= link_to 'Оплата', page_path('pay') %></li>
+              <li><%= link_to 'Доставка', page_path('delivery') %></li>
+            </ul>
+          </li>
+          <li>
+            <ul class="list-unstyled footer-list">
+              <li><%= link_to 'Как заказать?', page_path('order') %></li>
+              <li><%= link_to 'Контакты', page_path('contacts') %></li>
+              <li><%= link_to 'Скидки', page_path('promo') %></li>
+            </ul>
+          </li>
+          <li>
+            <ul class="list-unstyled footer-list">
+              <li><a href="#">Вконтаке</a></li>
+              <li><a href="#">facebook</a></li>
+              <li><a href="#">Pinterest</a></li>
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <div class='form'>
+          <div class="form-group">
+            <label class="control-label">Будь в курсе, подпишись!</label>
+            <div class="input-group">
+              <input class="form-control" placeholder="Ваш email"/>
+              <span class="input-group-btn">
+                  <button class="btn btn-primary" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+    <div class="row footer-bottom">
+      <div class="container">
+        <h4 class='text-center'>Ананас</h4>
+        <p class='text-center'>2016</p>
+      </div>
+    </div>
 </footer>

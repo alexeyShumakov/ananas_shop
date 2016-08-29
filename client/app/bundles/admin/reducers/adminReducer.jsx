@@ -5,6 +5,7 @@ import actionTypes from '../constants/adminConstants';
 export const $$initialState = Immutable.fromJS({
   productLoading: true,
   order: {},
+  user: {},
   ordersStatuses: [],
   ordersStatus: {
     title: '',
@@ -26,7 +27,8 @@ export default function adminReducer($$state = $$initialState, action) {
     products, filters, filter,
     type, order, product, loading,
     errors, categories, fields, field,
-    fieldsValue, bannerItems, ordersStatuses, ordersStatus
+    fieldsValue, bannerItems, ordersStatuses, ordersStatus,
+    user
   } = action;
 
   switch (type) {
@@ -77,6 +79,9 @@ export default function adminReducer($$state = $$initialState, action) {
         }
       });
       return $$state.set('filters', newFilters);
+
+    case actionTypes.SET_USER:
+      return $$state.set('user', user);
 
     default:
       return $$state;

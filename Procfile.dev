@@ -1,3 +1,3 @@
 web: rails s
+redis: bundle exec sidekiq
 client: sh -c 'rm app/assets/webpack/* || true && cd client && npm run build:dev:client'
-

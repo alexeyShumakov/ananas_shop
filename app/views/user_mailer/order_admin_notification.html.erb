@@ -1,0 +1,23 @@
+<h1><%= @order.name %> совершил покупку </h1>
+<p>
+  Сумма заказа: <b><%= @order.fixed_total_price %> руб.</b>
+</p>
+
+<p>
+  email: <b><%= @order.email %></b>
+</p>
+<p>
+  Номер телефона: <b><%= @order.phone %> руб.</b>
+</p>
+<p>
+  ссылка на заказ: <%= link_to "order##{@order.id}", admin_order_url(@order.id) %>
+
+</p>
+<ul>
+  <% @order.line_items.each do |line_item| %>
+    <li>
+      <%= link_to line_item.product.title, product_url(line_item.product.id) %>
+      <%= line_item.count %> x <%= line_item.fixed_price %> = <%= line_item.fixed_total_price %>
+    </li>
+  <% end %>
+</ul>

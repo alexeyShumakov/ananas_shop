@@ -38,7 +38,10 @@ Rails.application.routes.draw do
       resources :fields_values, only: [:create]
       resources :filters, only: [:index]
       resources :line_items, only: [:create, :destroy, :update]
-      resources :orders, only: [:show, :update, :create]
+      resources :orders, only: [:show, :update, :create] do
+        get 'confirm', on: :member
+        get 'notify', on: :member
+      end
       resources :orders_statuses, only: [:index, :create, :update, :destroy]
       resources :pictures, only: [:create, :update, :destroy]
       resources :products, only: [:index, :create, :show, :update]

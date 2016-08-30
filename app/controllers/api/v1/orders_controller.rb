@@ -1,5 +1,5 @@
 class Api::V1::OrdersController < Api::V1::BaseController
-  before_action :authenticate_user!, only: [:show, :update]
+  before_action :authenticate_user!, only: [:show, :update, :confirm, :notify]
   before_action :set_form, only: [:create]
 
   def show
@@ -31,6 +31,20 @@ class Api::V1::OrdersController < Api::V1::BaseController
     else
       render json: @form.errors, status: :unprocessable_entity
     end
+  end
+
+  def confirm
+    @order = Order.find params[:id]
+    authorize @order
+    OrderMailer.delay.confirm @order.id
+    render json: @order
+  end
+
+  def notify
+    @order = Order.find params[:id]
+    authorize @order
+    OrderMailer.delay.notify @order.id
+    render json: @order
   end
 
   private

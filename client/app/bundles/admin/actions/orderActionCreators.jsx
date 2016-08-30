@@ -127,6 +127,20 @@ export function updateFilter(filter) {
   }
 }
 
+export function confirmOrder(order) {
+  return function(dispatch) {
+    let id = order.get('id')
+    return axios.get(`/api/v1/orders/${id}/confirm`);
+  }
+}
+
+export function notifyOrder(order) {
+  return function(dispatch) {
+    let id = order.get('id')
+    return axios.get(`/api/v1/orders/${id}/notify`);
+  }
+}
+
 function getParams(resetPage) {
   let params = {};
   const filters = ReactOnRails.getStore("adminStore")

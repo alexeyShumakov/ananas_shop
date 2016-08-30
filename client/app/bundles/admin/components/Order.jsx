@@ -6,6 +6,8 @@ import Field from './order/Field';
 import Status from './order/Status';
 import ProductsList from './order/ProductsList';
 import NewLineItem from './order/NewLineItem';
+import Confirm from './order/Confirm';
+import Notify from './order/Notify';
 
 export default class Order extends React.Component {
   constructor(props, context) {
@@ -27,7 +29,7 @@ export default class Order extends React.Component {
     let {
       updateOrder, fetchOrder, fetchOrdersStatuses,
       updateAddress, updateLineItem, destroyLineItem,
-      createLineItem
+      createLineItem, confirmOrder, notifyOrder
     } = actions;
     let order = store.get('order');
     let ordersStatuses = store.get('ordersStatuses');
@@ -47,7 +49,10 @@ export default class Order extends React.Component {
               updateOrder={updateOrder}
               fetch={fetchOrdersStatuses}/>
           </div>
-          <h3> Заказ #{this.props.id} </h3>
+          <h3> Заказ #{this.props.id}
+            <Confirm order={order} confirmOrder={confirmOrder} />
+            <Notify order={order} notifyOrder={notifyOrder} />
+          </h3>
           <hr/>
           <h4>Личные данные</h4>
           <Field

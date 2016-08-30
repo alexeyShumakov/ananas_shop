@@ -6,6 +6,14 @@ class OrderPolicy < ApplicationPolicy
   def update?
     user.admin?
   end
+
+  def confirm?
+    user.admin?
+  end
+
+  def notify?
+    user.admin?
+  end
   class Scope < Scope
     def resolve
       scope

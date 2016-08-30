@@ -3,7 +3,7 @@
 Сумма вашего заказа: <b><%= @order.fixed_total_price %> руб.</b>
 ---
 <% @order.line_items.each do |line_item| %>
-  <%= line_item.count %> x <%= line_item.fixed_price %> = <%= line_item.fixed_total_price %>
+ -<%= line_item.product.title %> <%= line_item.count %> x <%= line_item.fixed_price %> = <%= line_item.fixed_total_price %>
 <% end %>
 ---
 В ближайшее время наш менеджер с вами свяжется.

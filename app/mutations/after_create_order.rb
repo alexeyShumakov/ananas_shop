@@ -15,6 +15,9 @@ class AfterCreateOrder < Mutations::Command
     end
     cart.reload
     order.reload
-    UserMailer.new_order(order).deliver_later
+    UserMailer.delay.new_order(order.id)
+    User.where(role: 1).each do |admin|
+      UserMailer.delay.order_admin_notification(order.id, admin.id)
+    end
   end
 end

@@ -1,0 +1,7 @@
+<%= @order.name %>, ваш заказ №<%= @order.id %> подтвержден.
+Статус заказа: <%= @order.orders_status.title %>
+Сумма доставки: <%= @order.delivery_price %> руб.
+Сумма вашего заказа: <%= @order.fixed_total_price %> руб.
+<% @order.line_items.each do |line_item| %>
+    <%= link_to line_item.product.title, product_url(line_item.product.id) %> <%= line_item.count %> x <%= line_item.fixed_price %> = <%= line_item.fixed_total_price %>
+<% end %>

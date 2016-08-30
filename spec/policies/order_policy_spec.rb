@@ -20,4 +20,16 @@ RSpec.describe OrderPolicy do
       expect(subject).to  permit(admin, order)
     end
   end
+
+  permissions :confirm? do
+    it 'only admin can update model' do
+      expect(subject).to  permit(admin, order)
+    end
+  end
+
+  permissions :notify? do
+    it 'only admin can update model' do
+      expect(subject).to  permit(admin, order)
+    end
+  end
 end

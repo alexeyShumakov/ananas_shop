@@ -1,15 +1,18 @@
 <div class="row">
   <div class="col-sm-3 hidden-xs">
-    <div class="sidebar panel">
-      <div class="panel-body">
-        <ul class="list-unstyled">
-          <li><a class='sidebar__link' href="#">Вход в личный кабинет</a></li>
-          <li><a class='sidebar__link' href="#">Регистрация</a></li>
-          <li><a class='sidebar__link' href="#">Восстановление пароля</a></li>
-          <li><a class='sidebar__link' href="#">Моя корзина</a></li>
-        </ul>
+      <div class="sidebar panel">
+        <div class="panel-body">
+          <ul class="list-unstyled">
+            <% if user_signed_in? %>
+              <li><%= link_to "Личный кабинет", my_cabinet_root_path, class: 'sidebar__link' %></li>
+            <% else %>
+              <li><%= link_to "Войти в систему", new_user_session_path, class: 'sidebar__link' %></li>
+              <li><%= link_to "Регистрация", new_user_registration_path, class: 'sidebar__link' %></li>
+              <li><%= link_to "Восстановление пароля", new_user_password_path, class: 'sidebar__link' %></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
-    </div>
   </div>
 
   <div class="col-sm-9">

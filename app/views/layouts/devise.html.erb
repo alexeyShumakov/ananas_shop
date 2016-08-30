@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Ananas Shop" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ananas Shop" %>">
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+  <body class='body'>
+    <main role="main">
+      <div class="container main-container">
+        <div class="margin-top-20">
+          <div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-offset-3 col-sm-6">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <%= render 'layouts/messages' %>
+                  <%= yield %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

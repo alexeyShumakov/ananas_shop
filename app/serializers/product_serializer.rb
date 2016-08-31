@@ -3,6 +3,7 @@ class ProductSerializer < ActiveModel::Serializer
   has_many :pictures
   has_many :products_fields
   has_one :category
+  has_many :similar, serializer: ShortProductSerializer
 
   def thumb_cover_url
     object.cover_url(:thumb)

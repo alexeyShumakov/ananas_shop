@@ -4,9 +4,8 @@ import Gallery from 'react-image-gallery';
 import Loader from './Loader';
 import AddToCart from './fullProduct/AddToCart';
 import FieldsList from './fullProduct/FieldsList';
-import Similar from './fullProduct/Similar';
 
-export default class FullProduct extends React.Component {
+export default class ModalProduct extends React.Component {
   static propTypes = {
   };
 
@@ -21,7 +20,7 @@ export default class FullProduct extends React.Component {
   }
 
   render() {
-    let productComp, similarComponent;
+    let productComp;
     let { product, productId, addToCart, selectedProductId } = this.props;
 
     if (this.state.loading) {
@@ -54,9 +53,6 @@ export default class FullProduct extends React.Component {
       if(forExample) {
         exampleElement = <div><b>Продукт выставлен для примера</b></div>
       }
-      if(!similar.isEmpty()) {
-        similarComponent = <Similar items={similar}/>
-      }
       productComp =
         <div className='row'>
           <div className="col-md-5">
@@ -66,7 +62,6 @@ export default class FullProduct extends React.Component {
               showNav={false}
               startIndex={startIndex}
             />
-            {similarComponent}
           </div>
           <div className="col-md-7">
             <h3>{title}</h3>

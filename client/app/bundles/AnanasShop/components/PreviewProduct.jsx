@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 import Modal from 'react-modal';
 
-import FullProduct from './FullProduct';
+import ModalProduct from './ModalProduct';
 
 export default class PreviewProduct extends React.Component {
 
@@ -44,7 +44,7 @@ export default class PreviewProduct extends React.Component {
               <h4 className="modal-title"> {product.get('title')} </h4>
             </div>
             <div className="modal-body">
-              <FullProduct {...{productId, fetchProduct, product, addToCart, selectedProductId}}/>
+              <ModalProduct {...{productId, fetchProduct, product, addToCart, selectedProductId}}/>
             </div>
           </div>
         </Modal>

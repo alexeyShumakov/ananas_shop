@@ -36,7 +36,7 @@
     "mirror-creator": "^1.1.0",
     "rc-slider": "^3.7.4",
     "rc-tooltip": "^3.4.2",
-    "react": "^15.2.1",
+    "react": "^15.3.1",
     "react-addons-create-fragment": "^15.2.1",
     "react-bootstrap": "^0.29.5",
     "react-color": "^2.2.2",
@@ -49,12 +49,14 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.5.2",
     "react-select": "^1.0.0-beta14",
+    "react-slick": "^0.13.3",
     "react-tabs": "^0.7.0",
     "react-toggle": "^2.1.1",
     "react-waypoint": "^3.1.1",
     "redux": "^3.5.2",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0",
+    "slick-carousel": "^1.6.0",
     "webpack": "^1.13.1"
   },
   "devDependencies": {

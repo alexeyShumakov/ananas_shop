@@ -26,4 +26,8 @@ class Product < ActiveRecord::Base
   def default_medium_cover_url
     Picture.new.image.url('medium')
   end
+
+  def similar
+    category.products.where(public: true).where.not(id: self.id).order('random()').limit(5)
+  end
 end

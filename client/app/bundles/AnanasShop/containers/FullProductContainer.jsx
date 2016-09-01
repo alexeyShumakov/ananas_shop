@@ -24,12 +24,12 @@ class FullProductContainer extends React.Component {
   render() {
     const { dispatch, $$cartStore, productId } = this.props;
     const actions = bindActionCreators(cartActionCreators, dispatch);
-    let { fetchProduct, addToCart } = actions;
+    let { fetchProduct, addToCart, fetchLastSeen } = actions;
     let product = $$cartStore.get('product');
     let selectedProductId = $$cartStore.get('selectedProductId');
 
     return (
-      <FullProduct {...{productId, fetchProduct, product, addToCart, selectedProductId}}/>
+      <FullProduct {...{productId, fetchLastSeen, fetchProduct, product, addToCart, selectedProductId}}/>
     );
   }
 }

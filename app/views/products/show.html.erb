@@ -1,8 +1,6 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <%= render partial: 'breadcrumb', locals: { category: @product.category, title: @product.title } %>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <%= render partial: 'breadcrumb', locals: { category: @product.category, title: @product.title } %>
   </div>
-  <%= react_component 'FullProduct', props: {id: @product.id} %>
 </div>
+<%= react_component 'FullProduct', props: {id: @product.id} %>

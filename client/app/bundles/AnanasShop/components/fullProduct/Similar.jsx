@@ -31,11 +31,20 @@ export default class Similar extends React.Component {
       dots: false,
       infinite: false,
       slidesToShow: 3,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1000,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+          }
+        }
+      ]
     };
     return (
       <div>
-        <h3 className='text-center'>Так же вас может заинтересовать</h3>
+        <h4>Похожие товары</h4>
         <Slider {...settings}>
           {items}
         </Slider>

@@ -44,7 +44,9 @@ Rails.application.routes.draw do
       end
       resources :orders_statuses, only: [:index, :create, :update, :destroy]
       resources :pictures, only: [:create, :update, :destroy]
-      resources :products, only: [:index, :create, :show, :update]
+      resources :products, only: [:index, :create, :show, :update] do
+        get 'last_seen', on: :collection
+      end
       resources :products_fields, only: [:create, :update, :destroy]
       resources :users do
         get 'my_profile', on: :collection

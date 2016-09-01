@@ -5,6 +5,7 @@ import Loader from './Loader';
 import AddToCart from './fullProduct/AddToCart';
 import FieldsList from './fullProduct/FieldsList';
 import Similar from './fullProduct/Similar';
+import LastSeen from './fullProduct/LastSeen';
 
 export default class FullProduct extends React.Component {
   static propTypes = {
@@ -22,7 +23,7 @@ export default class FullProduct extends React.Component {
 
   render() {
     let productComp, similarComponent;
-    let { product, productId, addToCart, selectedProductId } = this.props;
+    let { product, productId, addToCart, selectedProductId, fetchLastSeen } = this.props;
 
     if (this.state.loading) {
       productComp = <div className="loader"/>
@@ -58,23 +59,28 @@ export default class FullProduct extends React.Component {
         similarComponent = <Similar items={similar}/>
       }
       productComp =
-        <div className='row'>
-          <div className="col-md-5">
-            <Gallery
-              items={galleryImages}
-              slideOnThumbnailHover={true}
-              showNav={false}
-              startIndex={startIndex}
-            />
-            {similarComponent}
+        <div>
+          <div className='row'>
+            <div className="col-sm-5">
+              <Gallery
+                items={galleryImages}
+                slideOnThumbnailHover={true}
+                showNav={false}
+                startIndex={startIndex}
+              />
+              {similarComponent}
+            </div>
+            <div className="col-sm-7">
+              <h3>{title}</h3>
+              {exampleElement}
+              <h2 className='text-primary'><b>{price} руб.</b></h2>
+              <p>{description}</p>
+              <FieldsList {...{fields}}/>
+              <AddToCart {...{addToCart, productId, selectedProductId}} />
+            </div>
           </div>
-          <div className="col-md-7">
-            <h3>{title}</h3>
-            {exampleElement}
-            <h2 className='text-primary'><b>{price} руб.</b></h2>
-            <p>{description}</p>
-            <FieldsList {...{fields}}/>
-            <AddToCart {...{addToCart, productId, selectedProductId}} />
+          <div className='row'>
+            <LastSeen {...{product, fetchLastSeen}}/>
           </div>
         </div>
     }

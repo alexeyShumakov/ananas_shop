@@ -162,3 +162,9 @@ export function createOrder(order) {
     return axios.post('/api/v1/orders', {order});
   }
 }
+
+export function fetchLastSeen() {
+  return dispatch => {
+    return axios.get('/api/v1/products/last_seen');
+  }
+}

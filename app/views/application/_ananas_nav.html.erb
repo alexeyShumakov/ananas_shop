@@ -1,7 +1,11 @@
-<div class="ananas-nav hidden-xs">
-  <ul class='nav nav-pills'>
-    <% Category.roots.each do |category| %>
-      <li> <%= link_to category.title, category_path(category) %></li>
-    <% end %>
-  </ul>
+<div class="ananas-nav">
+  <div class="container">
+    <div class="row">
+      <ul class='nav nav-pills'>
+        <% Category.roots.each do |category| %>
+          <li> <%= link_to category.title, category_path(category) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>

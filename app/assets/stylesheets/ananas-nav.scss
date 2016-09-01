@@ -1,14 +1,11 @@
 .ananas-nav {
-  background-color: $orange;
-  border-radius: 2px 2px 0 0;
+  .container {
+    border-top: 3px solid darken($light-gray, 30%);
+  }
+  background-color: $light-gray;
+  border-radius: 0;
   font-size: 1.2em;
-
   a {
     color: $black;
-  }
-
-  a:hover {
-
-    color: lighten($black, 15%);
   }
 }

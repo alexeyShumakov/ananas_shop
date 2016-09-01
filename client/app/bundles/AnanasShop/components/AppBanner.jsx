@@ -23,7 +23,11 @@ export default class AppBanner extends React.Component {
       gallery = <div> <Gallery items={images} disableArrowKeys={true} showThumbnails={false} showBullets={true} showNav={false} /> </div>
     }
     return (
-      <div> {gallery} </div>
+      <div className="container-fluid root-image-gallery">
+        <div className="row hidden-sm hidden-xs">
+          {gallery}
+        </div>
+      </div>
     );
   }
 }

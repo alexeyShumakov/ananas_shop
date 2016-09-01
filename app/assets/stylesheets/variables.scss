@@ -11,8 +11,8 @@ $light-gray: #F5F5F5;
 $brand-primary: $orange;
 
 $link-color: $brown;
-$navbar-default-bg: $green;
-$navbar-default-border: darken($green, 6.5%);
+$navbar-default-bg: $light-gray;
+$navbar-default-border: $navbar-default-bg;
 $navbar-default-color: $black;
 $navbar-default-link-color: $black;
 $navbar-default-link-hover-color: lighten($navbar-default-link-color, 15%);

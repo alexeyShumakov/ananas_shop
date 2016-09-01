@@ -8,7 +8,7 @@ class Api::V1::ProductsController < Api::V1::BaseController
 
   def show
     @product = Product.find(params[:id])
-    session[:similar_product_ids] = session[:similar_product_ids].unshift(@product.id).uniq[0..14]
+    session[:similar_product_ids] = session[:similar_product_ids].unshift(@product.id)[0..3].uniq
     render json: @product, include: ['**']
   end
 

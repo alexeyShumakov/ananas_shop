@@ -2,15 +2,15 @@
   border-color: $orange;
 }
 .sidebar__link {
-  color: #767676;
+  color: $gray;
   &:hover {
-    color: #767676;
+    color: $gray;
   }
 }
 .sidebar__category {
-  color: #767676;
+  color: $gray;
   &:hover {
-    color: #767676;
+    color: $orange;
   }
 }
 .sidebar__category-selected {
@@ -27,4 +27,21 @@
 .sidebar__list {
   margin-bottom: 3px;
   margin-left: 16px;
+}
+
+.sidebar__list_large {
+  font-size: 110%;
+  .sidebar__category {
+    padding: 8px 12px;
+    white-space: nowrap;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    color: lighten(#000, 20%);
+    &:hover {
+      text-decoration: none;
+      color: $orange;
+    }
+  }
 }

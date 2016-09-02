@@ -3,10 +3,19 @@
   flex-flow: row wrap;
 }
 .product-thumb {
+  padding: 5px;
   position: relative;
+  border: 2px solid white;
+  margin-bottom: 10px;
   &:hover {
-    border: 1px solid $orange;
+    border: 2px solid $orange;
   }
+}
+.product-thumb__button {
+  border-radius: 0 0 3px 3px;
+}
+.product-thumb__img-block {
+  max-width: 200px;
 }
 
 .product-thumb__title {

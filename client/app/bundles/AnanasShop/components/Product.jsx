@@ -15,22 +15,23 @@ export default class Product extends React.Component {
       addToCart, productId, selectedProductId,
       fetchProduct, product } = this.props;
     return (
-      <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <div className="thumbnail product-thumb">
+      <div className="product-thumb col-xs-6 col-sm-6 col-md-4 col-lg-3">
+        <div className="center-block product-thumb__img-block">
           <a href={`/products/${productId}`}>
             <LazyLoad height={200}>
               <img src={thumbCoverUrl}/>
             </LazyLoad>
           </a>
-          <PreviewProduct {...{productId, addToCart, selectedProductId, fetchProduct, product}}/>
-          <div className="caption">
+          <AddToButton {...{addToCart, productId, selectedProductId}} />
+
+          <div>
             <span className="product-thumb__title">
               {title}
             </span>
             <p><b className="product-thumb__price">{price} руб.</b></p>
-              <AddToButton {...{addToCart, productId, selectedProductId}} />
           </div>
         </div>
+        <PreviewProduct {...{productId, addToCart, selectedProductId, fetchProduct, product}}/>
       </div>
     );
   }

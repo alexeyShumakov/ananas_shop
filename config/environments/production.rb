@@ -76,4 +76,16 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  config.action_mailer.asset_host = 'http://shop.ananas-journal.ru'
+  config.action_mailer.default_url_options = { host: 'shop.ananas-journal.ru' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :user_name => ENV['SMPT_NAME'],
+    :password => ENV['SMPT_PASSWORD'],
+    :domain => 'shop.ananas-journal.ru',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 end

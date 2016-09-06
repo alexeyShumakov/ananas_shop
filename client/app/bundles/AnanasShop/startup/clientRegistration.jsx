@@ -11,12 +11,13 @@ import AddToButton from './addToButtonApp';
 import cartStore from '../store/cartStore';
 import NavbarProductSearch from '../components/NavbarProductSearch';
 import AppBanner from '../components/AppBanner';
-import IndexProducts from './indexPageProducts'
+import IndexProducts from './indexPageProducts';
+import CategoriesMenu from './categoriesMenu';
 
 ReactOnRails.registerStore({ cartStore });
 let components = {
   Showcase, MyProfile, MyOrders, MyAddresses, CartApp, AddToButton,
   AppBanner, FullCartApp, FullProduct, NavbarProductSearch,
-  IndexProducts, NewOrder
+  IndexProducts, NewOrder, CategoriesMenu
 }
 ReactOnRails.register(components);

@@ -168,3 +168,9 @@ export function fetchLastSeen() {
     return axios.get('/api/v1/products/last_seen');
   }
 }
+
+export function fetchCategoriesRoots() {
+  return dispatch => {
+    return axios.get('/api/v1/categories', {params: {roots: true}});
+  }
+}

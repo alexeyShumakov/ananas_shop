@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :addresses, only: [:crete, :update, :destroy]
+      resources :addresses, only: [:create, :update, :destroy]
       resources :banner_items, only: [:index, :create, :destroy]
       resources :carts, only: [:show]
       resources :categories, only: [:index, :show]
